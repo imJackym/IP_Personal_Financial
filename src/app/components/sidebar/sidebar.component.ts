@@ -26,6 +26,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'person',
     class: ''
   },
+  { 
+    path: '/income',
+    title: 'Income',
+    icon: 'person',
+    class: ''
+  },
   {
     path: '/table-list',
     title: 'Table List',

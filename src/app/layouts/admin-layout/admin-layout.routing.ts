@@ -9,6 +9,7 @@ import { MapsComponent } from './../../demo/maps/maps.component';
 import { NotificationsComponent } from './../../demo/notifications/notifications.component';
 import { UpgradeComponent } from './../../demo/upgrade/upgrade.component';
 import { WalletComponent } from 'app/financial/wallet/wallet.component';
+import { IncomeComponent } from 'app/financial/income/income.component';
 import { BalanceComponent } from 'app/financial/balance/balance.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -25,6 +26,7 @@ export const AdminLayoutRoutes: Routes = [
   // end of demo
   
   { path: 'wallet', component: WalletComponent },
+  { path: 'income', component: IncomeComponent },
   { path: 'balance', component: BalanceComponent },
 
   // {

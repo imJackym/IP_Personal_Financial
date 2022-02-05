@@ -11,6 +11,7 @@ import { AppComponent } from './app.component'
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { BalanceComponent } from './financial/balance/balance.component';
+import { IncomeComponent } from './financial/income/income.component';
 
 
 @NgModule({
