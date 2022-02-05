@@ -11,6 +11,7 @@ import { UpgradeComponent } from './../../demo/upgrade/upgrade.component';
 import { WalletComponent } from 'app/financial/wallet/wallet.component';
 import { IncomeComponent } from 'app/financial/income/income.component';
 import { BalanceComponent } from 'app/financial/balance/balance.component';
+import { ExpenditureComponent } from 'app/financial/expenditure/expenditure.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -28,6 +29,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'wallet', component: WalletComponent },
   { path: 'income', component: IncomeComponent },
   { path: 'balance', component: BalanceComponent },
+  { path: 'expenditure', component: ExpenditureComponent },
 
   // {
   //   path: '',

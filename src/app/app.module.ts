@@ -10,8 +10,10 @@ import { ComponentsModule } from './components/components.module'
 import { AppComponent } from './app.component'
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { WalletComponent } from './financial/wallet/wallet.component';
 import { BalanceComponent } from './financial/balance/balance.component';
 import { IncomeComponent } from './financial/income/income.component';
+import { ExpenditureComponent } from './financial/expenditure/expenditure.component';
 
 
 @NgModule({
@@ -29,6 +31,6 @@ import { IncomeComponent } from './financial/income/income.component';
   ],
   declarations: [AppComponent, AdminLayoutComponent],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, WalletComponent, BalanceComponent, IncomeComponent, ExpenditureComponent],
 })
 export class AppModule {}
