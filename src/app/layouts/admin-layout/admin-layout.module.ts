@@ -19,6 +19,9 @@ import { MapsComponent } from 'app/demo/maps/maps.component'
 import { NotificationsComponent } from 'app/demo/notifications/notifications.component'
 import { UpgradeComponent } from 'app/demo/upgrade/upgrade.component'
 import { WalletComponent } from 'app/financial/wallet/wallet.component'
+import { BalanceComponent } from 'app/financial/balance/balance.component'
+import { ExpenditureComponent } from 'app/financial/expenditure/expenditure.component'
+import { IncomeComponent } from 'app/financial/income/income.component'
 import { IeplanComponent } from 'app/plan/ieplan/ieplan.component'
 
 @NgModule({
@@ -44,6 +47,9 @@ import { IeplanComponent } from 'app/plan/ieplan/ieplan.component'
     NotificationsComponent,
     // UpgradeComponent,
     WalletComponent,
+    BalanceComponent,
+    ExpenditureComponent,
+    IncomeComponent,
     IeplanComponent,
   ],
 })
