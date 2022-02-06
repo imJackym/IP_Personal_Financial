@@ -38,6 +38,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'person',
     class: ''
   },
+  { 
+    path: '/ieplan',
+    title: 'I/E Plan',
+    icon: 'person',
+    class: ''
+  },
   {
     path: '/table-list',
     title: 'Table List',

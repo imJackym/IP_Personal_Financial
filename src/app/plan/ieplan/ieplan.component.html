@@ -1,0 +1,249 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- status card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Income / Expenditure Status</h4>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <th>Expenditure Category</th>
+                <th>Expected Amount</th>
+                <th>Remain Amount</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Food</td>
+                  <td>$36,738</td>
+                  <td>$36,738</td>
+                </tr>
+                <tr>
+                  <td>Transport</td>
+                  <td>$23,789</td>
+                  <td>$23,789</td>
+                </tr>
+                <tr>
+                  <td>Food2</td>
+                  <td>$56,142</td>
+                  <td>$56,142</td>
+                </tr>
+                <tr>
+                  <td>Saving</td>
+                  <td>$38,735</td>
+                  <td>$38,735</td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <th>Income Category</th>
+                <th>Expected Amount</th>
+                <th>Remain Amount</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Food</td>
+                  <td>$36,738</td>
+                  <td>$36,738</td>
+                </tr>
+                <tr>
+                  <td>Transport</td>
+                  <td>$23,789</td>
+                  <td>$23,789</td>
+                </tr>
+                <tr>
+                  <td>Food2</td>
+                  <td>$56,142</td>
+                  <td>$56,142</td>
+                </tr>
+                <tr>
+                  <td>Saving</td>
+                  <td>$38,735</td>
+                  <td>$38,735</td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <table class="table table-hover">
+              <thead>
+                <th class="text-warning">Summary</th>
+                <th>$38,735</th>
+                <th>$38,735</th>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- end of status card -->
+
+      <!-- ---------------------------------------------------------------------------------- -->
+
+      <!-- card -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <span class="nav-tabs-title">Budget :</span>
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a mat-button class="nav-link" href="#Income" data-toggle="tab">
+                      <i class="material-icons">add_shopping_cart</i> Income
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a mat-button class="nav-link active" href="#Expenditure" data-toggle="tab">
+                      <i class="material-icons">shopping_cart</i> Expenditure
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane" id="Income">
+                <div>
+                  <table class="table table-hover" style="margin-bottom: 0rem;">
+                    <thead class="text-warning">
+                      <th>Income Category</th>
+                      <th>Expected Amount</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">$</span>
+                            </div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div style="text-align: right;">
+                    <button type="button" class="btn btn-second">Clear</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+                <table class="table table-hover">
+                  <thead class="text-warning">
+                    <th>Income Category</th>
+                    <th>Expected Amount</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Dakota Rice</td>
+                      <td>$36,738</td>
+                      <td class="td-actions text-right">
+                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Minerva Hooper</td>
+                      <td>$23,789</td>
+                      <td class="td-actions text-right">
+                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane active" id="Expenditure">
+                <div>
+                  <table class="table table-hover" style="margin-bottom: 0rem;">
+                    <thead class="text-warning">
+                      <th>Expenditure Category</th>
+                      <th>Expected Amount</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">$</span>
+                            </div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div style="text-align: right;">
+                    <button type="button" class="btn btn-second">Clear</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+                <table class="table table-hover">
+                  <thead class="text-warning">
+                    <th>Expenditure Category</th>
+                    <th>Expected Amount</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Dakota Rice</td>
+                      <td>$36,738</td>
+                      <td class="td-actions text-right">
+                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Minerva Hooper</td>
+                      <td>$23,789</td>
+                      <td class="td-actions text-right">
+                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of  card -->
+
+
+    </div>
+  </div>
+</div>

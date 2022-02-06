@@ -14,6 +14,7 @@ import { WalletComponent } from './financial/wallet/wallet.component';
 import { BalanceComponent } from './financial/balance/balance.component';
 import { IncomeComponent } from './financial/income/income.component';
 import { ExpenditureComponent } from './financial/expenditure/expenditure.component';
+import { IeplanComponent } from './plan/ieplan/ieplan.component';
 
 
 @NgModule({
@@ -31,6 +32,6 @@ import { ExpenditureComponent } from './financial/expenditure/expenditure.compon
   ],
   declarations: [AppComponent, AdminLayoutComponent],
   providers: [],
-  bootstrap: [AppComponent, WalletComponent, BalanceComponent, IncomeComponent, ExpenditureComponent],
+  bootstrap: [AppComponent, WalletComponent, BalanceComponent, IncomeComponent, ExpenditureComponent, IeplanComponent],
 })
 export class AppModule {}

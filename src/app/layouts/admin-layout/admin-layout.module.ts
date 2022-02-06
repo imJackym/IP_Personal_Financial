@@ -19,6 +19,7 @@ import { MapsComponent } from 'app/demo/maps/maps.component'
 import { NotificationsComponent } from 'app/demo/notifications/notifications.component'
 import { UpgradeComponent } from 'app/demo/upgrade/upgrade.component'
 import { WalletComponent } from 'app/financial/wallet/wallet.component'
+import { IeplanComponent } from 'app/plan/ieplan/ieplan.component'
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { WalletComponent } from 'app/financial/wallet/wallet.component'
     NotificationsComponent,
     // UpgradeComponent,
     WalletComponent,
+    IeplanComponent,
   ],
 })
 export class AdminLayoutModule {}
