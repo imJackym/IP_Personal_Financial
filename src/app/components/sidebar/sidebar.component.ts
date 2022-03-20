@@ -44,6 +44,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'person',
     class: ''
   },
+  { 
+    path: '/fireplan',
+    title: 'FIRE Plan',
+    icon: 'person',
+    class: ''
+  },
   {
     path: '/table-list',
     title: 'Table List',

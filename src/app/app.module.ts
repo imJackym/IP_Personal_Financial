@@ -15,6 +15,7 @@ import { BalanceComponent } from './financial/balance/balance.component';
 import { IncomeComponent } from './financial/income/income.component';
 import { ExpenditureComponent } from './financial/expenditure/expenditure.component';
 import { IeplanComponent } from './plan/ieplan/ieplan.component';
+import { FireplanComponent } from './plan/fireplan/fireplan.component';
 
 
 @NgModule({
@@ -30,8 +31,19 @@ import { IeplanComponent } from './plan/ieplan/ieplan.component';
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY',
     // }),
   ],
-  declarations: [AppComponent, AdminLayoutComponent],
+  declarations: [
+    AppComponent, 
+    AdminLayoutComponent, 
+  ],
   providers: [],
-  bootstrap: [AppComponent, WalletComponent, BalanceComponent, IncomeComponent, ExpenditureComponent, IeplanComponent],
+  bootstrap: [
+    AppComponent, 
+    WalletComponent, 
+    BalanceComponent, 
+    IncomeComponent, 
+    ExpenditureComponent, 
+    IeplanComponent, 
+    FireplanComponent
+  ],
 })
 export class AppModule {}

@@ -13,6 +13,7 @@ import { IncomeComponent } from 'app/financial/income/income.component';
 import { BalanceComponent } from 'app/financial/balance/balance.component';
 import { ExpenditureComponent } from 'app/financial/expenditure/expenditure.component';
 import { IeplanComponent } from 'app/plan/ieplan/ieplan.component';
+import { FireplanComponent } from 'app/plan/fireplan/fireplan.component'
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -32,6 +33,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'balance', component: BalanceComponent },
   { path: 'expenditure', component: ExpenditureComponent },
   { path: 'ieplan', component: IeplanComponent },
+  { path: 'fireplan', component: FireplanComponent },
 
   // {
   //   path: '',
