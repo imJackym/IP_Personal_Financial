@@ -3,10 +3,29 @@
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > tbody > tr > td,
-.table > tfoot > tr > td{
+.table > tfoot > tr > td {
   width: 30%;
 }
 
 .table thead th {
   width: 30%;
+}
+
+hr {
+  margin: unset;
+  border-top: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+.padding_reset {
+  padding: unset
+}
+
+.small_title {
+  text-align:left;
+  padding-top:unset;
+  padding-bottom:unset;
+}
+
+.border_unset{ 
+  border-bottom: unset 
 }
