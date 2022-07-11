@@ -2,128 +2,90 @@
   <div class="container-fluid">
     <div class="row">
 
-      <!-- form card -->
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Expenditure Update Form</h4>
-            <!-- <p class="card-category"></p> -->
+      <!-- History Table -->
+      <div class="col-md-8" style="padding:unset">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger header-title-center-space-between">
+            <h4 class="card-title" style="margin-bottom: unset;">Expenditure History</h4>
+            <button mat-raised-button (click)="addRecord()">
+            <!-- <button mat-raised-button> -->
+              <span class="btn-inline">
+                <i class="material-icons header-title-icon">add</i>
+                <span class="card-title header-title-text">Record</span>
+              </span>
+            </button>
           </div>
-          <div class="card-body table-responsive">
-            <table class="table table-hover" style="margin-bottom: 0rem;">
-              <thead class="text-warning">
-                <th>Category</th>
-                <th>Amount</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="input-group mb-3">
-                      <select class="custom-select">
-                        <option>Default select</option>
-                      </select>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div style="text-align: right;">
-              <button type="button" class="btn btn-second">Clear</button>
-              <button type="button" class="btn btn-primary">Save</button>
+          <div class="card-body" style="text-align: center;">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="text-danger">
+                  <th>DATE</th>
+                  <th>CATEORY</th>
+                  <th>AMOUNT</th>
+                  <th>ACTION</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let exHistory of exHistorys">
+                    <td>{{ exHistory.date | date }}</td>
+                    <td>{{ exHistory.category }}</td>
+                    <td>{{ exHistory.amount | currency }}</td>
+                    <td>
+                      <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editRecord(exHistory)">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button mat-raised-button type="button" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="deleteRecord(exHistory.id)">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-      <!-- end of form card -->
+      <!-- End History Table -->
 
-      <!-- status card -->
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Expenditure Status</h4>
+      <!-- Category Table -->
+      <div class="col-md-4 paddingWindow">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger header-title-center-space-between">
+            <h4 class="card-title" style="margin-bottom: unset;">Category</h4>
+            <button mat-raised-button (click)="addCategory()">
+              <span class="btn-inline">
+                <i class="material-icons header-title-icon">add</i>
+                <span class="card-title header-title-text">Category</span>
+              </span>
+            </button>
           </div>
-          <div class="card-body table-responsive">
-            <table class="table table-hover">
-              <thead class="text-warning">
-                <th>Profile</th>
-                <th>Category</th>
-                <th>Amount</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><p>2022<br>02/05</p></td>
-                  <td>Credit Card - Food</td>
-                  <td>$36,738</td>
-                </tr>
-                <tr>
-                  <td><p>2022<br>02/05</p></td>
-                  <td>Credit Card - Transport</td>
-                  <td>$23,789</td>
-                </tr>
-                <tr>
-                  <td><p>2022<br>02/05</p></td>
-                  <td>Credit Card - Food</td>
-                  <td>$56,142</td>
-                </tr>
-                <tr>
-                  <td><p>2022<br>02/05</p></td>
-                  <td>Bank - Saving</td>
-                  <td>$38,735</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <!-- end of status card -->
-
-      <!-- add form card -->
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Category add Form</h4>
-            <!-- <p class="card-category"></p> -->
-          </div>
-          <div class="card-body table-responsive">
-            <table class="table table-hover" style="margin-bottom: 0rem;">
-              <thead class="text-warning">
-                <th>Profile</th>
-                <th>Category</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="input-group">
-                      <select class="custom-select">
-                        <option>Default select</option>
-                      </select>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div style="text-align: right;">
-              <button type="button" class="btn btn-second">Clear</button>
-              <button type="button" class="btn btn-primary">Save</button>
+          <div class="card-body" style="text-align: center;">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="text-danger">
+                  <th>CATEORY</th>
+                  <th>AMOUNT</th>
+                  <th>ACTION</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let exCategory of exCategorys">
+                    <td>{{ exCategory.category }}</td>
+                    <td>{{ (exCategory.amount ? exCategory.amount : "0") | currency }}</td>
+                    <td>
+                      <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(exCategory)">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <!-- <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">close</i>
+                      </button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-      <!-- end of add form card -->
-
+      <!-- End Category Table -->
     </div>
   </div>
 </div>
