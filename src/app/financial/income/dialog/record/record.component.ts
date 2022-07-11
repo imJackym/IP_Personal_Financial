@@ -25,7 +25,7 @@ export class RecordComponent implements OnInit {
       date: ['', Validators.required],
       month: [''],
       category: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     })
     this.getCategory()
 
@@ -85,17 +85,6 @@ export class RecordComponent implements OnInit {
           alert('Record err')
         },
       })
-  }
-
-  deleteRecord(id: number) {
-    this.api.deleteIncomeRecord(id).subscribe({
-      next: (res) => {
-        alert(`Record delete`)
-      },
-      error() {
-        alert('Record err')
-      },
-    })
   }
 
   getMonth() {

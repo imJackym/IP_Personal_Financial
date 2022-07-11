@@ -33,7 +33,9 @@ export class IncomeComponent implements OnInit {
 
   addRecord() {
     this.dialog
-      .open(RecordComponent, {})
+      .open(RecordComponent, {
+        width: '100%',
+      })
       .afterClosed()
       .subscribe((val) => {
         if (val === 'save') {
@@ -45,7 +47,7 @@ export class IncomeComponent implements OnInit {
   editRecord(icHistory: any) {
     this.dialog
       .open(RecordComponent, {
-        width: '30%',
+        width: '100%',
         data: icHistory,
       })
       .afterClosed()
