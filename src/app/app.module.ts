@@ -17,9 +17,14 @@ import { IncomeComponent } from './financial/income/income.component'
 import { ExpenditureComponent } from './financial/expenditure/expenditure.component'
 import { IeplanComponent } from './plan/ieplan/ieplan.component'
 import { FireplanComponent } from './plan/fireplan/fireplan.component'
+import { RecordComponent } from './financial/income/dialog/record/record.component'
+import { CategoryComponent } from './financial/income/dialog/category/category.component'
+import { ErecordComponent } from './financial/expenditure/dialog/erecord/erecord.component'
+import { EcategoryComponent } from './financial/expenditure/dialog/ecategory/ecategory.component'
+import { IecategoryComponent } from './plan/ieplan/dialog/iecategory/iecategory.component'
+import { EiecategoryComponent } from './plan/ieplan/dialog/eiecategory/eiecategory.component';
 
 import { MatDialogModule } from '@angular/material/dialog'
-import { RecordComponent } from './financial/income/dialog/record/record.component'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -27,8 +32,8 @@ import { MatNativeDateModule } from '@angular/material/core'
 import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatButtonModule } from '@angular/material/button'
-import { CategoryComponent } from './financial/income/dialog/category/category.component'
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+
 // import { MatPaginatorModule } from '@angular/material/paginator'
 // import { MatSortModule } from '@angular/material/sort'
 
@@ -62,10 +67,13 @@ import { MatTableModule } from '@angular/material/table'
     AdminLayoutComponent,
     RecordComponent,
     CategoryComponent,
+    ErecordComponent,
+    EcategoryComponent,
+    IecategoryComponent,
+    EiecategoryComponent,
+
   ],
-  providers: [
-    // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-  ],
+  providers: [],
   bootstrap: [
     AppComponent,
     WalletComponent,
@@ -76,6 +84,10 @@ import { MatTableModule } from '@angular/material/table'
     FireplanComponent,
     RecordComponent,
     CategoryComponent,
+    ErecordComponent,
+    EcategoryComponent,
+    IecategoryComponent,
+    EiecategoryComponent
   ],
 })
 export class AppModule {}
