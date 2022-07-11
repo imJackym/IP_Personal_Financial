@@ -1,0 +1,75 @@
+{
+  "i_record": [
+    {
+      "date": "2022-07-08T16:00:00.000Z",
+      "month": 7,
+      "category": "test2",
+      "amount": "33",
+      "id": 2
+    },
+    {
+      "date": "2022-07-08T16:00:00.000Z",
+      "month": 7,
+      "category": "test",
+      "amount": "333",
+      "id": 3
+    }
+  ],
+  "i_category": [
+    {
+      "category": "test11ddaaa",
+      "expected_amount": "1",
+      "pi": "F",
+      "id": 1
+    },
+    {
+      "category": "test2",
+      "expected_amount": "2",
+      "pi": "F",
+      "id": 2
+    }
+  ],
+  "e_record": [
+    {
+      "date": "2022-07-09T16:00:00.000Z",
+      "month": 7,
+      "category": "test2",
+      "amount": "012",
+      "id": 2
+    },
+    {
+      "date": "2022-07-12T16:00:00.000Z",
+      "month": 7,
+      "category": "test2",
+      "amount": "324",
+      "id": 3
+    },
+    {
+      "date": "2022-07-09T16:00:00.000Z",
+      "month": 7,
+      "category": "test1",
+      "amount": "11",
+      "id": 4
+    }
+  ],
+  "e_category": [
+    {
+      "category": "test11dd",
+      "expected_amount": "1",
+      "fe": "F",
+      "id": 1
+    },
+    {
+      "category": "test2212",
+      "expected_amount": "2",
+      "fe": "F",
+      "id": 2
+    },
+    {
+      "category": "test1",
+      "expected_amount": "",
+      "fe": "F",
+      "id": 3
+    }
+  ]
+}
