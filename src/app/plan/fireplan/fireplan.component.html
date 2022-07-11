@@ -1,1 +1,311 @@
-<p>fireplan works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="alert alert-info" style="width:100%;margin:0 15px 0 15px;">
+        <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="material-icons">close</i>
+        </button>
+        <span>
+          <b> INFO - </b> FIRE is "Financial Independence, Retire Early".
+          There are severals ways to achieve FIRE.
+          1. 4% rule
+          2. Whole life of total expenditure is equal or small than to current total asset.
+          3. total passive income is equal to or greater than total expenditure
+          4. when whole life of total passive income add up with current asset is equal to and greater than total expenditure.
+        </span>
+      </div>
+
+      <!-- Cash card -->
+      <div class="col-md-4">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <table>
+              <tr>
+                <td>
+                  <div class="card-icon">
+                    <i class="fa fa-money"></i>
+                  </div>
+                </td>
+                <td>
+                  <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Asset</p>
+                </td>
+              </tr>
+              <tr colspan="2" width="100%">
+                <h3 class="card-title" style="font-size: 2rem; white-space: nowrap">HKD$ 8,800</h3>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <!-- <div class="stats">
+              <table style="font-size: 16px;">
+                <thead>
+                  <span>
+                    <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+                  </span>
+                </thead>
+                <tbody>
+                  <tr>
+                    <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- end of Cash card -->
+      <!-- Cash card -->
+      <div class="col-md-4">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Expenditure</p>
+            <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
+          </div>
+          <div class="card-footer">
+            <!-- <div class="stats">
+              <table style="font-size: 16px;">
+                <thead>
+                  <span>
+                    <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+                  </span>
+                </thead>
+                <tbody>
+                  <tr>
+                    <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- end of Cash card -->
+      <!-- Cash card -->
+      <div class="col-md-4">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Passive Income</p>
+            <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
+          </div>
+          <div class="card-footer">
+            <!-- <div class="stats">
+              <table style="font-size: 16px;">
+                <thead>
+                  <span>
+                    <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+                  </span>
+                </thead>
+                <tbody>
+                  <tr>
+                    <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- end of Cash card -->
+      <!-- Cash card -->
+      <!-- <div class="col-md-6">
+  <div class="card card-stats">
+    <div class="card-header card-header-info card-header-icon">
+      <div class="card-icon">
+        <i class="fa fa-money"></i>
+      </div>
+      <p class="card-category" style="font-size: 1.2rem; text-align: left;">Summary</p>
+      <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <table style="font-size: 16px;">
+          <thead>
+            <span>
+              <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+            </span>
+          </thead>
+          <tbody>
+            <tr>
+              <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> -->
+      <!-- end of Cash card -->
+      <!-- alert -->
+
+      <div class="col-md-12 padding_reset">
+        <div class="card card-plain">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Summary Result</h4>
+          </div>
+          <div class="card-body" style="text-align: center;">
+            <!-- planA -->
+            <div>
+              <h3>Plan A (4% rule)</h3>
+              <table class="table table-hover" style="margin-bottom:unset">
+                <tbody>
+                  <tr>
+                    <td style="text-align: right;">Total Asset :</td>
+                    <td>$ 999,999,999</td>
+                    <td>X 4% =</td>
+                    <td>{{ 999999999*0.04 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">Total Expenditure :</td>
+                    <td>$ 111,222</td>
+                    <td>X 12 =</td>
+                    <td>{{ 111222*12 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: right;">Difference :</td>
+                    <td>=</td>
+                    <td>$123643</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- planB -->
+            <hr>
+            <div>
+              <h3>Plan B (Inflation)</h3>
+              Current year old : <input>
+              *default 25year old
+              Inflation : <input>
+              <table class="table table-hover" style="margin-bottom:unset">
+                <tbody>
+                  <tr>
+                    <td style="text-align: right;">Total Asset :</td>
+                    <td>$ 999,999,999</td>
+                    <td>=</td>
+                    <td>{{ 999999999 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">Total Expenditure :</td>
+                    <td>$ 111,222</td>
+                    <td>X 12 X Inflation =</td>
+                    <td>{{ 111222*12*123 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: right;">Difference :</td>
+                    <td>=</td>
+                    <td>$123643</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- planC -->
+            <hr>
+            <div>
+              <h3>Plan C</h3>
+              <table class="table table-hover" style="margin-bottom:unset">
+                <tbody>
+                  <tr>
+                    <td style="text-align: right;">Passive Income :</td>
+                    <td>$ 999,999,999</td>
+                    <td>X 12 =</td>
+                    <td>{{ 999999999*12 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">Total Expenditure :</td>
+                    <td>$ 111,222</td>
+                    <td>X 12 =</td>
+                    <td>{{ 111222*12 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: right;">Difference :</td>
+                    <td>=</td>
+                    <td>$123643</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- planD -->
+            <hr>
+            <div>
+              <h3>Plan D</h3>
+              <table class="table table-hover" style="margin-bottom:unset">
+                <tbody>
+                  <tr>
+                    <td style="text-align: right;">Asset :</td>
+                    <td></td>
+                    <td>=</td>
+                    <td>{{ 999999999 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">Passive Income :</td>
+                    <td>$ 999,999,999</td>
+                    <td>X 12 =</td>
+                    <td>{{ 999999999*12 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right;">Total Expenditure :</td>
+                    <td>$ 111,222</td>
+                    <td>X 12 =</td>
+                    <td>{{ 111222*12 | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align: right;">Difference :</td>
+                    <td>=</td>
+                    <td>$123643</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h3 class="card-title">Summary Result</h3>
+        </div>
+        <div class="card-body" style="text-align: center;">
+          <div>
+            <h3>Plan A (4% rule)</h3>
+            <table class="table table-hover" style="margin-bottom:unset">
+              <!-- <thead class="text-warning">
+              <th class="border_unset">Category</th>
+              <th class="border_unset">Expected Amount</th>
+              <th class="border_unset">Actual Amount (Remain)</th>
+            </thead> -->
+              <!-- <tbody>
+                <tr>
+                  <td style="text-align: right;">Total Asset :</td>
+                  <td>$ 999,999,999</td>
+                  <td>X 4% =</td>
+                  <td>{{ 999999999*0.04 | currency }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: right;">Total Expenditure :</td>
+                  <td>$ 111,222</td>
+                  <td>X 12 =</td>
+                  <td>{{ 111222*12 | currency }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right;">Difference :</td>
+                  <td>=</td>
+                  <td>$123643</td>
+                </tr>
+              </tbody> -->
+            </table>
+          </div>
+          <div>
+            <h3>Plan B (4% rule)</h3>
+          </div>
+        </div>
+      </div>
+      <!-- end alert -->
+    </div>
+  </div>
+</div>

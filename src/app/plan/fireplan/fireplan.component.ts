@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FireplanComponent implements OnInit {
 
-  // equation : 1.89 * (83 - current_year_old) * expenditure * 12 = total expenditure => total Asset
+  // equation : 2.89 ^ (83 - current_year_old) * expenditure * 12 = total expenditure => total Asset
 
   constructor() { }
 
