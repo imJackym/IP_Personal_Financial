@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Add income Category Form</h1>
+<div mat-dialog-content>
+  <form [formGroup]="categoryForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <input formControlName="category" type="text" matInput placeholder="Category" required>
+    </mat-form-field>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Expected Income Amount</mat-label>
+        <input formControlName="expected_amount" matInput placeholder="Expected Income">
+        <mat-hint>Please count in monthly.</mat-hint>
+      </mat-form-field>
+    </p>
+    
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Is it Passive Income?</mat-label>
+        <mat-select formControlName="pi" placeholder="option">
+          <mat-option value="T">True</mat-option>
+          <mat-option value="F">False</mat-option>
+        </mat-select>
+        <mat-hint>Salary is not a Passive Income.<br>Please count in monthly.</mat-hint>
+      </mat-form-field>
+    </p>
+
+  </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" style="margin-top: 20px;">
+  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+  <button style="margin-left:8px;" mat-raised-button color="primary" (click)="updateCategory()">{{ actionBtn }}</button>
+</div>
