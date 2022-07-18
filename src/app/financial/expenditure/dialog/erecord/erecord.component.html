@@ -10,13 +10,17 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="display:none !important">
+      <input formControlName="year" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="display:none !important">
       <input formControlName="month" matInput>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category" placeholder="option" required>
-        <mat-option *ngFor="let category of categorys;" value="{{ category }}">{{ category }}</mat-option>
+      <mat-select formControlName="category_id" placeholder="option" required>
+        <mat-option *ngFor="let category of categorys;" value="{{ category.id }}">{{ category.category }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -24,15 +28,6 @@
       <mat-label>Amount</mat-label>
       <input formControlName="amount" matInput placeholder="Placeholder" required>
     </mat-form-field>
-
-    <!-- <label for="">
-      <h1>Product Freshness</h1>
-    </label>
-    <mat-radio-group formControlName="amount" class="example-radio-group">
-      <mat-radio-button class="example-radio-button" *ngFor="let list of lists" [value]="list">
-        {{ list }}
-      </mat-radio-button>
-    </mat-radio-group> -->
 
   </form>
 </div>
