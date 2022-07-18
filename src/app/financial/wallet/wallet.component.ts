@@ -7,7 +7,12 @@ import * as Chartist from 'chartist'
   styleUrls: ['./wallet.component.scss'],
 })
 export class WalletComponent implements OnInit {
-  constructor() {}
+
+  datapack = {
+    name: '',
+    description: '',
+    available: false
+  };
 
   ngOnInit(): void {
     var data = {
@@ -19,17 +24,15 @@ export class WalletComponent implements OnInit {
     };
     
     new Chartist.Pie('#dailySalesChart', data, {
-      width: '100%',
+      width: 200,
       labelInterpolationFnc: function(value) {
-        console.log("value : " + value)
-        console.log("----- : " + data.series.reduce(sum) * 100)
         return Math.round(value / data.series.reduce(sum) * 100) + '%';
       }
     });
   }
 
   onexpand(id){
-    console.log("onexpand : " + id)
+    // console.log("onexpand : " + id)
     // document.getElementById(id).setAttribute('display', 'none');
   }
 
