@@ -1,185 +1,174 @@
-import { element } from 'protractor'
-import { ApiService } from './../../services/api.service'
-import { RecordComponent } from './dialog/record/record.component'
-import { CategoryComponent } from './dialog/category/category.component'
+import { element } from "protractor";
+import { ApiService } from "./../../services/api.service";
+import { RecordComponent } from "./dialog/record/record.component";
+import { CategoryComponent } from "./dialog/category/category.component";
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-declare var $: any
-import * as Chartist from 'chartist'
-import { fileURLToPath } from 'url'
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+declare var $: any;
+import * as Chartist from "chartist";
+import { fileURLToPath } from "url";
 
 @Component({
-  selector: 'app-income',
-  templateUrl: './income.component.html',
-  styleUrls: ['./income.component.scss'],
+  selector: "app-income",
+  templateUrl: "./income.component.html",
+  styleUrls: ["./income.component.scss"],
 })
 export class IncomeComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
-  icHistorys = []
-  icCategorys = []
-  new_icCategorys_list = []
-  old_icCategorys_list = []
-  selectedAmount = 0
-  maxAmount = 0
-  monthly = 0
-  yearly = 0
-  totalIncome = 0
-  selectedYear = 0
-  selectedMonth = 0
-  isResult = []
-  years = []
-  categorys = []
+  icHistorys = [];
+  icCategorys = [];
+  new_icCategorys_list = [];
+  old_icCategorys_list = [];
+  selectedAmount = 0;
+  maxAmount = 0;
+  monthly = 0;
+  yearly = 0;
+  totalIncome = 0;
+  selectedYear = 0;
+  selectedMonth = 0;
+  isResult = [];
+  years = [];
+  categorys = [];
   months = [
-    { show: '1', value: '01' },
-    { show: '2', value: '02' },
-    { show: '3', value: '03' },
-    { show: '4', value: '04' },
-    { show: '5', value: '05' },
-    { show: '6', value: '06' },
-    { show: '7', value: '07' },
-    { show: '8', value: '08' },
-    { show: '9', value: '09' },
-    { show: '10', value: '10' },
-    { show: '11', value: '11' },
-    { show: '12', value: '12' },
-  ]
-  yearV = null
-  monthV = null
-  categoryV = null
+    { show: "1", value: "01" },
+    { show: "2", value: "02" },
+    { show: "3", value: "03" },
+    { show: "4", value: "04" },
+    { show: "5", value: "05" },
+    { show: "6", value: "06" },
+    { show: "7", value: "07" },
+    { show: "8", value: "08" },
+    { show: "9", value: "09" },
+    { show: "10", value: "10" },
+    { show: "11", value: "11" },
+    { show: "12", value: "12" },
+  ];
+  yearV = null;
+  monthV = null;
+  categoryV = null;
 
   ngOnInit(): void {
-    this.onload()
+    this.onload();
   }
 
   // Record
   addRecord() {
     this.dialog
-      .open(RecordComponent, { width: '100%' })
+      .open(RecordComponent, { width: "100%" })
       .afterClosed()
       .subscribe((val) => {
-        if (val === 'save') {
-          this.onload()
+        if (val === "save") {
+          this.onload();
         }
-      })
+      });
   }
   editRecord(icHistory: any) {
     this.dialog
-      .open(RecordComponent, { width: '100%', data: icHistory })
+      .open(RecordComponent, { width: "100%", data: icHistory })
       .afterClosed()
       .subscribe((val) => {
-        if (val === 'update') {
-          this.onload()
+        if (val === "update") {
+          this.onload();
         }
-      })
+      });
   }
   deleteRecord(id: number) {
     // console.log(id)
     this.api.deleteIncomeRecord(id).subscribe({
       next: (res) => {
-        alert(`Record delete`)
-        this.onload()
+        alert(`Record delete`);
+        this.onload();
       },
       error() {
-        alert('Record err')
+        alert("Record err");
       },
-    })
+    });
   }
 
   // Category
   addCategory() {
-    console.log(`addCategory`)
+    console.log(`addCategory`);
     this.dialog
       .open(CategoryComponent, {})
       .afterClosed()
       .subscribe((val) => {
-        if (val === 'save') {
-          this.onload()
+        if (val === "save") {
+          this.onload();
         }
-      })
+      });
   }
   editCategory(icCategory: any) {
-    console.log(`editCategory`)
+    console.log(`editCategory`);
     this.dialog
-      .open(CategoryComponent, { width: '100%', data: icCategory })
+      .open(CategoryComponent, { width: "100%", data: icCategory })
       .afterClosed()
       .subscribe((val) => {
-        if (val === 'update') {
-          this.onload()
+        if (val === "update") {
+          this.onload();
         }
-      })
+      });
   }
 
   // Button function
   onChangeSelet(attr: any, value: any) {
-    console.log(`onChangeSelet + ${value}`)
-    if (attr == 'year') {
-      this.yearV = value
+    console.log(`onChangeSelet + ${value}`);
+    if (attr == "year") {
+      this.yearV = value;
     }
-    if (attr == 'month') {
-      this.monthV = value
+    if (attr == "month") {
+      this.monthV = value;
     }
-    if (attr == 'category_id') {
-      this.categoryV = value
+    if (attr == "category_id") {
+      this.categoryV = value;
     }
   }
   search() {
-    console.log(`search`)
-    this.selectedAmount = 0
-    this.monthly = 0
-    this.yearly = 0
+    console.log(`search`);
+    this.selectedAmount = 0;
+    this.monthly = 0;
+    this.yearly = 0;
     if (this.yearV != null) {
       if (this.monthV != null && this.categoryV != null) {
-        this.api_ymc3(
-          'year',
-          this.yearV,
-          'month',
-          this.monthV,
-          'category_id',
-          this.categoryV,
-        )
+        this.api_ymc3("year", this.yearV, "month", this.monthV, "category_id", this.categoryV);
       } else if (this.monthV != null) {
-        this.api_ymc2('year', this.yearV, 'month', this.monthV)
+        this.api_ymc2("year", this.yearV, "month", this.monthV);
       } else if (this.categoryV != null) {
-        this.api_ymc2('year', this.yearV, 'category_id', this.categoryV)
+        this.api_ymc2("year", this.yearV, "category_id", this.categoryV);
       } else {
-        this.api_ymc1('year', this.yearV)
+        this.api_ymc1("year", this.yearV);
       }
     } else if (this.monthV != null) {
       if (this.categoryV != null) {
-        this.api_ymc2('month', this.monthV, 'category_id', this.categoryV)
+        this.api_ymc2("month", this.monthV, "category_id", this.categoryV);
       } else {
-        this.api_ymc1('month', this.monthV)
+        this.api_ymc1("month", this.monthV);
       }
-    } else if (
-      this.categoryV != null &&
-      this.monthV == null &&
-      this.yearV == null
-    ) {
-      this.api_ymc1('category_id', this.categoryV)
+    } else if (this.categoryV != null && this.monthV == null && this.yearV == null) {
+      this.api_ymc1("category_id", this.categoryV);
     } else {
-      this.showNotification('Please select at least one of selection')
+      this.showNotification("Please select at least one of selection");
     }
   }
   refresh() {
-    window.location.reload()
+    window.location.reload();
   }
 
   // ngOnInit()
   onload() {
-    this.getCategory()
+    this.getCategory();
   }
   getCategory() {
     this.api.getIncomeCategory().subscribe({
       next: async (res) => {
-        this.icCategorys = res
-        this.getIncome()
+        this.icCategorys = res;
+        this.getIncome();
       },
       error() {
-        alert('Record err')
+        alert("Record err");
       },
-    })
+    });
   }
   getIncome() {
     this.api.getIncomeRecord().subscribe({
@@ -187,162 +176,198 @@ export class IncomeComponent implements OnInit {
         res.forEach((element) => {
           this.icCategorys.forEach((c) => {
             if (c.id == element.category_id) {
-              element['category'] = c.category
+              element["category"] = c.category;
             }
-          })
-        })
-        this.icHistorys = res
-        this.old_icCategorys_list = this.icCategorys
-        this.setSelectYear()
-        this.setChart()
+          });
+        });
+        this.icHistorys = res;
+        this.old_icCategorys_list = this.icCategorys;
+        this.setSelectYear();
+        this.setChart();
       },
       error() {
-        alert('Record err')
+        alert("Record err");
       },
-    })
+    });
   }
   // extend
   api_ymc1(attr1: any, v1: any) {
-    console.log('api_ymc1')
-    let new_icCategorys_id = null
-    this.api.getIncomeRecord_ync1(attr1, v1).subscribe({
-      next: (res) => {
-        res.forEach((element) => {
-          this.icCategorys.forEach((c) => {
-            if (c.id == element.category_id) {
-              element['category'] = c.category
-              new_icCategorys_id = c.id
-            }
-          })
-        })
-        this.icHistorys = res
-        if (attr1 == 'category_id') {
-          this.getSelectedCategoryList(new_icCategorys_id)
-        }
-        this.getSelectedTotalAmount(res)
-        this.setChart()
-      },
-      error() {
-        alert('Record err')
-      },
-    })
+    console.log("--- api_ymc1");
+    let new_icCategorys_id = null;
+    let s = "showAll";
+    if (v1 == s) {
+      this.onload();
+    } else {
+      this.api.getIncomeRecord_ync1(attr1, v1).subscribe({
+        next: (res) => {
+          res.forEach((element) => {
+            this.icCategorys.forEach((c) => {
+              if (c.id == element.category_id) {
+                element["category"] = c.category;
+                new_icCategorys_id = c.id;
+              }
+            });
+          });
+          this.icHistorys = res;
+          if (attr1 == "category_id") {
+            this.getSelectedCategoryList(new_icCategorys_id);
+          }
+          console.log(`getIncomeRecord_ync1`);
+          console.log(res);
+          this.getSelectedTotalAmount(res);
+          this.setChart();
+        },
+        error() {
+          alert("Record err");
+        },
+      });
+    }
   }
   api_ymc2(attr1: any, v1: any, attr2: any, v2: any) {
-    console.log('api_ymc2')
-    let new_icCategorys_id = null
-    this.api.getIncomeRecord_ync2(attr1, v1, attr2, v2).subscribe({
-      next: (res) => {
-        res.forEach((element) => {
-          this.icCategorys.forEach((c) => {
-            if (c.id == element.category_id) {
-              element['category'] = c.category
-              new_icCategorys_id = c.id
-            }
-          })
-        })
-        if (attr1 == 'category_id' || attr2 == 'category_id') {
-          this.getSelectedCategoryList(new_icCategorys_id)
-        }
-        this.icHistorys = res
-        this.getSelectedTotalAmount(res)
-        this.setChart()
-      },
-      error() {
-        alert('Record err')
-      },
-    })
+    console.log("--- api_ymc2");
+    let new_icCategorys_id = null;
+    let s = "showAll";
+    if (v1 == s && v2 == s) {
+      this.onload();
+    } else if (v1 == s || v2 == s) {
+      if (v1 == s) {
+        this.api_ymc1(attr2, v2);
+      } else {
+        this.api_ymc1(attr1, v1);
+      }
+    } else {
+      this.api.getIncomeRecord_ync2(attr1, v1, attr2, v2).subscribe({
+        next: (res) => {
+          res.forEach((element) => {
+            this.icCategorys.forEach((c) => {
+              if (c.id == element.category_id) {
+                element["category"] = c.category;
+                new_icCategorys_id = c.id;
+              }
+            });
+          });
+          if (attr1 == "category_id" || attr2 == "category_id") {
+            this.getSelectedCategoryList(new_icCategorys_id);
+          }
+          this.icHistorys = res;
+          this.getSelectedTotalAmount(res);
+          this.setChart();
+        },
+        error() {
+          alert("Record err");
+        },
+      });
+    }
   }
   api_ymc3(attr1: any, v1: any, attr2: any, v2: any, attr3: any, v3: any) {
-    console.log('api_ymc3')
-    let new_icCategorys_id = null
-    this.api.getIncomeRecord_ync3(v1, v2, v3).subscribe({
-      next: (res) => {
-        res.forEach((element) => {
-          this.icCategorys.forEach((c) => {
-            if (c.id == element.category_id) {
-              element['category'] = c.category
-              new_icCategorys_id = c.id
-            }
-          })
-        })
-        this.icHistorys = res
-        this.getSelectedCategoryList(new_icCategorys_id)
-        if (attr1 == 'year') {
-          this.getSelectedYearAmount(res, attr1, v1)
-        }
-        if (attr2 == 'month') {
-          this.getSelectedMonthAmount(res, attr1, v1, attr2, v2)
-        }
-        this.getSelectedTotalAmount(res)
-        this.setChart()
-      },
-      error() {
-        alert('Record err')
-      },
-    })
+    console.log("--- api_ymc3");
+    let new_icCategorys_id = null;
+    let s = "showAll";
+    if (v1 == s && v2 == s && v3 == s) {
+      this.onload();
+    } else if (v1 == s && v2 == s) {
+      this.api_ymc1(attr3, v3);
+    } else if (v1 == s && v3 == s) {
+      this.api_ymc1(attr2, v2);
+    } else if (v2 == s && v3 == s) {
+      this.api_ymc1(attr1, v1);
+    } else if (v1 == s) {
+      this.api_ymc2(attr2, v2, attr3, v3);
+    } else if (v2 == s) {
+      this.api_ymc2(attr1, v1, attr3, v3);
+    } else if (v3 == s) {
+      this.api_ymc2(attr1, v1, attr2, v2);
+    } else {
+      this.api.getIncomeRecord_ync3(v1, v2, v3).subscribe({
+        next: (res) => {
+          res.forEach((element) => {
+            this.icCategorys.forEach((c) => {
+              if (c.id == element.category_id) {
+                element["category"] = c.category;
+                new_icCategorys_id = c.id;
+              }
+            });
+          });
+          this.icHistorys = res;
+          this.getSelectedCategoryList(new_icCategorys_id);
+          if (attr1 == "year") {
+            this.getSelectedYearAmount(res, attr1, v1);
+          }
+          if (attr2 == "month") {
+            this.getSelectedMonthAmount(res, attr1, v1, attr2, v2);
+          }
+          this.getSelectedTotalAmount(res);
+          this.setChart();
+        },
+        error() {
+          alert("Record err");
+        },
+      });
+    }
   }
   getSelectedCategoryList(new_icCategorys_id: any) {
-    console.log(`getSelectedCategoryList`)
-    this.new_icCategorys_list = []
+    console.log(`--- getSelectedCategoryList`);
+    this.new_icCategorys_list = [];
     this.icCategorys.forEach((c) => {
       if (c.id == new_icCategorys_id) {
-        this.new_icCategorys_list.push(c)
+        this.new_icCategorys_list.push(c);
       }
-    })
-    this.old_icCategorys_list = this.icCategorys
-    this.icCategorys = this.new_icCategorys_list
+    });
+    // this.old_icCategorys_list = this.icCategorys;
+    this.icCategorys = this.new_icCategorys_list;
   }
   // selected year total
   getSelectedYearAmount(res: any, attr1: any, v1: any) {
-    this.selectedYear = 0
+    this.selectedYear = 0;
     this.api.getIncomeRecord_ync1(attr1, v1).subscribe({
       next: (res) => {
         res.forEach((element) => {
-          this.selectedYear += parseInt(element.amount)
-        })
-        console.log(`selectedYear/${this.selectedYear}`)
+          this.selectedYear += parseInt(element.amount);
+        });
+        console.log(`selectedYear/${this.selectedYear}`);
       },
       error() {},
-    })
+    });
   }
   // selected month total
   getSelectedMonthAmount(res: any, attr1: any, v1: any, attr2: any, v2: any) {
-    this.selectedMonth = 0
+    this.selectedMonth = 0;
     this.api.getIncomeRecord_ync2(attr1, v1, attr2, v2).subscribe({
       next: (res) => {
         res.forEach((element) => {
-          this.selectedMonth += parseInt(element.amount)
-        })
+          this.selectedMonth += parseInt(element.amount);
+        });
       },
       error() {},
-    })
+    });
   }
   // selected total
   getSelectedTotalAmount(res: any) {
-    console.log(`getSelectedTotalAmount`)
+    console.log(`--- getSelectedTotalAmount`);
+    console.log(res);
     res.forEach((element: any) => {
-      this.selectedAmount += parseInt(element.amount)
-    })
+      this.selectedAmount += parseInt(element.amount);
+    });
   }
   setSelectYear() {
-    console.log(`setSelectYear`)
-    let yearSort = []
+    console.log(`--- setSelectYear`);
+    let yearSort = [];
     this.icHistorys.forEach((element) => {
-      yearSort.push(element.year)
-    })
-    yearSort.sort((a, b) => a > b ? -1 : 0)
+      yearSort.push(element.year);
+    });
+    yearSort.sort((a, b) => (a > b ? -1 : 0));
     this.years = yearSort.filter((element, index) => {
-      return yearSort.indexOf(element) === index
-    })
+      return yearSort.indexOf(element) === index;
+    });
   }
-  showNotification(message: any, from: any = 'top', align: any = 'right') {
+  showNotification(message: any, from: any = "top", align: any = "right") {
     $.notify(
       {
-        icon: 'notifications',
+        icon: "notifications",
         message: message,
       },
       {
-        type: 'danger',
+        type: "danger",
         timer: 4000,
         placement: {
           from: from,
@@ -356,134 +381,122 @@ export class IncomeComponent implements OnInit {
           '<span data-notify="message">{2}</span>' +
           '<div class="progress" data-notify="progressbar">' +
           '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-          '</div>' +
+          "</div>" +
           '<a href="{3}" target="{4}" data-notify="url"></a>' +
-          '</div>',
-      },
-    )
+          "</div>",
+      }
+    );
   }
   // extend - Draw Chart
   setChart() {
-    console.log('setChart')
-    let day = []
-    let amount = []
-    this.maxAmount = 0
+    console.log("--- setChart");
+    let day = [];
+    let amount = [];
+    this.maxAmount = 0;
 
     // sorting
-    console.log(`sorting`)
+    console.log(`--- sorting`);
     this.icHistorys.sort(function (a, b) {
       var keyA = new Date(a.date),
-        keyB = new Date(b.date)
+        keyB = new Date(b.date);
       // Compare the 2 dates
-      if (keyA < keyB) return 1
-      if (keyA > keyB) return -1
-      return 0
-    })
+      if (keyA < keyB) return 1;
+      if (keyA > keyB) return -1;
+      return 0;
+    });
 
     // set label day
-    console.log(`setLabelDay`)
+    console.log(`--- setLabelDay`);
     this.icHistorys.forEach((element) => {
-      let printDate = `${element.year}/${element.month}/${element.day}`
-      day.push(printDate)
-    })
-    day.sort()
+      let printDate = `${element.year}/${element.month}/${element.day}`;
+      day.push(printDate);
+    });
+    day.sort();
     day = day.filter((element, index) => {
-      return day.indexOf(element) === index
-    })
+      return day.indexOf(element) === index;
+    });
 
     // set line amount
-    console.log(`setLineAmount`)
+    console.log(`--- set line amount`);
+    this.old_icCategorys_list.forEach((element)=>{
+      element.amount = "0"
+    })
     this.icCategorys.forEach((element) => {
-      let amountPush = []
-      let categorySum = 0
-      let id = '' + element.id
+      // element.amount = "0"
+      let amountPush = [];
+      let categorySum = 0;
+      let id = "" + element.id;
       day.forEach((dayElement) => {
-        let filterResult = this.icHistorys.filter(
-          (element) =>
-            `${element.year}/${element.month}/${element.day}` == dayElement &&
-            element.category_id == id,
-        )
-        let sum: number = 0
+        let filterResult = this.icHistorys.filter((element) => `${element.year}/${element.month}/${element.day}` == dayElement && element.category_id == id);
+        let sum: number = 0;
         filterResult.forEach((fR) => {
-          sum += parseInt(fR.amount)
-        })
+          sum += parseInt(fR.amount);
+        });
         // set high of Chart
         if (sum > this.maxAmount) {
-          this.maxAmount = sum + 25
+          this.maxAmount = sum + 25;
         }
-        amountPush.push(sum)
-        categorySum += sum
-      })
-      element.amount = categorySum.toString()
-
-      console.log(`categorySum`)
-      console.log(categorySum.toString())
-      amount.push(amountPush)
-    })
+        amountPush.push(sum);
+        categorySum += sum;
+      });
+      element.amount = categorySum.toString();
+      amount.push(amountPush);
+    });
 
     const data_lineChartIncome: any = {
       labels: day,
       series: amount,
-    }
+    };
 
     const options_lineChartIncome: any = {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0,
       }),
       low: 0,
-      height: 300,
+      height: (this.maxAmount == 0) ? 0 : 300,
       high: this.maxAmount,
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-    }
+    };
 
-    var lineChartIncome = new Chartist.Line(
-      '#lineChartIncome', // class
-      data_lineChartIncome,
-      options_lineChartIncome,
-    )
-
-    this.startAnimationForLineChart(lineChartIncome)
+    var lineChartIncome = new Chartist.Line("#lineChartIncome", data_lineChartIncome, options_lineChartIncome);
+    this.startAnimationForLineChart(lineChartIncome);
 
     // reset for select option
-    this.icCategorys = this.old_icCategorys_list
+    this.icCategorys = this.old_icCategorys_list;
     if (this.icHistorys.length === 0) {
-      this.showNotification('No date found. Please try again.')
+      this.showNotification("No date found. Please try again.");
     }
   }
   startAnimationForLineChart(chart) {
-    let seq: any, delays: any, durations: any
-    seq = 0
-    delays = 80
-    durations = 500
+    let seq: any, delays: any, durations: any;
+    seq = 0;
+    delays = 80;
+    durations = 500;
 
-    chart.on('draw', function (data) {
-      if (data.type === 'line' || data.type === 'area') {
+    chart.on("draw", function (data) {
+      if (data.type === "line" || data.type === "area") {
         data.element.animate({
           d: {
             begin: 600,
             dur: 700,
-            from: data.path
-              .clone()
-              .scale(1, 0)
-              .translate(0, data.chartRect.height())
-              .stringify(),
+            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
             to: data.path.clone().stringify(),
             easing: Chartist.Svg.Easing.easeOutQuint,
           },
-        })
-      } else if (data.type === 'point') {
-        seq++
+        });
+      } else if (data.type === "point") {
+        seq++;
         data.element.animate({
           opacity: {
             begin: seq * delays,
             dur: durations,
             from: 0,
             to: 1,
-            easing: 'ease',
+            easing: "ease",
           },
-        })
+        });
       }
-    })
-    seq = 0
+    });
+    seq = 0;
   }
 }
