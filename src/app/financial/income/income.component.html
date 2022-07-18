@@ -75,8 +75,9 @@
               </tr>
             </table>
           </div>
+
           <!-- graph -->
-          <div style="display:flex;text-align:center;padding-top:10px;">
+          <div style="padding-top:10px;">
             <table style="width:100%">
               <tr>
                 <div>
@@ -85,17 +86,27 @@
               </tr>
             </table>
           </div>
+          <!-- end of graph -->
+
           <div class="card-body" style="text-align: center;">
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead class="text-success">
-                  <th>DATE</th>
-                  <th>CATEORY</th>
-                  <th>AMOUNT</th>
-                  <th>ACTION</th>
+                  <th>
+                    <button mat-stroked-button class="btn_table" matTooltip="Sort by Date" [matTooltipPosition]="'above'" (click)="sort('date', 'record')">DATE</button>
+                  </th>
+                  <th>
+                    <button mat-stroked-button class="btn_table" matTooltip="Sort by Category" [matTooltipPosition]="'above'" (click)="sort('category', 'record')">CATEORY</button>
+                  </th>
+                  <th>
+                    <button mat-stroked-button class="btn_table" matTooltip="Sort by Amount" [matTooltipPosition]="'above'" (click)="sort('amount', 'record')">AMOUNT</button>
+                  </th>
+                  <th>
+                    <button mat-button disabled class="btn_table">ACTION</button>
+                  </th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let icHistory of icHistorys">
+                  <tr *ngFor="let icHistory of view_icHistorys">
                     <td>{{ icHistory.date | date }}</td>
                     <td>{{ icHistory.category }}</td>
                     <td>{{ icHistory.amount | currency }}</td>
@@ -129,16 +140,33 @@
               </span>
             </button>
           </div>
+          <!-- graph -->
+          <div style="padding:10px; ">
+            <table style="width:100%">
+              <tr>
+                <div>
+                  <div class="ct-chart" id="categoryChart"></div>
+                </div>
+              </tr>
+            </table>
+          </div>
+          <!-- end of graph -->
           <div class="card-body" style="text-align: center;">
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead class="text-success">
-                  <th>CATEORY</th>
-                  <th>AMOUNT</th>
-                  <th>ACTION</th>
+                  <th>
+                    <button mat-stroked-button class="btn_table" matTooltip="Sort by Category" [matTooltipPosition]="'above'" (click)="sort('category', 'category')">CATEORY</button>
+                  </th>
+                  <th>
+                    <button mat-stroked-button class="btn_table" matTooltip="Sort by Amount" [matTooltipPosition]="'above'" (click)="sort('amount', 'category')">AMOUNT</button>
+                  </th>
+                  <th>
+                    <button mat-button disabled class="btn_table">ACTION</button>
+                  </th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let icCategory of icCategorys">
+                  <tr *ngFor="let icCategory of view_icCategorys">
                     <td>
                       <div class="flex_center">
                         {{ icCategory.category }}&nbsp;

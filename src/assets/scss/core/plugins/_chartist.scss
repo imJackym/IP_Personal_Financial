@@ -267,7 +267,7 @@
     stroke: #d70206;
     fill: #d70206;
   }
-  
+
   .ct-series-b .ct-point,
   .ct-series-b .ct-line,
   .ct-series-b .ct-bar,
@@ -385,6 +385,35 @@
   }
 
   .ct-label.ct-vertical.ct-start {
+    -webkit-box-align: flex-end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+    -webkit-box-pack: flex-end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+    text-anchor: end;
+    margin-top: 10px !important;
+  }
+
+  .ct-label.ct-horizontal.ct-end {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ct-label-line {
+    display: flex;
+    justify-content: flex-start;
+    fill: rgba(255, 255, 255, 0.8);
+    // color: rgba(255, 255, 255, 0.8);
+    display: -webkit-flex;
+    display: flex;
+    font-size: 10px;
+  }
+
+  .ct-label-line.ct-vertical.ct-start {
     -webkit-box-align: flex-end;
     -webkit-align-items: flex-end;
     -ms-flex-align: flex-end;
