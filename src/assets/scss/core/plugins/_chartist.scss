@@ -362,7 +362,7 @@
   }
 
   .ct-line {
-    fill: none;
+    fill: none !important;
     stroke-width: 4px;
   }
 
@@ -378,9 +378,10 @@
   }
   .ct-label {
     fill: rgba(255, 255, 255, 0.8);
-    color: rgba(255, 255, 255, 0.8);
+    // color: rgba(255, 255, 255, 0.8);
     display: -webkit-flex;
     display: flex;
+    font-size: 10px;
   }
 
   .ct-label.ct-vertical.ct-start {
@@ -394,5 +395,6 @@
     justify-content: flex-end;
     text-align: right;
     text-anchor: end;
+    margin-top: 10px !important;
   }
 }
