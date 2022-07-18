@@ -14,6 +14,77 @@
               </span>
             </button>
           </div>
+          <!-- filter -->
+          <div style="display:flex;text-align:center;padding-top:10px;">
+            <table style="width:50%">
+              <tr>
+                <td colspan="2">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Year :</mat-label>
+                    <mat-select name="year" (selectionChange)="onChangeSelet('year', $event.value)">
+                      <mat-option value="showAll">- Show All -</mat-option>
+                      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Month :</mat-label>
+                    <!-- <mat-select name="month" (click)="text()"> -->
+                    <mat-select name="month" (selectionChange)="onChangeSelet('month', $event.value)">
+                      <mat-option value="showAll">- Show All -</mat-option>
+                      <mat-option *ngFor="let month of months" [value]="month.value">{{ month.show }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Category :</mat-label>
+                    <mat-select name="category" (selectionChange)="onChangeSelet('category_id', $event.value)">
+                      <mat-option value="showAll">- Show All -</mat-option>
+                      <mat-option *ngFor="let category of icCategorys" [value]="category.id">{{ category.category }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <table style="width:50%">
+              <tr>
+                <td>Sum of selected</td>
+                <td>{{ (selectedAmount == 0)? 'N/A' : selectedAmount | currency }}</td>
+              </tr>
+              <tr>
+                <td>Yield in month (%)</td>
+                <td>{{ (selectedMonth == 0)? 'N/A' : (selectedAmount/selectedMonth) | percent }}</td>
+              </tr>
+              <tr>
+                <td>Yield in year (%)</td>
+                <td>{{ (selectedYear == 0)? 'N/A' : (selectedAmount/selectedYear) | percent }}</td>
+              </tr>
+              <tr>
+                <td>
+                  <button mat-raised-button (click)="refresh()">Reset</button>
+                </td>
+                <td>
+                  <button mat-raised-button (click)="search()">Search & Calculate</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- graph -->
+          <div style="display:flex;text-align:center;padding-top:10px;">
+            <table style="width:100%">
+              <tr>
+                <div>
+                  <div class="ct-chart" id="lineChartIncome"></div>
+                </div>
+              </tr>
+            </table>
+          </div>
           <div class="card-body" style="text-align: center;">
             <div class="table-responsive">
               <table class="table table-hover">
@@ -39,6 +110,7 @@
                   </tr>
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>
@@ -67,10 +139,15 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let icCategory of icCategorys">
-                    <td>{{ icCategory.category }}</td>
+                    <td>
+                      <div class="flex_center">
+                        {{ icCategory.category }}&nbsp;
+                        <i class="material-icons" matTooltip="Passive Income" [matTooltipPosition]="'above'" style="color:#4caf50 !important">{{ (icCategory.pi == 'T')? 'local_atm' : ''}}</i>
+                      </div>
+                    </td>
                     <td>{{ (icCategory.amount ? icCategory.amount : "0") | currency }}</td>
                     <td>
-                      <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                      <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(icCategory)">
                         <i class="material-icons">edit</i>
                       </button>
                       <!-- <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon">
