@@ -1,4 +1,3 @@
-import { element } from 'protractor'
 import { ApiService } from './../../services/api.service'
 import { RecordComponent } from './dialog/record/record.component'
 import { CategoryComponent } from './dialog/category/category.component'
