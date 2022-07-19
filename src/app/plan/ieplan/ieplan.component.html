@@ -1,66 +1,56 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-
       <!-- status card -->
       <div class="col-md-12 padding_reset">
         <div class="card card-plain">
           <div class="card-header card-header-warning header-title-center-space-between">
-            <h4 class="card-title" style="margin-bottom: unset;">Income / Expenditure Status</h4>
+            <h4 class="card-title" style="margin-bottom: unset">Income / Expenditure Status</h4>
           </div>
-          <div class="card-body" style="text-align: center;">
-            <table class="table table-hover" style="margin-bottom:unset">
+          <div class="card-body" style="text-align: center">
+
+            <table id="ieplan" class="table table-hover" style="margin-bottom: unset">
+              <colgroup>
+                <col width="30%">
+                <col width="30%">
+                <col width="30%">
+              </colgroup>
               <thead class="text-warning">
-                <th class="border_unset">Category</th>
-                <th class="border_unset">Expected Amount</th>
-                <th class="border_unset">Actual Amount (Remain)</th>
+                <td class="text-warning border_unset">Category</td>
+                <td class="text-warning border_unset">Expected Amount</td>
+                <td class="text-warning border_unset">Actual Amount (Remain)</td>
               </thead>
-              <tr colspan="3" class="text-danger" style="text-align:left">*&nbsp;Expenditure</tr>
+              <tr colspan="3" class="text-danger" style="text-align: left">&nbsp;*&nbsp;Expenditure</tr>
               <tr *ngFor="let category_Expenditure of eCategorys">
                 <td>{{ category_Expenditure.category }}</td>
-                <td>
-                  <table class="text-danger" style="width:100%">
-                    <tr style="display: flex;align-items: center;justify-content: space-between;">
-                      <td class="padding_reset">
-                        <span>$&nbsp;</span>
-                      </td>
-                      <td class="padding_reset">
-                        <span>{{ (category_Expenditure.expected_amount?category_Expenditure.expected_amount:0) | number:'0.2' }}</span>
-                      </td>
-                      <td class="padding_reset">
-                        <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Expenditure)">
-                          <i class="material-icons">edit</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </table>
+                <td style="display:flex;align-items: center;justify-content: space-around;">{{ (category_Expenditure.expected_amount ? category_Expenditure.expected_amount : 0) | currency }}
+                  <div class="padding_reset">
+                    <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Expenditure)">
+                      <i class="material-icons">edit</i>
+                    </button>
+                  </div>
                 </td>
                 <td class="text-warning">
-                  <div style="width: 100%;display:flex;">
-                    <div style="width:10%">
-                      <span>$&nbsp;</span>
-                    </div>
-                    <div style="width:90%">
-                      <span>{{ (category_Expenditure.amount?category_Expenditure.amount:0) | number:'0.2' }}&nbsp;</span>
-                      <span style="white-space:nowrap;">
-                        (&nbsp;{{ (category_Expenditure.expected_amount-category_Expenditure.amount?category_Expenditure.expected_amount-category_Expenditure.amount:0) | currency }}&nbsp;)
-                      </span>
-                    </div>
-                  </div>
+                  {{ (category_Expenditure.amount ? category_Expenditure.amount : 0) | number: "0.2" }}&nbsp;
+                  <span style="white-space: nowrap">
+                    (&nbsp;{{ (category_Expenditure.expected_amount - category_Expenditure.amount ? category_Expenditure.expected_amount - category_Expenditure.amount : 0) | currency }}&nbsp;)
+                  </span>
                 </td>
               </tr>
               <!-- -------------------------------------------------------------------------- -->
-              <tr colspan="3" class="text-success" style="text-align:left">*&nbsp;Income</tr>
+              <tr colspan="3" class="text-success" style="text-align: left">
+                &nbsp;*&nbsp;Income
+              </tr>
               <tr *ngFor="let category_Income of iCategorys">
                 <td>{{ category_Income.category }}</td>
                 <td>
-                  <table class="text-success" style="width:100%">
-                    <tr style="display: flex;align-items: center;justify-content: space-between;">
+                  <table class="text-success" style="width: 100%">
+                    <tr style="display: flex; align-items: center; justify-content: space-between">
                       <td class="padding_reset">
                         <span>$&nbsp;</span>
                       </td>
                       <td class="padding_reset">
-                        <span>{{ (category_Income.expected_amount?category_Income.expected_amount:0) | number:'0.2' }}</span>
+                        <span>{{ (category_Income.expected_amount ? category_Income.expected_amount : 0) | number: "0.2" }}</span>
                       </td>
                       <td class="padding_reset">
                         <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Income)">
@@ -71,54 +61,94 @@
                   </table>
                 </td>
                 <td class="text-warning">
-                  <div style="width: 100%;display:flex;">
-                    <div style="width:10%">
+                  <div style="width: 100%; display: flex">
+                    <div style="width: 10%">
                       <span>$&nbsp;</span>
                     </div>
-                    <div style="width:90%">
-                      <span>{{ (category_Income.amount?category_Income.amount:0) | number:'0.2' }}&nbsp;</span>
-                      <span style="white-space:nowrap;">
-                        (&nbsp;{{ (category_Income.expected_amount-category_Income.amount?category_Income.expected_amount-category_Income.amount:0) | currency }}&nbsp;)
+                    <div style="width: 90%">
+                      <span>{{ (category_Income.amount ? category_Income.amount : 0) | number: "0.2" }}&nbsp;</span>
+                      <span style="white-space: nowrap">
+                        (&nbsp;{{ (category_Income.expected_amount - category_Income.amount ? category_Income.expected_amount - category_Income.amount : 0) | currency }}&nbsp;)
                       </span>
                     </div>
                   </div>
                 </td>
               </tr>
-            </table>
-            <hr style="margin:unset;border-top:4px solid rgba(0, 0, 0, 0.06);">
-            <table class="table table-hover">
-              <thead>
-                <th class="text-warning">Summary</th>
-                <th>
-                  <table class="" style="width:100%">
+
+              <!-- -------------------------------------------------------------------------- -->
+              <tr colspan="3" class="text-success" style="text-align: left">
+                &nbsp;*&nbsp;Income
+              </tr>
+              <tr *ngFor="let category_Income of iCategorys">
+                <td>{{ category_Income.category }}</td>
+                <td>
+                  <table class="text-success" style="width: 100%">
+                    <tr style="display: flex; align-items: center; justify-content: space-between">
+                      <td class="padding_reset">
+                        <span>$&nbsp;</span>
+                      </td>
+                      <td class="padding_reset">
+                        <span>{{ (category_Income.expected_amount ? category_Income.expected_amount : 0) | number: "0.2" }}</span>
+                      </td>
+                      <td class="padding_reset">
+                        <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Income)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="text-warning">
+                  <div style="width: 100%; display: flex">
+                    <div style="width: 10%">
+                      <span>$&nbsp;</span>
+                    </div>
+                    <div style="width: 90%">
+                      <span>{{ (category_Income.amount ? category_Income.amount : 0) | number: "0.2" }}&nbsp;</span>
+                      <span style="white-space: nowrap">
+                        (&nbsp;{{ (category_Income.expected_amount - category_Income.amount ? category_Income.expected_amount - category_Income.amount : 0) | currency }}&nbsp;)
+                      </span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- <hr style="margin: unset; border-top: 4px solid rgba(0, 0, 0, 0.06)" /> -->
+              <!-- <tr>
+                <td>Summary</td>
+
+                <td>
+                  <table class="" style="width: 100%">
                     <tr>
                       <td class="padding_reset">
                         <span>$&nbsp;</span>
                       </td>
                       <td class="padding_reset">
-                        <span>{{ SAmount['iexpectAmount']-SAmount['eexpectAmount'] | number:'0.2' }}</span>
+                        <span>{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] | number: "0.2" }}</span>
                       </td>
                     </tr>
                   </table>
-                </th>
-                <th>
-                  <div style="width: 100%;display:flex;">
-                    <div style="width:10%">
+                </td>
+
+                <td>
+                  <div style="width: 100%; display: flex">
+                    <div style="width: 10%">
                       <span>$&nbsp;</span>
                     </div>
-                    <div style="width:90%">
-                      <span>{{ SAmount['iAmount']-SAmount['eAmount'] | number:'0.2' }}&nbsp;</span>
-                      <span style="white-space:nowrap;">(&nbsp;{{ ((SAmount['iexpectAmount']-SAmount['eexpectAmount'])-(SAmount['iAmount']-SAmount['eAmount'])) | currency }}&nbsp;)</span>
+                    <div style="width: 90%">
+                      <span>{{ SAmount["iAmount"] - SAmount["eAmount"] | number: "0.2" }}&nbsp;</span>
+                      <span style="white-space: nowrap">(&nbsp;{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] - (SAmount["iAmount"] - SAmount["eAmount"]) | currency }}&nbsp;)</span>
                     </div>
                   </div>
-                </th>
-              </thead>
+                </td>
+
+              </tr> -->
             </table>
+
           </div>
         </div>
       </div>
       <!-- end of status card -->
-
     </div>
   </div>
 </div>

@@ -83,6 +83,7 @@
       "date": "2022-07-15T16:00:00.000Z",
       "month": "07",
       "year": "2022",
+      "day": "15",
       "category_id": "3",
       "amount": "1232",
       "id": 1
@@ -91,9 +92,19 @@
       "date": "2022-07-22T16:00:00.000Z",
       "month": "07",
       "year": "2022",
+      "day": "22",
       "category_id": "2",
       "amount": "1",
       "id": 2
+    },
+    {
+      "date": "2022-07-19T16:00:00.000Z",
+      "month": "07",
+      "year": "2022",
+      "day": "20",
+      "category_id": "2",
+      "amount": "111",
+      "id": 3
     }
   ],
   "e_category": [
@@ -105,7 +116,7 @@
     },
     {
       "category": "test22122",
-      "expected_amount": "2",
+      "expected_amount": "999999999999999",
       "fe": "F",
       "id": 2
     },

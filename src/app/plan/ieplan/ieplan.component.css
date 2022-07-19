@@ -7,7 +7,8 @@
   width: 30%;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   vertical-align: unset;
 }
 
@@ -21,15 +22,16 @@ hr {
 }
 
 .padding_reset {
-  padding: unset
+  padding: unset;
 }
 
 .small_title {
-  text-align:left;
-  padding-top:unset;
-  padding-bottom:unset;
+  text-align: left;
+  padding-top: unset;
+  padding-bottom: unset;
 }
 
-.border_unset{ 
-  border-bottom: unset 
+.border_unset {
+  border-bottom: unset;
+  border-top: unset;
 }

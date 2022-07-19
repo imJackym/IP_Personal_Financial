@@ -22,6 +22,7 @@ export class ApiService {
   }
   // IncomeRecord - get by category
   getIncomeRecord_category(data: any) {
+    console.log(`http://localhost:3000/i_record?category_id=${data}`)
     return this.http.get<any>(`http://localhost:3000/i_record?category_id=${data}`)
   }
   // IncomeRecord - post
