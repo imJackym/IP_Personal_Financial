@@ -10,12 +10,12 @@
 
 .header-title-icon {
   font-size: 18px !important;
-  color: red !important;
+  color: #f44336 !important;
 }
 
 .header-title-text {
   margin-bottom: unset !important;
-  color: red !important;
+  color: #f44336 !important;
 }
 
 .btn-inline {
@@ -27,4 +27,15 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+}
+
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_table {
+  font-size: 16px !important;
+  color: #f44336 !important;
 }
