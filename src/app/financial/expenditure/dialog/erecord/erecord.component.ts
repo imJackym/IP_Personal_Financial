@@ -1,4 +1,3 @@
-import { CategoryComponent } from './../../../income/dialog/category/category.component'
 import { Component, Inject, OnInit } from '@angular/core'
 import { ApiService } from './../../../../services/api.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
@@ -9,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
   templateUrl: './erecord.component.html',
   styleUrls: ['./erecord.component.scss'],
 })
+
 export class ErecordComponent implements OnInit {
   categorys = []
   actionBtn = 'Save'
@@ -26,6 +26,7 @@ export class ErecordComponent implements OnInit {
       date: ['', Validators.required],
       month: [''],
       year: [''],
+      day: [''],
       category_id: ['', Validators.required],
       amount: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     })
@@ -49,6 +50,7 @@ export class ErecordComponent implements OnInit {
       this.recordForm.controls['date'].setValue(this.editData.date)
       this.recordForm.controls['month'].setValue(this.editData.month)
       this.recordForm.controls['year'].setValue(this.editData.year)
+      this.recordForm.controls['day'].setValue(this.editData.day)
       this.categorys.forEach((element) => {
         if (this.editData.category == element.category) {
           this.recordForm.controls['category_id'].setValue('' + element.id)
@@ -77,6 +79,7 @@ export class ErecordComponent implements OnInit {
       this.updateRecord()
     }
   }
+
   updateRecord() {
     this.getDate()
     this.api
@@ -93,54 +96,65 @@ export class ErecordComponent implements OnInit {
       })
   }
 
+  // 0    m1  d2  y3
+  // Mon Jul 18 2022 00:00:00 GMT+0800 (台北標準時間)
   getDate() {
-    let date = '' + this.recordForm.get('date').value
-    let fullDate = date.split('-')
+    let date = this.recordForm.get('date').value.toString()
+    date = new Date(date)
+    console.log('getDate : ' + date)
+    date = date.toString()
+    let fullDate = date.split(' ')
+    console.log("1 --")
     let month = fullDate[1]
-    switch (month) {
+    console.log(`month : ${month}`)
+    console.log(`this.recordForm.get('month')`)
+    console.log(this.recordForm.get('month').value)
+switch (month) {
       case 'Jan':
-        this.recordForm.get('month').setValue(1)
+        this.recordForm.get('month').setValue("01")
         break
       case 'Feb':
-        this.recordForm.get('month').setValue(2)
+        this.recordForm.get('month').setValue("02")
         break
       case 'Mar':
-        this.recordForm.get('month').setValue(3)
+        this.recordForm.get('month').setValue("03")
         break
       case 'Apr':
-        this.recordForm.get('month').setValue(4)
+        this.recordForm.get('month').setValue("04")
         break
       case 'May':
-        this.recordForm.get('month').setValue(5)
+        this.recordForm.get('month').setValue("05")
         break
       case 'Jun':
-        this.recordForm.get('month').setValue(6)
+        this.recordForm.get('month').setValue("06")
         break
       case 'Jul':
-        this.recordForm.get('month').setValue(7)
+        this.recordForm.get('month').setValue("07")
         break
       case 'Aug':
-        this.recordForm.get('month').setValue(8)
+        this.recordForm.get('month').setValue("08")
         break
       case 'Sep':
-        this.recordForm.get('month').setValue(9)
+        this.recordForm.get('month').setValue("09")
         break
       case 'Oct':
-        this.recordForm.get('month').setValue(10)
+        this.recordForm.get('month').setValue("10")
         break
       case 'Nov':
-        this.recordForm.get('month').setValue(11)
+        this.recordForm.get('month').setValue("11")
         break
       case 'Dec':
-        this.recordForm.get('month').setValue(12)
+        this.recordForm.get('month').setValue("12")
         break
       default:
         console.log(`Sorry, ${month}`)
     }
-    console.log('date')
-    console.log(date)
-    console.log(fullDate)
-    console.log(fullDate[0])
-    this.recordForm.get('year').setValue(fullDate[0])
+    console.log(`year : `)
+    console.log(`${fullDate[3]}`)
+    this.recordForm.get('year').setValue(fullDate[3])
+    console.log(`day : `)
+    console.log(`${fullDate[2]}`)
+    this.recordForm.get('day').setValue(fullDate[2])
+    console.log("end")
   }
 }
