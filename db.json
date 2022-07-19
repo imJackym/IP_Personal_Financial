@@ -81,7 +81,7 @@
   "e_record": [
     {
       "date": "2022-07-15T16:00:00.000Z",
-      "month": 7,
+      "month": "07",
       "year": "2022",
       "category_id": "3",
       "amount": "1232",
@@ -89,7 +89,7 @@
     },
     {
       "date": "2022-07-22T16:00:00.000Z",
-      "month": 7,
+      "month": "07",
       "year": "2022",
       "category_id": "2",
       "amount": "1",
