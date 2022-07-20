@@ -32,7 +32,6 @@
                 <td colspan="2">
                   <mat-form-field appearance="fill">
                     <mat-label>Month :</mat-label>
-                    <!-- <mat-select name="month" (click)="text()"> -->
                     <mat-select name="month" (selectionChange)="onChangeSelet('month', $event.value)">
                       <mat-option value="showAll">- Show All -</mat-option>
                       <mat-option *ngFor="let month of months" [value]="month.value">{{ month.show }}</mat-option>
