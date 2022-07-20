@@ -8,8 +8,8 @@
           <div class="card-header card-header-warning header-title-center-space-between">
             <h4 class="card-title" style="margin-bottom: unset">Income / Expenditure Status</h4>
             <div class="header-title-center-space-between">
-              <h5 class="card-title" style="margin-bottom: unset">CHECK ANALYSIS RESULT :&nbsp;</h5>
-              <button mat-raised-button>
+              <h5 class="card-title" style="margin-bottom: unset;font-weight: 500;">CHECK ANALYSIS RESULT :&nbsp;</h5>
+              <button mat-raised-button style="padding-left:10px">
                 <span class="btn-inline">
                   <i class="material-icons material-symbols-outlined header-title-icon">analytics</i>
                   <span class="card-title header-title-text">&nbsp;I/E Plan Result</span>
@@ -52,14 +52,13 @@
                 <td></td>
                 <td>
                   <span style="display: flex;justify-content: center;">
-                    <h6 >Select Time Slot :
-                    </h6>
+                    <h6>Select Time Slot :&nbsp;</h6>
                   </span>
                 </td>
                 <td>
                   <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
                     <mat-label>Year :</mat-label>
-                    <mat-select name="year">
+                    <mat-select name="year" (selectionChange)="onChangeSelet('year', $event.value, $event)">
                       <mat-option value="showAll">- Show All -</mat-option>
                       <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                     </mat-select>
@@ -68,9 +67,9 @@
                 <td>
                   <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
                     <mat-label>Month :</mat-label>
-                    <mat-select name="year">
+                    <mat-select name="year" (selectionChange)="onChangeSelet('month', $event.value, $event)">
                       <mat-option value="showAll">- Show All -</mat-option>
-                      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                      <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </td>
