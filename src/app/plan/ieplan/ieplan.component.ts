@@ -10,6 +10,8 @@ import { MatSort } from "@angular/material/sort"
 import { MatTableDataSource } from "@angular/material/table"
 import { element } from "protractor"
 
+import * as Chartist from "chartist"
+
 @Component({
   selector: "app-ieplan",
   templateUrl: "./ieplan.component.html",
@@ -21,10 +23,45 @@ export class IeplanComponent implements OnInit {
   eCategorys = []
   SAmount = []
 
+  // select box
+  years = []
+  months = []
+  
   ngOnInit(): void {
+    this.getSelectOption()
     this.getiCategory()
     this.geteCategory()
     this.getSummaryAmount()
+    this.graph()
+  }
+
+  getSelectOption() {
+    this.api.getIncomeRecord().subscribe({
+      next: res => {
+        res.forEach(element => {
+          this.years.push(element.year)
+          this.months.push(element.month)
+        });
+        this.api.getExpenditureRecord().subscribe({
+          next: res => {
+            res.forEach(element => {
+              this.years.push(element.year)
+              this.months.push(element.month)
+            });
+            this.years.sort(function(a, b){return b-a})
+            this.years = this.years.filter((element, index) => {
+              return this.years.indexOf(element) === index
+            })
+            this.months.sort()
+            this.months = this.months.filter((element, index) => {
+              return this.months.indexOf(element) === index
+            })
+          },
+          error() {},
+        })
+      },
+      error() {},
+    })
   }
 
   getiCategory() {
@@ -180,5 +217,69 @@ export class IeplanComponent implements OnInit {
 
   pushAmount(name: string, num: number) {
     this.SAmount[name] = num
+  }
+
+  /* ----------==========     lineChartIncome initialization    ==========---------- */
+  graph() {
+    const data_lineChartIncome: any = {
+      labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+      series: [
+        [23, 50, 60, 10, 41],
+        [41, 35, 22, 48, 36],
+      ],
+    }
+
+    const options_lineChartIncome: any = {
+      lineSmooth: Chartist.Interpolation.cardinal({
+        tension: 0,
+      }),
+      axisX: {
+        showGrid: true,
+        position: "end",
+        showLabel: true,
+      },
+      low: 0,
+      height: 300,
+      high: 200,
+      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      classNames: {
+        label: "ct-label-line",
+        labelGroup: "ct-labels-line",
+      },
+    }
+
+    var lineChartIncome = new Chartist.Line("#lineChartIncome", data_lineChartIncome, options_lineChartIncome)
+    this.startAnimationForLineChart(lineChartIncome)
+  }
+  startAnimationForLineChart(chart) {
+    let seq: any, delays: any, durations: any
+    seq = 0
+    delays = 80
+    durations = 500
+    chart.on("draw", function (data) {
+      if (data.type === "line" || data.type === "area") {
+        data.element.animate({
+          d: {
+            begin: 600,
+            dur: 700,
+            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+            to: data.path.clone().stringify(),
+            easing: Chartist.Svg.Easing.easeOutQuint,
+          },
+        })
+      } else if (data.type === "point") {
+        seq++
+        data.element.animate({
+          opacity: {
+            begin: seq * delays,
+            dur: durations,
+            from: 0,
+            to: 1,
+            easing: "ease",
+          },
+        })
+      }
+    })
+    seq = 0
   }
 }

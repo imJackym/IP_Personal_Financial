@@ -1,48 +1,135 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+
       <!-- status card -->
-      <div class="col-md-12 padding_reset">
+      <div class="col-md-12" style="padding:unset">
         <div class="card card-plain">
           <div class="card-header card-header-warning header-title-center-space-between">
             <h4 class="card-title" style="margin-bottom: unset">Income / Expenditure Status</h4>
+            <div class="header-title-center-space-between">
+              <h5 class="card-title" style="margin-bottom: unset">CHECK ANALYSIS RESULT :&nbsp;</h5>
+              <button mat-raised-button>
+                <span class="btn-inline">
+                  <i class="material-icons material-symbols-outlined header-title-icon">analytics</i>
+                  <span class="card-title header-title-text">&nbsp;I/E Plan Result</span>
+                </span>
+              </button>
+            </div>
           </div>
-          <div class="card-body" style="text-align: center">
 
-            <table id="ieplan" class="table table-hover" style="margin-bottom: unset">
+          <div style="padding-top:15px;margin-bottom: 30px;">
+            <div class="ct-chart" id="lineChartIncome" width="100%"></div>
+            <table style="display: flex;justify-content:flex-end">
+              <colgroup>
+                <col width="33%">
+                <col width="33%">
+                <col width="33%">
+              </colgroup>
+              <tr>
+                <td>
+                  <button mat-raised-button>Port Income and Expenditure</button>
+                </td>
+                <td style="padding-left: 5px;">
+                  <button mat-raised-button>Port Income</button>
+                </td>
+                <td style="padding-left: 5px;">
+                  <button mat-raised-button>Port Expenditure</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            <table width="100%">
+              <colgroup>
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+              </colgroup>
+              <tr>
+                <td></td>
+                <td>
+                  <span style="display: flex;justify-content: center;">
+                    <h6 >Select Time Slot :
+                    </h6>
+                  </span>
+                </td>
+                <td>
+                  <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
+                    <mat-label>Year :</mat-label>
+                    <mat-select name="year">
+                      <mat-option value="showAll">- Show All -</mat-option>
+                      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
+                    <mat-label>Month :</mat-label>
+                    <mat-select name="year">
+                      <mat-option value="showAll">- Show All -</mat-option>
+                      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card-body" style="text-align: center; padding-top: unset;">
+            <table class="table table-hover" style="margin-bottom: unset">
               <colgroup>
                 <col width="30%">
                 <col width="30%">
                 <col width="30%">
               </colgroup>
               <thead class="text-warning">
-                <td class="text-warning border_unset">Category</td>
-                <td class="text-warning border_unset">Expected Amount</td>
-                <td class="text-warning border_unset">Actual Amount (Remain)</td>
+                <th class="text-warning border_unset">Category</th>
+                <th class="text-warning border_unset">Expected Amount</th>
+                <th class="text-warning border_unset">Actual Amount (Remain)</th>
               </thead>
-              <tr colspan="3" class="text-danger" style="text-align: left">&nbsp;*&nbsp;Expenditure</tr>
+              <tr colspan="3" class="text-danger table_title" style="text-align:left">&nbsp;*&nbsp;Expenditure</tr>
               <tr *ngFor="let category_Expenditure of eCategorys">
-                <td>{{ category_Expenditure.category }}</td>
-                <td style="display:flex;align-items: center;justify-content: space-around;">{{ (category_Expenditure.expected_amount ? category_Expenditure.expected_amount : 0) | currency }}
-                  <div class="padding_reset">
-                    <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Expenditure)">
-                      <i class="material-icons">edit</i>
-                    </button>
-                  </div>
+                <td class="text-danger">{{ category_Expenditure.category }}</td>
+                <td>
+                  <table class="text-danger" style="width: 100%">
+                    <tr style="display: flex; align-items: center; justify-content: space-between">
+                      <td class="padding_reset">
+                        <span>$&nbsp;</span>
+                      </td>
+                      <td class="padding_reset">
+                        <span>{{ (category_Expenditure.expected_amount ? category_Expenditure.expected_amount : 0) | number: "0.2" }}</span>
+                      </td>
+                      <td class="padding_reset">
+                        <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Expenditure)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
                 <td class="text-warning">
-                  {{ (category_Expenditure.amount ? category_Expenditure.amount : 0) | number: "0.2" }}&nbsp;
-                  <span style="white-space: nowrap">
-                    (&nbsp;{{ (category_Expenditure.expected_amount - category_Expenditure.amount ? category_Expenditure.expected_amount - category_Expenditure.amount : 0) | currency }}&nbsp;)
-                  </span>
+                  <div style="width: 100%; display: flex">
+                    <div style="width: 10%">
+                      <span>$&nbsp;</span>
+                    </div>
+                    <div style="width: 90%">
+                      <span>{{ (category_Expenditure.amount ? category_Expenditure.amount : 0) | number: "0.2" }}&nbsp;</span>
+                      <span style="white-space: nowrap">
+                        (&nbsp;{{ (category_Expenditure.expected_amount - category_Expenditure.amount ? category_Expenditure.expected_amount - category_Expenditure.amount : 0) | currency }}&nbsp;)
+                      </span>
+                    </div>
+                  </div>
                 </td>
               </tr>
               <!-- -------------------------------------------------------------------------- -->
-              <tr colspan="3" class="text-success" style="text-align: left">
+              <tr colspan="3" class="text-success table_title" style="text-align: left">
                 &nbsp;*&nbsp;Income
               </tr>
               <tr *ngFor="let category_Income of iCategorys">
-                <td>{{ category_Income.category }}</td>
+                <td class="text-success">{{ category_Income.category }}</td>
                 <td>
                   <table class="text-success" style="width: 100%">
                     <tr style="display: flex; align-items: center; justify-content: space-between">
@@ -76,79 +163,40 @@
               </tr>
 
               <!-- -------------------------------------------------------------------------- -->
-              <tr colspan="3" class="text-success" style="text-align: left">
-                &nbsp;*&nbsp;Income
-              </tr>
-              <tr *ngFor="let category_Income of iCategorys">
-                <td>{{ category_Income.category }}</td>
+              <tr colspan="3" style="margin: unset; border-top: 4px solid rgba(0, 0, 0, 0.06)"></tr>
+              <tr>
+                <td class="summary text-warning">Summary</td>
                 <td>
                   <table class="text-success" style="width: 100%">
                     <tr style="display: flex; align-items: center; justify-content: space-between">
-                      <td class="padding_reset">
-                        <span>$&nbsp;</span>
-                      </td>
-                      <td class="padding_reset">
-                        <span>{{ (category_Income.expected_amount ? category_Income.expected_amount : 0) | number: "0.2" }}</span>
-                      </td>
-                      <td class="padding_reset">
-                        <button mat-raised-button type="button" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editCategory(category_Income)">
-                          <i class="material-icons">edit</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td class="text-warning">
-                  <div style="width: 100%; display: flex">
-                    <div style="width: 10%">
-                      <span>$&nbsp;</span>
-                    </div>
-                    <div style="width: 90%">
-                      <span>{{ (category_Income.amount ? category_Income.amount : 0) | number: "0.2" }}&nbsp;</span>
-                      <span style="white-space: nowrap">
-                        (&nbsp;{{ (category_Income.expected_amount - category_Income.amount ? category_Income.expected_amount - category_Income.amount : 0) | currency }}&nbsp;)
-                      </span>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- <hr style="margin: unset; border-top: 4px solid rgba(0, 0, 0, 0.06)" /> -->
-              <!-- <tr>
-                <td>Summary</td>
-
-                <td>
-                  <table class="" style="width: 100%">
-                    <tr>
                       <td class="padding_reset">
                         <span>$&nbsp;</span>
                       </td>
                       <td class="padding_reset">
                         <span>{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] | number: "0.2" }}</span>
                       </td>
-                    </tr>
+                      <td></td>
                   </table>
                 </td>
-
-                <td>
+                <td class="text-warning">
                   <div style="width: 100%; display: flex">
                     <div style="width: 10%">
                       <span>$&nbsp;</span>
                     </div>
                     <div style="width: 90%">
                       <span>{{ SAmount["iAmount"] - SAmount["eAmount"] | number: "0.2" }}&nbsp;</span>
-                      <span style="white-space: nowrap">(&nbsp;{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] - (SAmount["iAmount"] - SAmount["eAmount"]) | currency }}&nbsp;)</span>
+                      <span style="white-space: nowrap">
+                        (&nbsp;{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] - (SAmount["iAmount"] - SAmount["eAmount"]) | currency }}&nbsp;)
+                      </span>
                     </div>
                   </div>
                 </td>
-
-              </tr> -->
+              </tr>
             </table>
-
           </div>
         </div>
+        <!-- end of status card -->
       </div>
-      <!-- end of status card -->
     </div>
   </div>
 </div>
