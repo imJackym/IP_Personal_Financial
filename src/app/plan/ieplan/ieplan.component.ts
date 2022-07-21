@@ -1,6 +1,7 @@
 import { ApiService } from "./../../services/api.service"
 import { IecategoryComponent } from "./dialog/iecategory/iecategory.component"
 import { EiecategoryComponent } from "./dialog/eiecategory/eiecategory.component"
+import { ReportComponent } from "./dialog/report/report.component"
 
 import { Component, OnInit, ViewChild } from "@angular/core"
 import { MatDialog } from "@angular/material/dialog"
@@ -37,7 +38,13 @@ export class IeplanComponent implements OnInit {
   incList = []
   expList = []
 
+  port = "a"
+
   ngOnInit(): void {
+    this.iCategorys = []
+    this.eCategorys = []
+    this.x_axis = []
+    this.y_axis = []
     this.set_x_axis()
     this.getSelectOption()
     this.getiCategory()
@@ -121,14 +128,16 @@ export class IeplanComponent implements OnInit {
           })
         })
         this.iCategorys = res
-        this.api.getIncomeRecord_ync1("year", year).subscribe({
-          next: res => {
-            this.set_y_axis(res)
-          },
-          error() {
-            alert("Record err")
-          },
-        })
+        if (this.port == "a" || this.port == "i") {
+          this.api.getIncomeRecord_ync1("year", year).subscribe({
+            next: res => {
+              this.set_y_axis(res)
+            },
+            error() {
+              alert("Record err")
+            },
+          })
+        }
         this.geteCategory()
       },
       error() {
@@ -159,15 +168,19 @@ export class IeplanComponent implements OnInit {
           })
         })
         this.eCategorys = res
-        this.api.getExpenditureRecord_ync1("year", year).subscribe({
-          next: res => {
-            this.set_y_axis(res)
-            this.graph()
-          },
-          error() {
-            alert("Record err")
-          },
-        })
+        if (this.port == "a" || this.port == "e") {
+          this.api.getExpenditureRecord_ync1("year", year).subscribe({
+            next: res => {
+              this.set_y_axis(res)
+              this.graph()
+            },
+            error() {
+              alert("Record err")
+            },
+          })
+        } else {
+          this.graph()
+        }
       },
       error() {
         alert("Record err")
@@ -269,9 +282,19 @@ export class IeplanComponent implements OnInit {
         })
     }
   }
+  openAnalyseReport() {
+    this.dialog
+      .open(ReportComponent, {
+        width: "200%",
+        maxHeight: "55vw",
+      })
+      .afterClosed()
+
+  }
 
   onChangeSelet(type: any, value: any) {
     console.log(`--- onChangeSelet`)
+    this.port = "a"
 
     if (type === "year") {
       this.yearSelectedValue = value
@@ -281,10 +304,10 @@ export class IeplanComponent implements OnInit {
         this.select_TF(value, this.monthSelectedValue)
       } else if (value == null && this.monthSelectedValue != null) {
         this.select_FT(value, this.monthSelectedValue)
+      } else if (value == null && this.monthSelectedValue == null) {
+        //   this.select_FF(value, this.monthSelectedValue)
+        this.ngOnInit()
       }
-      // else if (value == null && this.monthSelectedValue == null) {
-      //   this.select_FF(value, this.monthSelectedValue)
-      // }
     } else if (type === "month") {
       this.monthSelectedValue = value
       if (this.yearSelectedValue != null && value != null) {
@@ -293,10 +316,10 @@ export class IeplanComponent implements OnInit {
         this.select_TF(this.yearSelectedValue, value)
       } else if (this.yearSelectedValue == null && value != null) {
         this.select_FT(this.yearSelectedValue, value)
+      } else if (this.yearSelectedValue == null && value == null) {
+        //   this.select_FF(this.yearSelectedValue, value)
+        this.ngOnInit()
       }
-      // else if (this.yearSelectedValue == null && value == null) {
-      //   this.select_FF(this.yearSelectedValue, value)
-      // }
     }
   }
 
@@ -312,6 +335,8 @@ export class IeplanComponent implements OnInit {
       y_axis_income.push(0)
       y_axis_exp.push(0)
     })
+    console.log(`this.port ${this.port}`)
+
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach((element, key1, arr1) => {
@@ -339,7 +364,9 @@ export class IeplanComponent implements OnInit {
           })
         })
         this.iCategorys = res
-        this.y_axis.push(y_axis_income)
+        if (this.port == "a" || this.port == "i") {
+          this.y_axis.push(y_axis_income)
+        }
       },
       error() {},
     })
@@ -369,15 +396,17 @@ export class IeplanComponent implements OnInit {
             },
           })
         })
-        this.y_axis.push(y_axis_exp)
         this.eCategorys = res
+        if (this.port == "a" || this.port == "e") {
+          this.y_axis.push(y_axis_exp)
+        }
       },
       error() {},
     })
   }
-
   select_TF(yearV: any, monthV: any) {
     console.log(`--- select_TF`)
+    console.log(`this.port ${this.port}`)
 
     this.x_axis = []
     for (let m = 1; m < 13; m++) {
@@ -425,7 +454,9 @@ export class IeplanComponent implements OnInit {
           })
         })
         this.iCategorys = res
-        this.y_axis.push(y_axis_income)
+        if (this.port == "a" || this.port == "i") {
+          this.y_axis.push(y_axis_income)
+        }
       },
     })
     // -------------------------------------------------------------------------
@@ -457,12 +488,15 @@ export class IeplanComponent implements OnInit {
           })
         })
         this.eCategorys = res
-        this.y_axis.push(y_axis_exp)
+        if (this.port == "a" || this.port == "e") {
+          this.y_axis.push(y_axis_exp)
+        }
       },
     })
   }
   select_FT(yearV: any, monthV: any) {
     console.log(`--- select_FT`)
+    console.log(`this.port ${this.port}`)
     this.iCategorys = []
     this.eCategorys = []
     this.x_axis = []
@@ -551,33 +585,35 @@ export class IeplanComponent implements OnInit {
       return x_axis_dummy.indexOf(element) === index
     })
 
-    this.x_axis.forEach((y, i) => {
-      y_axis_income[i] = 0
-      let filterSum = 0
-      let filterResult = y_axis_dummy_i.filter(res_filter => res_filter.year == y.split("/")[0])
-      if (filterResult.length > 0) {
-        filterResult.forEach(element => {
-          filterSum += parseInt(element.amount)
-        })
-        y_axis_income[i] += filterSum
-      }
-    })
-    this.y_axis.push(y_axis_income)
-
-    this.x_axis.forEach((y, i) => {
-      y_axis_exp[i] = 0
-      let filterSum = 0
-      let filterResult = y_axis_dummy_e.filter(res_filter => res_filter.year == y.split("/")[0])
-      if (filterResult.length > 0) {
-        filterResult.forEach(element => {
-          filterSum += parseInt(element.amount)
-        })
-        y_axis_exp[i] += filterSum
-      }
-    })
-    this.y_axis.push(y_axis_exp)
+    if (this.port == "a" || this.port == "i") {
+      this.x_axis.forEach((y, i) => {
+        y_axis_income[i] = 0
+        let filterSum = 0
+        let filterResult = y_axis_dummy_i.filter(res_filter => res_filter.year == y.split("/")[0])
+        if (filterResult.length > 0) {
+          filterResult.forEach(element => {
+            filterSum += parseInt(element.amount)
+          })
+          y_axis_income[i] += filterSum
+        }
+      })
+      this.y_axis.push(y_axis_income)
+    }
+    if (this.port == "a" || this.port == "e") {
+      this.x_axis.forEach((y, i) => {
+        y_axis_exp[i] = 0
+        let filterSum = 0
+        let filterResult = y_axis_dummy_e.filter(res_filter => res_filter.year == y.split("/")[0])
+        if (filterResult.length > 0) {
+          filterResult.forEach(element => {
+            filterSum += parseInt(element.amount)
+          })
+          y_axis_exp[i] += filterSum
+        }
+      })
+      this.y_axis.push(y_axis_exp)
+    }
   }
-
   changeGraph(v: any, y: any, m: any) {
     console.log(`--- changeGraph`)
     console.log(v)
@@ -585,16 +621,21 @@ export class IeplanComponent implements OnInit {
     console.log(m)
     console.log(this.y_axis_backup)
     if (v == "") {
+      this.port = "a"
     } else if (v == "i") {
-      if (this.y_axis.length > 1) {
-        this.y_axis.shift() // to remove first row
-      }
+      this.port = "i"
     } else if (v == "e") {
-      if (this.y_axis.length > 1) {
-        this.y_axis.pop() // to remove last row
-      }
+      this.port = "e"
     }
-    this.graph("btn")
+    if (typeof y !== "undefined" && typeof m !== "undefined") {
+      this.select_TT(y, m)
+    } else if (typeof y !== "undefined" && typeof m === "undefined") {
+      this.select_TF(y, m)
+    } else if (typeof y === "undefined" && typeof m !== "undefined") {
+      this.select_FT(y, m)
+    } else if (typeof y === "undefined" && typeof m === "undefined") {
+      this.ngOnInit()
+    }
   }
 
   /* ----------==========     lineChartIncome initialization    ==========---------- */
@@ -641,11 +682,6 @@ export class IeplanComponent implements OnInit {
 
     var lineChartIncome = new Chartist.Line("#lineChartIncome", data_lineChartIncome, options_lineChartIncome)
     this.startAnimationForLineChart(lineChartIncome)
-    if(v != 'btn'){
-      console.log("btn")
-      this.y_axis_backup = this.y_axis
-      console.log(this.y_axis_backup)
-    }
   }
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any
