@@ -22,7 +22,6 @@ export class ApiService {
   }
   // IncomeRecord - get by category
   getIncomeRecord_category(data: any) {
-    console.log(`http://localhost:3000/i_record?category_id=${data}`)
     return this.http.get<any>(`http://localhost:3000/i_record?category_id=${data}`)
   }
   // IncomeRecord - post
@@ -57,15 +56,12 @@ export class ApiService {
     return this.http.get<any>("http://localhost:3000/e_record")
   }
   getExpenditureRecord_ync1(attr1: any, v1: any) {
-    console.log(`http://localhost:3000/e_record?${attr1}=${v1}`)
     return this.http.get<any>(`http://localhost:3000/e_record?${attr1}=${v1}`)
   }
   getExpenditureRecord_ync2(attr1: any, v1: any, attr2: any, v2: any) {
-    console.log(`http://localhost:3000/e_record?${attr1}=${v1}&${attr2}=${v2}`)
     return this.http.get<any>(`http://localhost:3000/e_record?${attr1}=${v1}&${attr2}=${v2}`)
   }
   getExpenditureRecord_ync3(v1: any, v2: any, v3: any) {
-    console.log(`http://localhost:3000/e_record?year=${v1}&month=${v2}&category_id=${v3}`)
     return this.http.get<any>(`http://localhost:3000/e_record?year=${v1}&month=${v2}&category_id=${v3}`)
   }
   // ExpenditureRecord - get by category
