@@ -27,14 +27,14 @@
                 <col width="33%">
               </colgroup>
               <tr>
-                <td>
-                  <button mat-raised-button>Port Income and Expenditure</button>
+                <td style="padding-left: 5px;">
+                  <button mat-raised-button (click)="changeGraph('', year.value, month.value)">Port Income and Expenditure</button>
                 </td>
                 <td style="padding-left: 5px;">
-                  <button mat-raised-button>Port Income</button>
+                  <button mat-raised-button (click)="changeGraph('i', year.value, month.value)">Port Income</button>
                 </td>
                 <td style="padding-left: 5px;">
-                  <button mat-raised-button>Port Expenditure</button>
+                  <button mat-raised-button (click)="changeGraph('e', year.value, month.value)">Port Expenditure</button>
                 </td>
               </tr>
             </table>
@@ -58,8 +58,8 @@
                 <td>
                   <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
                     <mat-label>Year :</mat-label>
-                    <mat-select name="year" (selectionChange)="onChangeSelet('year', $event.value, $event)">
-                      <mat-option value="showAll">- Show All -</mat-option>
+                    <mat-select name="year" #year (selectionChange)="onChangeSelet('year', $event.value)">
+                      <mat-option>Select Year option</mat-option>
                       <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -67,8 +67,8 @@
                 <td>
                   <mat-form-field appearance="fill" style="margin-bottom: -1.25em">
                     <mat-label>Month :</mat-label>
-                    <mat-select name="year" (selectionChange)="onChangeSelet('month', $event.value, $event)">
-                      <mat-option value="showAll">- Show All -</mat-option>
+                    <mat-select name="month" #month (selectionChange)="onChangeSelet('month', $event.value)">
+                      <mat-option>Select Month option</mat-option>
                       <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                     </mat-select>
                   </mat-form-field>

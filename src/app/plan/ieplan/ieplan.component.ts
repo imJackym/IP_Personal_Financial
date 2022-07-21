@@ -5,13 +5,7 @@ import { EiecategoryComponent } from "./dialog/eiecategory/eiecategory.component
 import { Component, OnInit, ViewChild } from "@angular/core"
 import { MatDialog } from "@angular/material/dialog"
 
-import { MatPaginator } from "@angular/material/paginator"
-import { MatSort } from "@angular/material/sort"
-import { MatTableDataSource } from "@angular/material/table"
-import { element } from "protractor"
-
 import * as Chartist from "chartist"
-import { MatSelect, MatSelectChange } from "@angular/material/select"
 
 @Component({
   selector: "app-ieplan",
@@ -37,6 +31,11 @@ export class IeplanComponent implements OnInit {
   // graph
   x_axis = []
   y_axis = []
+  y_axis_backup = []
+
+  // FT
+  incList = []
+  expList = []
 
   ngOnInit(): void {
     this.set_x_axis()
@@ -53,7 +52,6 @@ export class IeplanComponent implements OnInit {
   }
   set_y_axis(res: any) {
     console.log(`--- set_Yaxis`)
-    console.log(res)
     let filterAmount = []
     for (let d = 1; d < 13; d++) {
       let filterSum = 0
@@ -68,7 +66,6 @@ export class IeplanComponent implements OnInit {
       }
     }
     this.y_axis.push(filterAmount)
-    console.log(this.y_axis)
   }
   getSelectOption() {
     this.api.getIncomeRecord().subscribe({
@@ -273,44 +270,40 @@ export class IeplanComponent implements OnInit {
     }
   }
 
-  onChangeSelet(type: any, value: any, event: MatSelectChange) {
-    // const matSelect: MatSelect = event.source
-    // matSelect.writeValue(null)
-
+  onChangeSelet(type: any, value: any) {
     console.log(`--- onChangeSelet`)
-    console.log(type)
-    console.log(value)
-
-    let iCategoryList_id = []
 
     if (type === "year") {
       this.yearSelectedValue = value
       if (value != null && this.monthSelectedValue != null) {
         this.select_TT(value, this.monthSelectedValue)
       } else if (value != null && this.monthSelectedValue == null) {
-        this.select_TF()
+        this.select_TF(value, this.monthSelectedValue)
       } else if (value == null && this.monthSelectedValue != null) {
-        this.select_FT()
-      } else if (value == null && this.monthSelectedValue == null) {
-        this.select_FF()
+        this.select_FT(value, this.monthSelectedValue)
       }
+      // else if (value == null && this.monthSelectedValue == null) {
+      //   this.select_FF(value, this.monthSelectedValue)
+      // }
     } else if (type === "month") {
       this.monthSelectedValue = value
       if (this.yearSelectedValue != null && value != null) {
-        // this.select_TT()
+        this.select_TT(this.yearSelectedValue, value)
       } else if (this.yearSelectedValue != null && value == null) {
-        this.select_TF()
+        this.select_TF(this.yearSelectedValue, value)
       } else if (this.yearSelectedValue == null && value != null) {
-        this.select_FT()
-      } else if (this.yearSelectedValue == null && value == null) {
-        this.select_FF()
+        this.select_FT(this.yearSelectedValue, value)
       }
+      // else if (this.yearSelectedValue == null && value == null) {
+      //   this.select_FF(this.yearSelectedValue, value)
+      // }
     }
   }
+
   select_TT(yearV: any, monthV: any) {
     console.log(`--- select_TT`)
     this.x_axis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
-    let y_axis_date = []
+    this.y_axis = []
     this.iCategorys = []
     this.eCategorys = []
     let y_axis_income = []
@@ -319,44 +312,45 @@ export class IeplanComponent implements OnInit {
       y_axis_income.push(0)
       y_axis_exp.push(0)
     })
-
     this.api.getIncomeCategory().subscribe({
       next: res => {
-        res.forEach(element => {
+        res.forEach((element, key1, arr1) => {
           element.expected_amount = parseInt(element.expected_amount) * 12
           let monthly_amount_perCategory = 0
           this.api.getIncomeRecord_ync3(yearV, monthV, element.id).subscribe({
             next: res => {
-              this.x_axis.forEach((d,i) => {
+              this.x_axis.forEach((d, i) => {
                 let filterSum = 0
                 let filterResult = res.filter(res_filter => parseInt(res_filter.day) == d)
-                if (filterResult.length < 0) {
-                } else {
+                if (filterResult.length > 0) {
                   filterResult.forEach(element => {
                     filterSum += parseInt(element.amount)
                     monthly_amount_perCategory += parseInt(element.amount)
                   })
-                  y_axis_income[i] = y_axis_income[i] + filterSum
+                  y_axis_income[i] += filterSum
                 }
               })
               element.amount = monthly_amount_perCategory
+              if (Object.is(arr1.length - 1, key1)) {
+                this.graph()
+              }
             },
+            error() {},
           })
         })
-        y_axis_date.push(y_axis_income)
         this.iCategorys = res
+        this.y_axis.push(y_axis_income)
       },
       error() {},
     })
-
     this.api.getExpenditureCategory().subscribe({
       next: res => {
-        res.forEach(element => {
+        res.forEach((element, key2, arr2) => {
           element.expected_amount = parseInt(element.expected_amount) * 12
           let monthly_amount_perCategory = 0
-          this.api.getIncomeRecord_ync3(yearV, monthV, element.id).subscribe({
+          this.api.getExpenditureRecord_ync3(yearV, monthV, element.id).subscribe({
             next: res => {
-              this.x_axis.forEach((d,i) => {
+              this.x_axis.forEach((d, i) => {
                 let filterSum = 0
                 let filterResult = res.filter(res_filter => parseInt(res_filter.day) == d)
                 if (filterResult.length < 0) {
@@ -369,63 +363,248 @@ export class IeplanComponent implements OnInit {
                 }
               })
               element.amount = monthly_amount_perCategory
+              if (Object.is(arr2.length - 1, key2)) {
+                this.graph()
+              }
             },
           })
         })
-        y_axis_date.push(y_axis_exp)
+        this.y_axis.push(y_axis_exp)
         this.eCategorys = res
       },
       error() {},
     })
-
-
-
-
-
-
-
-    // this.eCategorys = []
-    // this.x_axis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
-    // this.y_axis = []
-    // let eCat_DailyAmount = []
-    // this.api.getExpenditureRecord_ync2("year", yearV, "month", monthV).subscribe({
-    //   next: res => {
-    //     let monthly_amount = 0 // for table total amount
-    //     res.forEach(res_element => {
-    //       monthly_amount += parseInt(res_element.amount) // for table total amount
-    //     })
-
-    //     this.x_axis.forEach(d => {
-    //       let filterSum = 0
-    //       let filterResult = res.filter(res_filter => parseInt(res_filter.day) == d)
-    //       if (filterResult.length < 0) {
-    //         eCat_DailyAmount.push(0)
-    //       } else {
-    //         filterResult.forEach(element => {
-    //           filterSum += parseInt(element.amount)
-    //         })
-    //         eCat_DailyAmount.push(filterSum)
-    //       }
-    //     })
-    //     this.y_axis.push(eCat_DailyAmount)
-    //     this.graph()
-    //   },
-    //   error() {},
-    // })
   }
-  select_TF() {
+
+  select_TF(yearV: any, monthV: any) {
     console.log(`--- select_TF`)
+
+    this.x_axis = []
+    for (let m = 1; m < 13; m++) {
+      this.x_axis.push(`${yearV}/${m}`)
+    }
+    let dummyX = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    this.y_axis = []
+    let y_axis_income = []
+    let y_axis_exp = []
+
+    this.x_axis.forEach(e => {
+      y_axis_income.push(0)
+      y_axis_exp.push(0)
+    })
+
+    this.iCategorys = []
+    this.eCategorys = []
+
+    // -------------------------------------------------------------------------
+    this.api.getIncomeCategory().subscribe({
+      next: res => {
+        res.forEach((element, key1, arr1) => {
+          element.expected_amount = parseInt(element.expected_amount) * 12
+          let table_amount = 0
+          this.api.getIncomeRecord_ync2("year", yearV, "category_id", element.id).subscribe({
+            next: res => {
+              res.forEach(element => {
+                table_amount += parseInt(element.amount)
+              })
+              dummyX.forEach((m, i) => {
+                let filterSum = 0
+                let filterResult = res.filter(res_filter => res_filter.month == m)
+                if (filterResult.length > 0) {
+                  filterResult.forEach(element => {
+                    filterSum += parseInt(element.amount)
+                  })
+                  y_axis_income[i] += filterSum
+                }
+              })
+              element.amount = table_amount
+              if (Object.is(arr1.length - 1, key1)) {
+                this.graph()
+              }
+            },
+          })
+        })
+        this.iCategorys = res
+        this.y_axis.push(y_axis_income)
+      },
+    })
+    // -------------------------------------------------------------------------
+    this.api.getExpenditureCategory().subscribe({
+      next: res => {
+        res.forEach((element, key2, arr2) => {
+          element.expected_amount = parseInt(element.expected_amount) * 12
+          let table_amount = 0
+          this.api.getExpenditureRecord_ync2("year", yearV, "category_id", element.id).subscribe({
+            next: res => {
+              res.forEach(element => {
+                table_amount += parseInt(element.amount)
+              })
+              dummyX.forEach((m, i) => {
+                let filterSum = 0
+                let filterResult = res.filter(res_filter => res_filter.month == m)
+                if (filterResult.length > 0) {
+                  filterResult.forEach(element => {
+                    filterSum += parseInt(element.amount)
+                  })
+                  y_axis_exp[i] += filterSum
+                }
+              })
+              element.amount = table_amount
+              if (Object.is(arr2.length - 1, key2)) {
+                this.graph()
+              }
+            },
+          })
+        })
+        this.eCategorys = res
+        this.y_axis.push(y_axis_exp)
+      },
+    })
   }
-  select_FT() {
+  select_FT(yearV: any, monthV: any) {
     console.log(`--- select_FT`)
+    this.iCategorys = []
+    this.eCategorys = []
+    this.x_axis = []
+    this.y_axis = []
+    this.incList = []
+    this.expList = []
+    // TODO - show maximum
+    // for table
+    this.api.getIncomeCategory().subscribe({
+      next: res => {
+        res.forEach((element, key1, arr1) => {
+          element.expected_amount = parseInt(element.expected_amount)
+          let table_amount = 0
+          this.api.getIncomeRecord_ync2("month", monthV, "category_id", element.id).subscribe({
+            next: res => {
+              res.forEach(element => {
+                table_amount += parseInt(element.amount)
+              })
+              element.amount = table_amount
+              if (Object.keys(res).length != 0) {
+                this.incList.push(res)
+              }
+              if (Object.is(arr1.length - 1, key1)) {
+                this.graph("FT")
+              }
+            },
+          })
+        })
+        this.iCategorys = res
+      },
+    })
+    // -------------------------------------------------------------------------------
+    this.api.getExpenditureCategory().subscribe({
+      next: res => {
+        res.forEach((element, key2, arr2) => {
+          element.expected_amount = parseInt(element.expected_amount)
+          let table_amount = 0
+          this.api.getExpenditureRecord_ync2("month", monthV, "category_id", element.id).subscribe({
+            next: res => {
+              res.forEach(element => {
+                table_amount += parseInt(element.amount)
+              })
+              element.amount = table_amount
+              if (Object.keys(res).length != 0) {
+                this.expList.push(res)
+              }
+              if (Object.is(arr2.length - 1, key2)) {
+                this.graph("FT")
+              }
+            },
+          })
+        })
+        this.eCategorys = res
+      },
+    })
   }
-  select_FF() {
-    console.log(`--- select_FF`)
+  // select_FF(yearV: any, monthV: any) {
+  //   console.log(`--- select_FF`)
+  // }
+
+  set_x_axis_FT() {
+    console.log(`set_x_axis_FT`)
+    this.x_axis = []
+    this.y_axis = []
+    let x_axis_dummy = []
+    let y_axis_dummy_i = []
+    let y_axis_dummy_e = []
+    let y_axis_income = []
+    let y_axis_exp = []
+
+    this.incList.forEach(element => {
+      element.forEach(element => {
+        x_axis_dummy.push(`${element.year}/${parseInt(element.month)}`)
+        y_axis_dummy_i.push(element)
+      })
+    })
+    this.expList.forEach(element => {
+      element.forEach(element => {
+        x_axis_dummy.push(`${element.year}/${parseInt(element.month)}`)
+        y_axis_dummy_e.push(element)
+      })
+    })
+
+    x_axis_dummy.sort()
+    this.x_axis = x_axis_dummy.filter((element, index) => {
+      return x_axis_dummy.indexOf(element) === index
+    })
+
+    this.x_axis.forEach((y, i) => {
+      y_axis_income[i] = 0
+      let filterSum = 0
+      let filterResult = y_axis_dummy_i.filter(res_filter => res_filter.year == y.split("/")[0])
+      if (filterResult.length > 0) {
+        filterResult.forEach(element => {
+          filterSum += parseInt(element.amount)
+        })
+        y_axis_income[i] += filterSum
+      }
+    })
+    this.y_axis.push(y_axis_income)
+
+    this.x_axis.forEach((y, i) => {
+      y_axis_exp[i] = 0
+      let filterSum = 0
+      let filterResult = y_axis_dummy_e.filter(res_filter => res_filter.year == y.split("/")[0])
+      if (filterResult.length > 0) {
+        filterResult.forEach(element => {
+          filterSum += parseInt(element.amount)
+        })
+        y_axis_exp[i] += filterSum
+      }
+    })
+    this.y_axis.push(y_axis_exp)
+  }
+
+  changeGraph(v: any, y: any, m: any) {
+    console.log(`--- changeGraph`)
+    console.log(v)
+    console.log(y)
+    console.log(m)
+    console.log(this.y_axis_backup)
+    if (v == "") {
+    } else if (v == "i") {
+      if (this.y_axis.length > 1) {
+        this.y_axis.shift() // to remove first row
+      }
+    } else if (v == "e") {
+      if (this.y_axis.length > 1) {
+        this.y_axis.pop() // to remove last row
+      }
+    }
+    this.graph("btn")
   }
 
   /* ----------==========     lineChartIncome initialization    ==========---------- */
-  graph() {
+  graph(v: any = null) {
     console.log(`--- graph`)
+
+    if (v == "FT") {
+      this.set_x_axis_FT()
+    }
+
     const data_lineChartIncome: any = {
       labels: this.x_axis,
       series: this.y_axis,
@@ -462,6 +641,11 @@ export class IeplanComponent implements OnInit {
 
     var lineChartIncome = new Chartist.Line("#lineChartIncome", data_lineChartIncome, options_lineChartIncome)
     this.startAnimationForLineChart(lineChartIncome)
+    if(v != 'btn'){
+      console.log("btn")
+      this.y_axis_backup = this.y_axis
+      console.log(this.y_axis_backup)
+    }
   }
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any
