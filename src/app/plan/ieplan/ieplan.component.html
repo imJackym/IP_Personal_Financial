@@ -172,7 +172,7 @@
                         <span>$&nbsp;</span>
                       </td>
                       <td class="padding_reset">
-                        <span>{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] | number: "0.2" }}</span>
+                        <span>{{ inc_t_expected - exp_t_expected | number: "0.2" }}</span>
                       </td>
                       <td></td>
                   </table>
@@ -183,9 +183,9 @@
                       <span>$&nbsp;</span>
                     </div>
                     <div style="width: 90%">
-                      <span>{{ SAmount["iAmount"] - SAmount["eAmount"] | number: "0.2" }}&nbsp;</span>
+                      <span>{{ inc_t_amount - exp_t_amount | number: "0.2" }}&nbsp;</span>
                       <span style="white-space: nowrap">
-                        (&nbsp;{{ SAmount["iexpectAmount"] - SAmount["eexpectAmount"] - (SAmount["iAmount"] - SAmount["eAmount"]) | currency }}&nbsp;)
+                        (&nbsp;{{ inc_t_expected - exp_t_expected - (inc_t_amount - exp_t_amount) | currency }}&nbsp;)
                       </span>
                     </div>
                   </div>

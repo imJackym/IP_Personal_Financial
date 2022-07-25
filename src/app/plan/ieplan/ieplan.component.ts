@@ -17,7 +17,11 @@ export class IeplanComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
   iCategorys = []
   eCategorys = []
-  SAmount = []
+  // SAmount = []
+  inc_t_expected: number = 0
+  inc_t_amount: number = 0
+  exp_t_expected: number = 0
+  exp_t_amount: number = 0
 
   // data prepare
   // iCategoryList = [] // id, category
@@ -48,7 +52,7 @@ export class IeplanComponent implements OnInit {
     this.set_x_axis()
     this.getSelectOption()
     this.getiCategory()
-    this.getSummaryAmount()
+    // this.getSummaryAmount()
   }
 
   set_x_axis() {
@@ -107,7 +111,6 @@ export class IeplanComponent implements OnInit {
   getiCategory() {
     console.log(`--- getiCategory`)
     let year = new Date().getFullYear()
-    let iCat_DailyAmount = []
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach(element => {
@@ -187,67 +190,6 @@ export class IeplanComponent implements OnInit {
       },
     })
   }
-  getSummaryAmount = () => {
-    let iexpectAmount = 0
-    this.api.getIncomeCategory().subscribe({
-      next: res => {
-        if (res.length > 0) {
-          res.forEach((element: any) => {
-            iexpectAmount += parseInt(element.expected_amount ? element.expected_amount : "0")
-          })
-        }
-        this.pushAmount("iexpectAmount", iexpectAmount)
-      },
-      error() {
-        alert("Record err")
-      },
-    })
-    let eexpectAmount = 0
-    this.api.getExpenditureCategory().subscribe({
-      next: res => {
-        if (res.length > 0) {
-          res.forEach((element: any) => {
-            eexpectAmount += parseInt(element.expected_amount ? element.expected_amount : "0")
-          })
-        }
-        this.pushAmount("eexpectAmount", eexpectAmount)
-      },
-      error() {
-        alert("Record err")
-      },
-    })
-    let eAmount: number = 0
-    this.api.getExpenditureRecord().subscribe({
-      next: async res => {
-        if (res.length > 0) {
-          await res.forEach((element: any) => {
-            eAmount += parseInt(element.amount ? element.amount : "0")
-          })
-        }
-        this.pushAmount("eAmount", eAmount)
-      },
-      error() {
-        alert("Record err")
-      },
-    })
-    let iAmount: number = 0
-    this.api.getIncomeRecord().subscribe({
-      next: async res => {
-        if (res.length > 0) {
-          await res.forEach((element: any) => {
-            iAmount += parseInt(element.amount ? element.amount : "0")
-          })
-        }
-        this.pushAmount("iAmount", iAmount)
-      },
-      error() {
-        alert("Record err")
-      },
-    })
-  }
-  pushAmount(name: string, num: number) {
-    this.SAmount[name] = num
-  }
 
   // button function
   editCategory(row: any) {
@@ -262,7 +204,7 @@ export class IeplanComponent implements OnInit {
           if (val === "update") {
             this.getiCategory()
             this.geteCategory()
-            this.getSummaryAmount()
+            // this.getSummaryAmount()
           }
         })
     }
@@ -277,7 +219,7 @@ export class IeplanComponent implements OnInit {
           if (val === "update") {
             this.getiCategory()
             this.geteCategory()
-            this.getSummaryAmount()
+            // this.getSummaryAmount()
           }
         })
     }
@@ -285,11 +227,11 @@ export class IeplanComponent implements OnInit {
   openAnalyseReport() {
     this.dialog
       .open(ReportComponent, {
+        // TODO
         width: "200%",
-        maxHeight: "55vw",
+        maxHeight: "45vw",
       })
       .afterClosed()
-
   }
 
   onChangeSelet(type: any, value: any) {
@@ -340,7 +282,7 @@ export class IeplanComponent implements OnInit {
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach((element, key1, arr1) => {
-          element.expected_amount = parseInt(element.expected_amount) * 12
+          element.expected_amount = ((element.expected_amount == '') ? 0 : parseInt(element.expected_amount)) * 12
           let monthly_amount_perCategory = 0
           this.api.getIncomeRecord_ync3(yearV, monthV, element.id).subscribe({
             next: res => {
@@ -373,7 +315,7 @@ export class IeplanComponent implements OnInit {
     this.api.getExpenditureCategory().subscribe({
       next: res => {
         res.forEach((element, key2, arr2) => {
-          element.expected_amount = parseInt(element.expected_amount) * 12
+          element.expected_amount = ((element.expected_amount == '') ? 0 : parseInt(element.expected_amount)) * 12
           let monthly_amount_perCategory = 0
           this.api.getExpenditureRecord_ync3(yearV, monthV, element.id).subscribe({
             next: res => {
@@ -429,7 +371,7 @@ export class IeplanComponent implements OnInit {
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach((element, key1, arr1) => {
-          element.expected_amount = parseInt(element.expected_amount) * 12
+          element.expected_amount = ((element.expected_amount == '') ? 0 : parseInt(element.expected_amount)) * 12
           let table_amount = 0
           this.api.getIncomeRecord_ync2("year", yearV, "category_id", element.id).subscribe({
             next: res => {
@@ -463,7 +405,7 @@ export class IeplanComponent implements OnInit {
     this.api.getExpenditureCategory().subscribe({
       next: res => {
         res.forEach((element, key2, arr2) => {
-          element.expected_amount = parseInt(element.expected_amount) * 12
+          element.expected_amount = ((element.expected_amount == '') ? 0 : parseInt(element.expected_amount)) * 12
           let table_amount = 0
           this.api.getExpenditureRecord_ync2("year", yearV, "category_id", element.id).subscribe({
             next: res => {
@@ -508,7 +450,7 @@ export class IeplanComponent implements OnInit {
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach((element, key1, arr1) => {
-          element.expected_amount = parseInt(element.expected_amount)
+          element.expected_amount = (element.expected_amount == '') ? 0 : parseInt(element.expected_amount)
           let table_amount = 0
           this.api.getIncomeRecord_ync2("month", monthV, "category_id", element.id).subscribe({
             next: res => {
@@ -532,7 +474,7 @@ export class IeplanComponent implements OnInit {
     this.api.getExpenditureCategory().subscribe({
       next: res => {
         res.forEach((element, key2, arr2) => {
-          element.expected_amount = parseInt(element.expected_amount)
+          element.expected_amount = (element.expected_amount == '') ? 0 : parseInt(element.expected_amount)
           let table_amount = 0
           this.api.getExpenditureRecord_ync2("month", monthV, "category_id", element.id).subscribe({
             next: res => {
@@ -638,9 +580,42 @@ export class IeplanComponent implements OnInit {
     }
   }
 
+  calculate_sum() {
+    this.inc_t_expected = 0
+    this.inc_t_amount = 0
+    this.exp_t_expected = 0
+    this.exp_t_amount = 0
+
+    console.log(`--- calculate_sum`)
+    this.iCategorys.forEach(element => {
+      let num_e = (element.expected_amount == '') ? 0 : parseInt(element.expected_amount)
+      console.log(`num_e ${num_e}`)
+      let num_a = (element.amount == '') ? 0 : parseInt(element.amount)
+      this.inc_t_expected += num_e
+      this.inc_t_amount += num_a
+    })
+    this.eCategorys.forEach(element => {
+      let num_e = (element.expected_amount == '') ? 0 : parseInt(element.expected_amount)
+      let num_a = (element.amount == '') ? 0 : parseInt(element.amount)
+      this.exp_t_expected += num_e
+      this.exp_t_amount += num_a
+    })
+    console.log(`inc_t_expected :: ${this.inc_t_expected}`)
+    console.log(`inc_t_amount :: ${this.inc_t_amount}`)
+    console.log(`exp_t_expected :: ${this.exp_t_expected}`)
+    console.log(`exp_t_amount :: ${this.exp_t_amount}`)
+    console.log("------------------------------")
+    console.log(`exp :: ${this.inc_t_expected - this.exp_t_expected}`)
+    console.log(`act :: ${this.inc_t_amount - this.exp_t_amount}`)
+  }
+
   /* ----------==========     lineChartIncome initialization    ==========---------- */
   graph(v: any = null) {
     console.log(`--- graph`)
+    console.log(this.eCategorys)
+    console.log(this.iCategorys)
+
+    this.calculate_sum()
 
     if (v == "FT") {
       this.set_x_axis_FT()
