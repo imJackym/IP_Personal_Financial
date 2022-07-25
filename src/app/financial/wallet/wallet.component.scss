@@ -1,0 +1,37 @@
+.textFont {
+  font-family: Impact;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn-inline {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-title-text_income {
+  margin-bottom: unset !important;
+  color: #4caf50 !important;
+}
+
+.header-title-icon_income {
+  font-size: 18px !important;
+  color: #4caf50 !important;
+}
+
+.header-title-text_expenditure {
+  margin-bottom: unset !important;
+  color: #f44336 !important;
+}
+
+.header-title-icon_expenditure {
+  font-size: 18px !important;
+  color: #f44336 !important;
+}
+

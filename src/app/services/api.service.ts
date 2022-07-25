@@ -24,6 +24,10 @@ export class ApiService {
   getIncomeRecord_category(data: any) {
     return this.http.get<any>(`http://localhost:3000/i_record?category_id=${data}`)
   }
+  // IncomeRecord - get by type
+  getIncomeRecord_type(data: any) {
+    return this.http.get<any>(`http://localhost:3000/i_record?type=${data}`)
+  }
   // IncomeRecord - post
   postIncomeRecord(data: any) {
     return this.http.post<any>("http://localhost:3000/i_record", data)
@@ -67,6 +71,10 @@ export class ApiService {
   // ExpenditureRecord - get by category
   getExpenditureRecord_category(data: any) {
     return this.http.get<any>(`http://localhost:3000/e_record?category_id=${data}`)
+  }
+  // ExpenditureRecord - get by type
+  getExpenditureRecord_type(data: any) {
+    return this.http.get<any>(`http://localhost:3000/e_record?type=${data}`)
   }
   // ExpenditureRecord - post
   postExpenditureRecord(data: any) {
