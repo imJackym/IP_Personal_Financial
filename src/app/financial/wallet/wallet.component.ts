@@ -1,8 +1,11 @@
 import { Component, OnInit } from "@angular/core"
 import { MatDialog } from "@angular/material/dialog"
 import { ApiService } from "app/services/api.service"
+import { RecordComponent } from "app/financial/income/dialog/record/record.component"
+import { CategoryComponent } from "app/financial/income/dialog/category/category.component"
+import { ErecordComponent } from "app/financial/expenditure/dialog/erecord/erecord.component"
+import { EcategoryComponent } from "app/financial/expenditure/dialog/ecategory/ecategory.component"
 import * as Chartist from "chartist"
-import { element } from "protractor"
 
 @Component({
   selector: "app-wallet",
@@ -26,32 +29,55 @@ export class WalletComponent implements OnInit {
     c_less: false,
   }
   cash_g = []
+  cash_ga: number = 0
   cash_r = []
+  cash_ra: number = 0
   bank_g = []
+  bank_ga: number = 0
   bank_r = []
+  bank_ra: number = 0
   card_g = []
+  card_ga: number = 0
   card_r = []
-  cate = [
-    { id: 1, cat: "test11" },
-    { id: 2, cat: "aaa" },
-  ]
+  card_ra: number = 0
+
+  cate_i = []
+  cate_e = []
 
   ngOnInit(): void {
     this.plotGraph()
     this.getCategory()
-    this.getCash()
+    setTimeout(() => {
+      this.getType("cash")
+      this.getType("bank")
+      this.getType("card")
+    }, 1000)
   }
 
   getCategory() {
+    console.log(`--- getCategory`)
     this.api.getIncomeCategory().subscribe({
       next: res => {
-        console.log(`--- getCategory`)
         res.forEach(element => {
           let e = {
             id: element.id,
             cat: element.category,
           }
-          this.cate.push(e)
+          this.cate_i.push(e)
+        })
+      },
+      error() {
+        alert("Record err")
+      },
+    })
+    this.api.getExpenditureCategory().subscribe({
+      next: res => {
+        res.forEach(element => {
+          let e = {
+            id: element.id,
+            cat: element.category,
+          }
+          this.cate_e.push(e)
         })
       },
       error() {
@@ -60,11 +86,12 @@ export class WalletComponent implements OnInit {
     })
   }
 
-  getCash() {
-    console.log(this.cate)
-    this.api.getIncomeRecord_type("cash").subscribe({
+  getType(type: any) {
+    console.log(`--- getCash`)
+    this.api.getIncomeRecord_type(type).subscribe({
       next: res => {
         console.log(`getCash in`)
+        let amount = 0
         // res.forEach(element => {})
         res.sort(function (a, b) {
           var keyA = a.date,
@@ -72,27 +99,30 @@ export class WalletComponent implements OnInit {
           if (keyA < keyB) return 1
           if (keyA > keyB) return -1
         })
-        // console.log(res)
         res.forEach(element => {
-          let cat = this.cate.find(e => {
-            // console.log(e)
-            // console.log(`element.category_id || ${element.category_id}`)
-            // console.log(`~~~~~~~~~~~~~~~~~~`)
-            e.id == parseInt(element.category_id)
-          })
-          element.category = cat
+          let cat = this.cate_i.find(e => e.id === parseInt(element.category_id))
+          element.category = cat.cat
+          amount += parseInt(element.amount)
         })
-        console.log(`res`)
-        console.log(res)
-        this.cash_g = res.slice(0, 5)
+        if (type == "cash") {
+          this.cash_ga += amount
+          this.cash_g = res.slice(0, 5)
+        } else if (type == "bank") {
+          this.bank_ga += amount
+          this.bank_g = res.slice(0, 5)
+        } else if (type == "card") {
+          this.card_ga += amount
+          this.card_g = res.slice(0, 5)
+        }
       },
       error() {
         alert("Record err")
       },
     })
-    this.api.getExpenditureRecord_type("cash").subscribe({
+    this.api.getExpenditureRecord_type(type).subscribe({
       next: res => {
         console.log(`getCash exp`)
+        let amount = 0
         // res.forEach(element => {})
         res.sort(function (a, b) {
           var keyA = a.date,
@@ -100,8 +130,21 @@ export class WalletComponent implements OnInit {
           if (keyA < keyB) return 1
           if (keyA > keyB) return -1
         })
-        // console.log(res)
-        this.cash_r = res
+        res.forEach(element => {
+          let cat = this.cate_e.find(e => e.id === parseInt(element.category_id))
+          element.category = cat.cat
+          amount -= parseInt(element.amount)
+        })
+        if (type == "cash") {
+          this.cash_ra -= amount
+          this.cash_r = res.slice(0, 5)
+        } else if (type == "bank") {
+          this.bank_ra -= amount
+          this.bank_r = res.slice(0, 5)
+        } else if (type == "card") {
+          this.card_ra -= amount
+          this.card_r = res.slice(0, 5)
+        }
       },
       error() {
         alert("Record err")
@@ -109,9 +152,22 @@ export class WalletComponent implements OnInit {
     })
   }
 
-  getBank() {}
-
-  getCard() {}
+  add_ir() {
+    console.log(`--- add_ir`)
+    this.dialog.open(RecordComponent, { width: "100%" }).afterClosed()
+  }
+  add_ic() {
+    console.log(`--- add_ic`)
+    this.dialog.open(CategoryComponent, { width: "100%" }).afterClosed()
+  }
+  add_er() {
+    console.log(`--- add_er`)
+    this.dialog.open(ErecordComponent, { width: "100%" }).afterClosed()
+  }
+  add_ec() {
+    console.log(`--- add_ec`)
+    this.dialog.open(EcategoryComponent, { width: "100%" }).afterClosed()
+  }
 
   plotGraph() {
     var data = {
@@ -122,12 +178,13 @@ export class WalletComponent implements OnInit {
       return a + b
     }
 
-    new Chartist.Pie("#dailySalesChart", data, {
-      width: 500,
-      donutWidth: 250,
-      height: 500,
-      donut: false,
-      labelDirection: "implode",
+    var chart = new Chartist.Pie("#walletChart", data, {
+      width: 250,
+      height: 250,
+      donut: true,
+      donutSolid: true,
+      donutWidth: 60,
+      showLabel: false,
       labelInterpolationFnc: function (value) {
         return Math.round((value / data.series.reduce(sum)) * 100) + "%"
       },

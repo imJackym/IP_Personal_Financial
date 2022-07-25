@@ -8,7 +8,7 @@
           <div class="card-body">
             <h4 class="card-title" style="font-size: 1.2rem; margin-bottom: 0px;">Wallet Component</h4>
             <div style="display:flex;align-items:center;justify-content:space-evenly;">
-              <div class="ct-chart" id="dailySalesChart" style="text-align:center"></div>
+              <div class="ct-chart" id="walletChart" style="text-align:center"></div>
               <div class="table-responsive" style="width:50%">
                 <table class="table table-hover textFont">
                   <tr style="color:#d70206">
@@ -52,25 +52,25 @@
       <!-- end of pie card -->
 
       <div class="col-md-12 inline" style="padding-bottom:15px">
-        <button mat-raised-button>
+        <button mat-raised-button (click)="add_ir()">
           <span class="btn-inline">
             <i class="material-icons header-title-icon_income">add</i>
             <span class="card-title header-title-text_income">Income Record</span>
           </span>
         </button>
-        <button mat-raised-button>
+        <button mat-raised-button  (click)="add_ic()">
           <span class="btn-inline">
             <i class="material-icons header-title-icon_income">add</i>
             <span class="card-title header-title-text_income">Income Category</span>
           </span>
         </button>
-        <button mat-raised-button>
+        <button mat-raised-button (click)="add_er()">
           <span class="btn-inline">
             <i class="material-icons header-title-icon_expenditure">add</i>
             <span class="card-title header-title-text_expenditure">Expenditure Record</span>
           </span>
         </button>
-        <button mat-raised-button>
+        <button mat-raised-button (click)="add_ec()">
           <span class="btn-inline">
             <i class="material-icons header-title-icon_expenditure">add</i>
             <span class="card-title header-title-text_expenditure">Expenditure Category</span>
@@ -87,14 +87,14 @@
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Cash</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ 8,800
+              HKD$ {{ cash_ga - cash_ra }}
               <i class="material-icons" (click)="showDiv.income=!showDiv.income;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.income=!showDiv.income;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_less">expand_less</i>
             </h3>
           </div>
           <div class="card-footer">
             <div class="stats" style="width:100%">
-              <table style="font-size: 16px;width:100%">
+              <table style="font-size:16px;width:100%">
                 <tbody *ngIf="showDiv.income">
                   <tr>
                     <table style="width:100%">
@@ -106,17 +106,18 @@
                               <span class="text-success">
                                 + HKD $ {{ i.amount }}&nbsp;
                               </span>
-                              increase in {{ i.category }}.
+                              income from {{ i.category }}.
                             </tr>
                           </table>
                         </td>
                         <td>
                           <table>
                             <tr *ngFor="let e of cash_r">
+                              ({{ e.date | date:'shortDate' }})
                               <span class="text-danger">
-                                <i class="material-icons">remove</i>
-                                {{ e.amount }}
-                              </span>&nbsp;increase in today sales.
+                                - HKD $ {{ e.amount }}&nbsp;
+                              </span>
+                              expend from {{ e.category }}.
                             </tr>
                           </table>
                         </td>
@@ -142,35 +143,37 @@
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Bank</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ 8,800
+              HKD$ {{ bank_ga - bank_ra }}
               <i class="material-icons" (click)="showDiv.bank=!showDiv.bank;showDiv.b_more=!showDiv.b_more;showDiv.b_less=!showDiv.b_less" *ngIf="showDiv.b_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.bank=!showDiv.bank;showDiv.b_more=!showDiv.b_more;showDiv.b_less=!showDiv.b_less" *ngIf="showDiv.b_less">expand_less</i>
             </h3>
           </div>
           <div class="card-footer">
             <div class="stats" style="width:100%">
-              <table style="font-size: 16px;width:100%">
+              <table style="font-size:16px;width:100%">
                 <tbody *ngIf="showDiv.bank">
                   <tr>
                     <table style="width:100%">
                       <tr style="vertical-align: top;">
                         <td>
                           <table>
-                            <tr *ngFor="let i of cash_g">
+                            <tr *ngFor="let i of bank_g">
+                              ({{ i.date | date:'shortDate' }})
                               <span class="text-success">
-                                <i class="fa fa-arrows-alt"></i>
-                                {{ i.amount }}
-                              </span>&nbsp;increase in today sales.
+                                + HKD $ {{ i.amount }}&nbsp;
+                              </span>
+                              income from {{ i.category }}.
                             </tr>
                           </table>
                         </td>
                         <td>
                           <table>
-                            <tr *ngFor="let e of cash_r">
+                            <tr *ngFor="let e of bank_r">
+                              ({{ e.date | date:'shortDate' }})
                               <span class="text-danger">
-                                <i class="fa fa-arrows-alt"></i>
-                                {{ e.amount }}
-                              </span>&nbsp;increase in today sales.
+                                - HKD $ {{ e.amount }}&nbsp;
+                              </span>
+                              expend from {{ e.category }}.
                             </tr>
                           </table>
                         </td>
@@ -194,35 +197,37 @@
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Credit Card</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ 8,800
+              HKD$ {{ card_ga - card_ra }}
               <i class="material-icons" (click)="showDiv.card=!showDiv.card;showDiv.c_more=!showDiv.c_more;showDiv.c_less=!showDiv.c_less" *ngIf="showDiv.c_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.card=!showDiv.card;showDiv.c_more=!showDiv.c_more;showDiv.c_less=!showDiv.c_less" *ngIf="showDiv.c_less">expand_less</i>
             </h3>
           </div>
           <div class="card-footer">
             <div class="stats" style="width:100%">
-              <table style="font-size: 16px;width:100%">
+              <table style="font-size:16px;width:100%">
                 <tbody *ngIf="showDiv.card">
                   <tr>
                     <table style="width:100%">
                       <tr style="vertical-align: top;">
                         <td>
                           <table>
-                            <tr *ngFor="let i of cash_g">
+                            <tr *ngFor="let i of card_g">
+                              ({{ i.date | date:'shortDate' }})
                               <span class="text-success">
-                                <i class="fa fa-arrows-alt"></i>
-                                {{ i.amount }}
-                              </span>&nbsp;increase in today sales.
+                                + HKD $ {{ i.amount }}&nbsp;
+                              </span>
+                              income from {{ i.category }}.
                             </tr>
                           </table>
                         </td>
                         <td>
                           <table>
-                            <tr *ngFor="let e of cash_r">
+                            <tr *ngFor="let e of card_r">
+                              ({{ e.date | date:'shortDate' }})
                               <span class="text-danger">
-                                <i class="fa fa-arrows-alt"></i>
-                                {{ e.amount }}
-                              </span>&nbsp;increase in today sales.
+                                - HKD $ {{ e.amount }}&nbsp;
+                              </span>
+                              expend from {{ e.category }}.
                             </tr>
                           </table>
                         </td>
