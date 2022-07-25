@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h1 class="card-title ">I/E Report</h1>
+            <h1 class="card-title textFont">I/E Report</h1>
             <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
           </div>
           <div class="card-body">
@@ -12,29 +12,50 @@
             <!-- Expenditure -->
             <div>
               <table width="100%">
-                <tr>
-                  Actual
-                </tr>
-                <tr>
+                <tr class="flexEnd">
                   <td>Period :</td>
                   <td>01/01/2021 - 31/12/2021</td>
                 </tr>
-                <tr style="display:flex;justify-content:space-between;">
+                <tr>
+                  <h2 class="textFont">Actual</h2>
+                </tr>
+                <tr class="spaceB">
                   <td>
-                    <h2>Expenditure</h2>
+                    <h2 class="textFont">EXPENDITURE</h2>
                   </td>
                   <td>
-                    <h2 style="font-family:Impact;">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ 123 | currency }}</h2>
                   </td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td>$123 + $234</td>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
-
               </table>
               <div class="table-responsive">
-                <table class="table" width="100%">
+                <table class="table tableBox" width="100%">
                   <thead class=" text-primary">
                     <th>Category</th>
                     <th>Maximun</th>
@@ -53,20 +74,6 @@
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
-                    </tr>
-                    <tr>
-                      <td>Cate_test</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                    </tr>
-                    <tr>
-                      <td>Cate_test</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
                     </tr>
@@ -74,48 +81,63 @@
                 </table>
               </div>
             </div>
-
+            <hr>
             <!-- Income -->
             <div>
               <table width="100%">
-                <tr style="display:flex;justify-content:space-between;">
+                <tr class="spaceB">
                   <td>
-                    <h2>Income</h2>
+                    <h2 class="textFont">INCOME</h2>
                   </td>
                   <td>
-                    <h2>{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                  </td>
+                </tr>
+                <!-- element -->
+                <tr>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
               </table>
               <div class="table-responsive">
-                <table class="table" width="100%">
-                  <thead class=" text-primary">
+                <table class="table tableBox" width="100%">
+                  <thead class="text-primary">
                     <th>Category</th>
                     <th>Maximun</th>
                     <th>Minmun</th>
                     <th>Average</th>
                     <th>Frequence</th>
                     <th>Summary</th>
+                    <th>Yield</th>
+                    <th>Expected</th>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Cate_test</td>
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                    </tr>
-                    <tr>
-                      <td>Cate_test</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                    </tr>
-                    <tr>
-                      <td>Cate_test</td>
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
                       <td>{{ 123 | currency }}</td>
@@ -130,51 +152,120 @@
             <!-- SUM -->
             <div>
               <table width="100%">
-                <tr style="display:flex;justify-content:space-between;">
+                <tr class="spaceB">
                   <td>
-                    <h2>SUM</h2>
+                    <h2 class="textFont">SUM / DIFF</h2>
                   </td>
                   <td>
-                    <h2>{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ 123 | currency }}</h2>
                   </td>
                 </tr>
+                <!-- element -->
                 <tr>
-                  <td></td>
-                  <td>$1234+$45678</td>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>xxxx</td>
+                        <td>- $234</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
             </div>
             <hr>
             <div>
               <table width="100%">
-                <tr style="display:flex;justify-content:space-between;">
+                <tr class="spaceB">
                   <td>
-                    <h2>Expected income & Expenditure diff</h2>
+                    <h2 class="textFont">EXPECTED INPLAN DIFF</h2>
                   </td>
                   <td>
-                    <h2>{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ 123 | currency }}</h2>
                   </td>
                 </tr>
+                <!-- element -->
                 <tr>
-                  <td></td>
-                  <td>$1234+$45678</td>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>Expenditure</td>
+                        <td>- $234</td>
+                      </tr>
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>Income</td>
+                        <td>- $234</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
             </div>
             <hr>
             <div>
               <table width="100%">
-                <tr style="display:flex;justify-content:space-between;">
+                <tr class="spaceB">
                   <td>
-                    <h2>Diff</h2>
+                    <h2 class="textFont">RESULT : DIFF</h2>
                   </td>
                   <td>
-                    <h2>{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ 123 | currency }}</h2>
                   </td>
                 </tr>
+                <!-- element -->
                 <tr>
-                  <td></td>
-                  <td>$1234+$45678</td>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>Expenditure</td>
+                        <td>- $234</td>
+                      </tr>
+                      <tr class="spaceB">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>Income</td>
+                        <td>- $234</td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
             </div>

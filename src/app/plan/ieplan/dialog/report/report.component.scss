@@ -1,0 +1,17 @@
+.textFont {
+  font-family: Impact;
+}
+h2 {
+  margin-bottom: unset;
+}
+.spaceB {
+  display: flex;
+  justify-content: space-between;
+}
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+.tableBox {
+  box-shadow: inset 0px 0 5px 0px rgb(0 0 0 / 20%);
+}
