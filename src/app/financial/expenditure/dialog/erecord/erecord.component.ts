@@ -28,6 +28,7 @@ export class ErecordComponent implements OnInit {
       year: [''],
       day: [''],
       category_id: ['', Validators.required],
+      type: ['', Validators.required],
       amount: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     })
     this.getCategory()
@@ -56,6 +57,7 @@ export class ErecordComponent implements OnInit {
           this.recordForm.controls['category_id'].setValue('' + element.id)
         }
       })
+      this.recordForm.controls['type'].setValue(this.editData.type)
       this.recordForm.controls['amount'].setValue(this.editData.amount)
     }
   }
