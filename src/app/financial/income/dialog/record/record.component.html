@@ -29,6 +29,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
+      <mat-label>Charge Type</mat-label>
+      <mat-select formControlName="type" placeholder="option" required>
+        <mat-option value="cash">Cash</mat-option>
+        <mat-option value="bank">Bank</mat-option>
+        <mat-option value="card">Credit Card</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
       <mat-label>Amount</mat-label>
       <input formControlName="amount" matInput placeholder="Placeholder" required>
     </mat-form-field>

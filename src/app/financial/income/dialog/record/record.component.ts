@@ -27,6 +27,7 @@ export class RecordComponent implements OnInit {
       month: [''],
       year: [''],
       day: [''],
+      type: [''],
       category_id: ['', Validators.required],
       amount: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     })
@@ -56,6 +57,7 @@ export class RecordComponent implements OnInit {
           this.recordForm.controls['category_id'].setValue('' + element.id)
         }
       })
+      this.recordForm.controls['type'].setValue(this.editData.type)
       this.recordForm.controls['amount'].setValue(this.editData.amount)
     }
   }
