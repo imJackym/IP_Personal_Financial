@@ -178,15 +178,13 @@
                 </tr>
                 <tr class="text-primary" *ngIf="planA_exp">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td>
+                  <td colspan="2">
                     {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr class="text-danger" *ngIf="!planA_exp">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td>
+                  <td colspan="2">
                     {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
@@ -204,15 +202,13 @@
                 </tr>
                 <tr class="text-warning" *ngIf="planA_act">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td>
+                  <td colspan="2">
                     {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr class="text-danger" *ngIf="!planA_act">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td>
+                  <td colspan="2">
                     {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
@@ -230,91 +226,133 @@
               <tbody>
                 <tr>
                   <td style="text-align: right;">Total Asset :</td>
-                  <td>{{ total_asset | currency }}</td>
+                  <td></td>
                   <td>=</td>
                   <td>{{ total_asset | currency }}</td>
                 </tr>
                 <!-- EXPECT -->
-                <tr>
+                <tr class="text-primary">
                   <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
-                  <td>{{ total_exp_expenditure }}</td>
+                  <td>{{ total_exp_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
                   <td>{{ total_exp_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
                 </tr>
-                <tr>
+                <tr class="text-primary">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td><span>Only active with {{ inflation_cal_t(total_exp_expenditure) }} years<br>Remain {{ inflation_cal_v(total_exp_expenditure) | currency }}</span></td>
+                  <td colspan="2" *ngIf="!planB_exp_year_count" class="text-danger">
+                    <span>Only active with <b>{{ inflation_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
+                  </td>
+                  <td colspan="2" *ngIf="planB_exp_year_count">
+                    <span>At least active with <b>{{ inflation_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
+                  </td>
                 </tr>
                 <!-- ACTUAL -->
-                <tr>
+                <tr class="text-warning">
                   <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
-                  <td>{{ total_expenditure }}</td>
+                  <td>{{ total_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
-                  <td ng-init="a = total_expenditure;b = 40;" ng-controller="formController">{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
+                  <td>{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
                 </tr>
-                <tr>
+                <tr class="text-warning">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
-                  <td>=</td>
-                  <td><span>Only active with {{ planB_year }} years<br>Remain {{ planB_remain | currency }}</span></td>
+                  <td colspan="2" *ngIf="!planB_act_year_count" class="text-danger">
+                    <span>Only active with <b>{{ inflation_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','act',total_expenditure) | currency }}</b></span>
+                  </td>
+                  <td colspan="2" *ngIf="planB_act_year_count">
+                    <span>Only active with <b>{{ inflation_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','act',total_expenditure) | currency }}</b></span>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <!-- planC -->
           <hr>
-          <div>
-            <h3>Plan C</h3>
-            <table class="table table-hover" style="margin-bottom:unset">
+          <div class="card card-stats" style="font-size:unset;margin-top:unset;">
+            <h3>Plan C ( Passive Income to Maintain Life Expended )</h3>
+            <table class="table table-hover" style="margin-bottom:20px">
               <tbody>
                 <tr>
                   <td style="text-align: right;">Passive Income :</td>
-                  <td>$ 999,999,999</td>
-                  <td>X 12 =</td>
-                  <td>{{ 999999999*12 | currency }}</td>
+                  <td>{{ total_passive_income | currency }}</td>
                 </tr>
-                <tr>
-                  <td style="text-align: right;">Total Expenditure :</td>
-                  <td>$ 111,222</td>
-                  <td>X 12 =</td>
-                  <td>{{ 111222*12 | currency }}</td>
+                <!-- EXPECT -->
+                <tr class="text-primary">
+                  <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
+                  <td>{{ total_exp_expenditure | currency }}</td>
                 </tr>
-                <tr>
-                  <td colspan="2" style="text-align: right;">Difference :</td>
-                  <td>=</td>
-                  <td>$123643</td>
+                <tr class="text-danger" *ngIf="!(total_passive_income-total_exp_expenditure > 0)">
+                  <td style="text-align: right;">Difference :</td>
+                  <td>{{ total_passive_income-total_exp_expenditure | currency }} <b>(NOT ENOUGH)</b></td>
+                </tr>
+                <tr class="text-primary" *ngIf="(total_passive_income-total_exp_expenditure > 0)">
+                  <td style="text-align: right;">Difference :</td>
+                  <td>{{ total_passive_income-total_exp_expenditure | currency }} <b>(ENOUGH)</b></td>
+                </tr>
+                <!-- ACTUAL -->
+                <tr class="text-warning">
+                  <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
+                  <td>{{ total_expenditure | currency }}</td>
+                </tr>
+                <tr class="text-danger" *ngIf="!(total_passive_income-total_expenditure > 0)">
+                  <td style="text-align: right;">Difference :</td>
+                  <td>{{ total_passive_income-total_expenditure | currency }} <b>(NOT ENOUGH)</b></td>
+                </tr>
+                <tr class="text-warning" *ngIf="(total_passive_income-total_expenditure > 0)">
+                  <td style="text-align: right;">Difference :</td>
+                  <td>{{ total_passive_income-total_expenditure | currency }} <b>(ENOUGH)</b></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <!-- planD -->
           <hr>
-          <div>
-            <h3>Plan D</h3>
-            <table class="table table-hover" style="margin-bottom:unset">
+          <div class="card card-stats" style="font-size:unset;margin-top:unset;">
+            <h3>Plan D (Full Plan)</h3>
+            <table class="table table-hover" style="margin-bottom:20px">
               <tbody>
                 <tr>
                   <td style="text-align: right;">Asset :</td>
                   <td></td>
                   <td>=</td>
-                  <td>{{ 999999999 | currency }}</td>
+                  <td>{{ total_asset | currency }}</td>
                 </tr>
                 <tr>
                   <td style="text-align: right;">Passive Income :</td>
-                  <td>$ 999,999,999</td>
+                  <td>{{ total_passive_income | currency }}</td>
                   <td>X 12 =</td>
-                  <td>{{ 999999999*12 | currency }}</td>
+                  <td>{{ total_passive_income*12 | currency }}</td>
                 </tr>
-                <tr>
-                  <td style="text-align: right;">Total Expenditure :</td>
-                  <td>$ 111,222</td>
-                  <td>X 12 =</td>
-                  <td>{{ 111222*12 | currency }}</td>
+                <!-- EXPECT -->
+                <tr class="text-primary">
+                  <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
+                  <td>{{ total_exp_expenditure | currency }}</td>
+                  <td>X 12 X Inflation =</td>
+                  <td>{{ total_exp_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
                 </tr>
-                <tr>
-                  <td colspan="2" style="text-align: right;">Difference :</td>
-                  <td>=</td>
-                  <td>$123643</td>
+                <tr class="text-primary">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td colspan="2" *ngIf="!planD_exp_year_count" class="text-danger">
+                    <span>Only active with <b>{{ inflation_planD_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
+                  </td>
+                  <td colspan="2" *ngIf="planB_exp_year_count">
+                    <span>At least active with <b>{{ inflation_planD_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
+                  </td>
+                </tr>
+                <!-- ACTUAL -->
+                <tr class="text-warning">
+                  <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
+                  <td>{{ total_expenditure | currency }}</td>
+                  <td>X 12 X Inflation =</td>
+                  <td>{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
+                </tr>
+                <tr class="text-warning">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td colspan="2" *ngIf="!planD_act_year_count" class="text-danger">
+                    <span>Only active with <b>{{ inflation_planD_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','act',total_expenditure) | currency }}</b></span>
+                  </td>
+                  <td colspan="2" *ngIf="planD_act_year_count">
+                    <span>Only active with <b>{{ inflation_planD_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','act',total_expenditure) | currency }}</b></span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -323,46 +361,9 @@
 
       </div>
       <hr>
-      <div class="card">
-        <div class="card-header card-header-danger">
-          <h3 class="card-title">Summary Result</h3>
-        </div>
-        <div class="card-body" style="text-align: center;">
-          <div>
-            <h3>Plan A (4% rule)</h3>
-            <table class="table table-hover" style="margin-bottom:unset">
-              <!-- <thead class="text-warning">
-              <th class="border_unset">Category</th>
-              <th class="border_unset">Expected Amount</th>
-              <th class="border_unset">Actual Amount (Remain)</th>
-            </thead> -->
-              <!-- <tbody>
-                <tr>
-                  <td style="text-align: right;">Total Asset :</td>
-                  <td>$ 999,999,999</td>
-                  <td>X 4% =</td>
-                  <td>{{ 999999999*0.04 | currency }}</td>
-                </tr>
-                <tr>
-                  <td style="text-align: right;">Total Expenditure :</td>
-                  <td>$ 111,222</td>
-                  <td>X 12 =</td>
-                  <td>{{ 111222*12 | currency }}</td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="text-align: right;">Difference :</td>
-                  <td>=</td>
-                  <td>$123643</td>
-                </tr>
-              </tbody> -->
-            </table>
-          </div>
-          <div>
-            <h3>Plan B (4% rule)</h3>
-          </div>
-        </div>
-      </div>
-      <!-- end alert -->
+
+
+
     </div>
   </div>
 </div>

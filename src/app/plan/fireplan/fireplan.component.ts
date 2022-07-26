@@ -25,11 +25,11 @@ export class FireplanComponent implements OnInit {
   planA_act: boolean = false
   planA_exp: boolean = false
   planB: boolean = false
-  planB_year
-  planB_remain
+  planB_exp_year_count: boolean = true
+  planB_act_year_count: boolean = true
   planB_end_p
-  planC: boolean = false
-  planD: boolean = false
+  planD_exp_year_count: boolean = true
+  planD_act_year_count: boolean = true
 
   ngOnInit(): void {
     this.get_passive_income()
@@ -42,64 +42,47 @@ export class FireplanComponent implements OnInit {
       this.planA_act = this.total_asset * 0.04 - this.total_expenditure * 12 > 0
       this.planA_exp = this.total_asset * 0.04 - this.total_exp_expenditure * 12 > 0
       this.planB_end_p = this.total_expenditure * 12 * Math.pow(1 + 0.034, 40)
-      this.inflation_cal()
-      this.planC
-      this.planD
     }, 1000)
   }
 
-  get_year_exp(v, y){
+  get_year_exp(v, y) {
     return v * 12 * Math.pow(1 + 0.034, y)
   }
 
-  inflation_cal_t(v){
+  inflation_cal(return_type, ae, expend_set, year: number = 40, rate: number = 0.034) {
     let toA = this.total_asset
-    let inflation_rate = 0.034
     let expend = 0
     let t = 1
-    for (t = 1; t < 65 - 25; t++) {
-      expend = v * 12 * Math.pow(1 + inflation_rate, t)
+    for (t = 1; t < year; t++) {
+      expend = expend_set * 12 * Math.pow(1 + rate, year)
       toA = toA - expend
       if (toA < 0) {
         toA = toA + expend
-        return t - 1
+        if (ae == "exp") this.planB_exp_year_count = false
+        if (ae == "act") this.planB_act_year_count = false
+        if (return_type == "time") return t - 1
       }
     }
-    return t
+    if (return_type == "remain") return toA
+    if (return_type == "time") return t
   }
 
-  inflation_cal_v(){
+  inflation_planD_cal(return_type, ae, expend_set, year: number = 40, rate: number = 0.034) {
     let toA = this.total_asset
-    let inflation_rate = 0.034
     let expend = 0
     let t = 1
-    for (t = 1; t < 65 - 25; t++) {
-      expend = this.total_expenditure * 12 * Math.pow(1 + inflation_rate, t)
-      toA = toA - expend
+    for (t = 1; t < year; t++) {
+      expend = expend_set * 12 * Math.pow(1 + rate, year)
+      toA = toA - expend + this.total_passive_income * 12
       if (toA < 0) {
         toA = toA + expend
-        this.planB_year = t - 1
-        break
+        if (ae == "exp") this.planD_exp_year_count = false
+        if (ae == "act") this.planD_act_year_count = false
+        if (return_type == "time") return t - 1
       }
     }
-    return toA
-  }
-
-  inflation_cal() {
-    let toA = this.total_asset
-    let inflation_rate = 0.034
-    let expend = 0
-    for (let t = 1; t < 65 - 25; t++) {
-      expend = this.total_expenditure * 12 * Math.pow(1 + inflation_rate, t)
-      toA = toA - expend
-      if (toA < 0) {
-        toA = toA + expend
-        this.planB_year = t - 1
-        console.log(`inflation_cal : t ${t}`)
-        break
-      }
-    }
-    this.planB_remain = toA
+    if (return_type == "remain") return toA
+    if (return_type == "time") return t
   }
 
   get_passive_income() {
