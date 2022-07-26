@@ -8,78 +8,78 @@ declare interface RouteInfo {
   class: string
 }
 export const ROUTES: RouteInfo[] = [
-  { 
-    path: '/dashboard',
-    title: 'Dashboard',
-    icon: 'dashboard',
-    class: ''
-  },
-  { 
-    path: '/user-profile',
-    title: 'User Profile',
-    icon: 'person',
-    class: ''
-  },
+  // { 
+  //   path: '/dashboard',
+  //   title: 'Dashboard',
+  //   icon: 'dashboard',
+  //   class: ''
+  // },
+  // { 
+  //   path: '/user-profile',
+  //   title: 'User Profile',
+  //   icon: 'person',
+  //   class: ''
+  // },
   { 
     path: '/wallet',
     title: 'Wallet',
-    icon: 'person',
+    icon: 'dashboard',
     class: ''
   },
   { 
     path: '/income',
     title: 'Income',
-    icon: 'person',
+    icon: 'add_business',
     class: ''
   },
   { 
     path: '/expenditure',
     title: 'Expenditure',
-    icon: 'person',
+    icon: 'receipt_long',
     class: ''
   },
   { 
     path: '/ieplan',
     title: 'I/E Plan',
-    icon: 'person',
+    icon: 'query_stats',
     class: ''
   },
   { 
     path: '/fireplan',
     title: 'FIRE Plan',
-    icon: 'person',
+    icon: 'analytics',
     class: ''
   },
-  {
-    path: '/table-list',
-    title: 'Table List',
-    icon: 'content_paste',
-    class: '',
-  },
-  {
-    path: '/typography',
-    title: 'Typography',
-    icon: 'library_books',
-    class: '',
-  },
-  { 
-    path: '/icons',
-    title: 'Icons',
-    icon: 'bubble_chart',
-    class: ''
-  },
-  { 
-    path: '/maps',
-    title: 'Maps',
-    icon: 'location_on',
-    class: '' 
-  },
-  {
-    path: '/notifications',
-    title: 'Notifications',
-    icon: 'notifications',
-    class: '',
-  },
+  // {
+  //   path: '/table-list',
+  //   title: 'Table List',
+  //   icon: 'content_paste',
+  //   class: '',
+  // },
+  // {
+  //   path: '/typography',
+  //   title: 'Typography',
+  //   icon: 'library_books',
+  //   class: '',
+  // },
+  // { 
+  //   path: '/icons',
+  //   title: 'Icons',
+  //   icon: 'bubble_chart',
+  //   class: ''
+  // },
+  // { 
+  //   path: '/maps',
+  //   title: 'Maps',
+  //   icon: 'location_on',
+  //   class: '' 
+  // },
+  // {
+  //   path: '/notifications',
+  //   title: 'Notifications',
+  //   icon: 'notifications',
+  //   class: '',
+  // },
   // {
   //   path: '/upgrade',
   //   title: 'Upgrade to PRO',
