@@ -1,69 +1,46 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12 padding_reset">
+        <div class="card card-plain" style="margin-bottom: 25px;">
+          <div class="card-header card-header-warning">
+            <!-- <h4 class="card-title">Summary Result</h4> -->
+            <h3 class="card-title">Summary Result</h3>
+          </div>
+        </div>
+      </div>
 
-      <div class="alert alert-info" style="width:100%;margin:0 15px 0 15px;">
-        <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <i class="material-icons">close</i>
-        </button>
-        <span>
-          <b> INFO - </b> FIRE is "Financial Independence, Retire Early".
-          There are severals ways to achieve FIRE.
-          1. 4% rule
-          2. Whole life of total expenditure is equal or small than to current total asset.
-          3. total passive income is equal to or greater than total expenditure
-          4. when whole life of total passive income add up with current asset is equal to and greater than total expenditure.
+      <!-- alert -->
+      <div class="alert alert-info" style="width:100%;margin:0 15px 15px 15px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span>
+            <b> INFO - </b> There are severals ways to achieve FIRE.
+          </span>
+          <div class="close">
+            <i class="material-icons" (click)="showDiv.info=!showDiv.info;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_more">expand_more</i>
+            <i class="material-icons" (click)="showDiv.info=!showDiv.info;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_less">expand_less</i>
+          </div>
+        </div>
+        <span *ngIf="showDiv.info">
+          FIRE is "Financial Independence, Retire Early".
+          <br><b>1. </b>4% rule
+          <br><b>2. </b>Whole life of total expenditure is equal or small than to current total asset.
+          <br><b>3. </b>total passive income is equal to or greater than total expenditure
+          <br><b>4. </b>when whole life of total passive income add up with current asset is equal to and greater than total expenditure.
         </span>
       </div>
+      <!-- END alert -->
+
 
       <!-- Cash card -->
-      <div class="col-md-4">
-        <div class="card card-stats">
-          <div class="card-header card-header-info card-header-icon">
-            <table>
-              <tr>
-                <td>
-                  <div class="card-icon">
-                    <i class="fa fa-money"></i>
-                  </div>
-                </td>
-                <td>
-                  <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Asset</p>
-                </td>
-              </tr>
-              <tr colspan="2" width="100%">
-                <h3 class="card-title" style="font-size: 2rem; white-space: nowrap">HKD$ 8,800</h3>
-              </tr>
-            </table>
-          </div>
-          <div class="card-footer">
-            <!-- <div class="stats">
-              <table style="font-size: 16px;">
-                <thead>
-                  <span>
-                    <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
-                  </span>
-                </thead>
-                <tbody>
-                  <tr>
-                    <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- end of Cash card -->
-      <!-- Cash card -->
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
               <i class="fa fa-money"></i>
             </div>
-            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Expenditure</p>
-            <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Asset</p>
+            <h3 class="card-title" style="font-size: 2rem;">{{ total_asset | currency }}</h3>
           </div>
           <div class="card-footer">
             <!-- <div class="stats">
@@ -85,14 +62,14 @@
       </div>
       <!-- end of Cash card -->
       <!-- Cash card -->
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
               <i class="fa fa-money"></i>
             </div>
-            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Passive Income</p>
-            <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Expenditure (Monthly)</p>
+            <h3 class="card-title" style="font-size: 2rem;">{{ total_expenditure | currency }}</h3>
           </div>
           <div class="card-footer">
             <!-- <div class="stats">
@@ -114,156 +91,236 @@
       </div>
       <!-- end of Cash card -->
       <!-- Cash card -->
-      <!-- <div class="col-md-6">
-  <div class="card card-stats">
-    <div class="card-header card-header-info card-header-icon">
-      <div class="card-icon">
-        <i class="fa fa-money"></i>
+      <div class="col-md-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Expected Expenditure (Monthly)</p>
+            <h3 class="card-title" style="font-size: 2rem;">{{ total_exp_expenditure | currency }}</h3>
+          </div>
+          <div class="card-footer">
+            <!-- <div class="stats">
+                    <table style="font-size: 16px;">
+                      <thead>
+                        <span>
+                          <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+                        </span>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div> -->
+          </div>
+        </div>
       </div>
-      <p class="card-category" style="font-size: 1.2rem; text-align: left;">Summary</p>
-      <h3 class="card-title" style="font-size: 2rem;">HKD$ 8,800</h3>
-    </div>
-    <div class="card-footer">
-      <div class="stats">
-        <table style="font-size: 16px;">
-          <thead>
-            <span>
-              <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
-            </span>
-          </thead>
-          <tbody>
-            <tr>
-              <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div> -->
       <!-- end of Cash card -->
-      <!-- alert -->
+      <!-- Cash card -->
+      <div class="col-md-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-money"></i>
+            </div>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Passive Income (Monthly)</p>
+            <h3 class="card-title" style="font-size: 2rem;">{{ total_passive_income | currency }}</h3>
+          </div>
+          <div class="card-footer">
+            <!-- <div class="stats">
+              <table style="font-size: 16px;">
+                <thead>
+                  <span>
+                    <span class="text-success"><i class="fa fa-chevron-right"></i> 55% </span>&nbsp;increase in today sales.
+                  </span>
+                </thead>
+                <tbody>
+                  <tr>
+                    <span class="text-success"><i class="fa fa-arrows-alt"></i> 55% </span>&nbsp;increase in today sales.
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- end of Cash card -->
+
+
 
       <div class="col-md-12 padding_reset">
-        <div class="card card-plain">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Summary Result</h4>
+        <div class="" style="text-align: center;padding-top: unset;">
+          <!-- planA -->
+          <div class="card card-stats" style="font-size:unset;margin-top:unset;">
+            <h3>Plan A ( 4% Rule - Wallet will be expended after 25 Years )</h3>
+            <table class="table table-hover" style="margin-bottom:20px">
+              <tbody>
+                <tr class="">
+                  <td style="text-align: right;">Total Asset :</td>
+                  <td>{{ total_asset | currency }}</td>
+                  <td>X 4% =</td>
+                  <td>{{ total_asset*0.04 | currency }}</td>
+                </tr>
+                <!-- EXPECT -->
+                <tr class="text-primary">
+                  <td style="text-align: right;"><b>EXPECT</b> Total Expenditure in Year :</td>
+                  <td>{{ total_exp_expenditure | currency }}</td>
+                  <td>X 12 =</td>
+                  <td>{{ total_exp_expenditure*12 | currency }}</td>
+                </tr>
+                <tr class="text-primary">
+                  <td colspan="2" style="text-align: right;">Difference :</td>
+                  <td>=</td>
+                  <td>{{ total_asset*0.04 - total_exp_expenditure*12 | currency }}</td>
+                </tr>
+                <tr class="text-primary" *ngIf="planA_exp">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td>
+                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
+                  </td>
+                </tr>
+                <tr class="text-danger" *ngIf="!planA_exp">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td>
+                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
+                  </td>
+                </tr>
+                <!-- ACTUAL -->
+                <tr class="text-warning">
+                  <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure in Year :</td>
+                  <td>{{ total_expenditure | currency }}</td>
+                  <td>X 12 =</td>
+                  <td>{{ total_expenditure*12 | currency }}</td>
+                </tr>
+                <tr class="text-warning">
+                  <td colspan="2" style="text-align: right;">Difference :</td>
+                  <td>=</td>
+                  <td>{{ total_asset*0.04 - total_expenditure*12 | currency }}</td>
+                </tr>
+                <tr class="text-warning" *ngIf="planA_act">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td>
+                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
+                  </td>
+                </tr>
+                <tr class="text-danger" *ngIf="!planA_act">
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td>
+                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="card-body" style="text-align: center;">
-            <!-- planA -->
-            <div>
-              <h3>Plan A (4% rule)</h3>
-              <table class="table table-hover" style="margin-bottom:unset">
-                <tbody>
-                  <tr>
-                    <td style="text-align: right;">Total Asset :</td>
-                    <td>$ 999,999,999</td>
-                    <td>X 4% =</td>
-                    <td>{{ 999999999*0.04 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right;">Total Expenditure :</td>
-                    <td>$ 111,222</td>
-                    <td>X 12 =</td>
-                    <td>{{ 111222*12 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="text-align: right;">Difference :</td>
-                    <td>=</td>
-                    <td>$123643</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- planB -->
-            <hr>
-            <div>
-              <h3>Plan B (Inflation)</h3>
-              Current year old : <input>
-              *default 25year old
-              Inflation : <input>
-              <table class="table table-hover" style="margin-bottom:unset">
-                <tbody>
-                  <tr>
-                    <td style="text-align: right;">Total Asset :</td>
-                    <td>$ 999,999,999</td>
-                    <td>=</td>
-                    <td>{{ 999999999 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right;">Total Expenditure :</td>
-                    <td>$ 111,222</td>
-                    <td>X 12 X Inflation =</td>
-                    <td>{{ 111222*12*123 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="text-align: right;">Difference :</td>
-                    <td>=</td>
-                    <td>$123643</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- planC -->
-            <hr>
-            <div>
-              <h3>Plan C</h3>
-              <table class="table table-hover" style="margin-bottom:unset">
-                <tbody>
-                  <tr>
-                    <td style="text-align: right;">Passive Income :</td>
-                    <td>$ 999,999,999</td>
-                    <td>X 12 =</td>
-                    <td>{{ 999999999*12 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right;">Total Expenditure :</td>
-                    <td>$ 111,222</td>
-                    <td>X 12 =</td>
-                    <td>{{ 111222*12 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="text-align: right;">Difference :</td>
-                    <td>=</td>
-                    <td>$123643</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- planD -->
-            <hr>
-            <div>
-              <h3>Plan D</h3>
-              <table class="table table-hover" style="margin-bottom:unset">
-                <tbody>
-                  <tr>
-                    <td style="text-align: right;">Asset :</td>
-                    <td></td>
-                    <td>=</td>
-                    <td>{{ 999999999 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right;">Passive Income :</td>
-                    <td>$ 999,999,999</td>
-                    <td>X 12 =</td>
-                    <td>{{ 999999999*12 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right;">Total Expenditure :</td>
-                    <td>$ 111,222</td>
-                    <td>X 12 =</td>
-                    <td>{{ 111222*12 | currency }}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="text-align: right;">Difference :</td>
-                    <td>=</td>
-                    <td>$123643</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <!-- planB -->
+          <hr>
+          <div class="card card-stats" style="font-size:unset;margin-top:unset;">
+            <h3>Plan B ( Inflation - 3.4% per year on global average )</h3>
+            <!-- Current year old : <input>
+            *default 25year old
+            Inflation : <input> -->
+            <table class="table table-hover" style="margin-bottom:20px">
+              <tbody>
+                <tr>
+                  <td style="text-align: right;">Total Asset :</td>
+                  <td>{{ total_asset | currency }}</td>
+                  <td>=</td>
+                  <td>{{ total_asset | currency }}</td>
+                </tr>
+                <!-- EXPECT -->
+                <tr>
+                  <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
+                  <td>{{ total_exp_expenditure }}</td>
+                  <td>X 12 X Inflation =</td>
+                  <td>{{ total_exp_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td><span>Only active with {{ inflation_cal_t(total_exp_expenditure) }} years<br>Remain {{ inflation_cal_v(total_exp_expenditure) | currency }}</span></td>
+                </tr>
+                <!-- ACTUAL -->
+                <tr>
+                  <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
+                  <td>{{ total_expenditure }}</td>
+                  <td>X 12 X Inflation =</td>
+                  <td ng-init="a = total_expenditure;b = 40;" ng-controller="formController">{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
+                  <td>=</td>
+                  <td><span>Only active with {{ planB_year }} years<br>Remain {{ planB_remain | currency }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- planC -->
+          <hr>
+          <div>
+            <h3>Plan C</h3>
+            <table class="table table-hover" style="margin-bottom:unset">
+              <tbody>
+                <tr>
+                  <td style="text-align: right;">Passive Income :</td>
+                  <td>$ 999,999,999</td>
+                  <td>X 12 =</td>
+                  <td>{{ 999999999*12 | currency }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: right;">Total Expenditure :</td>
+                  <td>$ 111,222</td>
+                  <td>X 12 =</td>
+                  <td>{{ 111222*12 | currency }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right;">Difference :</td>
+                  <td>=</td>
+                  <td>$123643</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- planD -->
+          <hr>
+          <div>
+            <h3>Plan D</h3>
+            <table class="table table-hover" style="margin-bottom:unset">
+              <tbody>
+                <tr>
+                  <td style="text-align: right;">Asset :</td>
+                  <td></td>
+                  <td>=</td>
+                  <td>{{ 999999999 | currency }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: right;">Passive Income :</td>
+                  <td>$ 999,999,999</td>
+                  <td>X 12 =</td>
+                  <td>{{ 999999999*12 | currency }}</td>
+                </tr>
+                <tr>
+                  <td style="text-align: right;">Total Expenditure :</td>
+                  <td>$ 111,222</td>
+                  <td>X 12 =</td>
+                  <td>{{ 111222*12 | currency }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right;">Difference :</td>
+                  <td>=</td>
+                  <td>$123643</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+
       </div>
       <hr>
       <div class="card">
