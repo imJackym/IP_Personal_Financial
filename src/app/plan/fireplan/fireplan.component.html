@@ -158,12 +158,22 @@
             <h3>Plan A ( 4% Rule - Wallet will be expended after 25 Years )</h3>
             <table class="table table-hover" style="margin-bottom:20px">
               <tbody>
+                <tr>
+                  <td>Theory : </td>
+                </tr>
+                <tr>
+                  <td colspan="4" (click)="planA_thm_click = !planA_thm_click">
+                    <div [hidden]="planA_thm_click"><span>Show -THEORY- Graph</span></div>
+                    <div class="ct-chart" id="planA_thm" [hidden]="!planA_thm_click"></div>
+                  </td>
+                </tr>
                 <tr class="">
                   <td style="text-align: right;">Total Asset :</td>
                   <td>{{ total_asset | currency }}</td>
                   <td>X 4% =</td>
                   <td>{{ total_asset*0.04 | currency }}</td>
                 </tr>
+
                 <!-- EXPECT -->
                 <tr class="text-primary">
                   <td style="text-align: right;"><b>EXPECT</b> Total Expenditure in Year :</td>
@@ -188,6 +198,13 @@
                     {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="4" (click)="planA_exp_click = !planA_exp_click">
+                    <div [hidden]="planA_exp_click"><span>Show -EXPECT- Graph</span></div>
+                    <div class="ct-chart" id="planA_exp" [hidden]="!planA_exp_click"></div>
+                  </td>
+                </tr>
+
                 <!-- ACTUAL -->
                 <tr class="text-warning">
                   <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure in Year :</td>
@@ -212,13 +229,24 @@
                     {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="4" (click)="planA_act_click = !planA_act_click">
+                    <div [hidden]="planA_act_click"><span>Show -ACTUAL- Graph</span></div>
+                    <div class="ct-chart" id="planA_act" [hidden]="!planA_act_click"></div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
+
           <!-- planB -->
           <hr>
           <div class="card card-stats" style="font-size:unset;margin-top:unset;">
             <h3>Plan B ( Inflation - 3.4% per year on global average )</h3>
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Favorite food</mat-label>
+              <input matInput placeholder="Ex. Pizza" value="Sushi">
+            </mat-form-field> -->
             <!-- Current year old : <input>
             *default 25year old
             Inflation : <input> -->
@@ -246,12 +274,16 @@
                     <span>At least active with <b>{{ inflation_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
                   </td>
                 </tr>
+                <td colspan="4" (click)="planB_exp_click = !planB_exp_click">
+                  <div [hidden]="planB_exp_click"><span>Show -EXPECT- Graph</span></div>
+                  <div class="ct-chart" id="planB_exp" [hidden]="!planB_exp_click"></div>
+                </td>
                 <!-- ACTUAL -->
                 <tr class="text-warning">
                   <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
                   <td>{{ total_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
-                  <td>{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
+                  <td>{{ total_expenditure*12 | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
                 </tr>
                 <tr class="text-warning">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
@@ -260,6 +292,12 @@
                   </td>
                   <td colspan="2" *ngIf="planB_act_year_count">
                     <span>Only active with <b>{{ inflation_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_cal('remain','act',total_expenditure) | currency }}</b></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" (click)="planB_act_click = !planB_act_click">
+                    <div [hidden]="planB_act_click"><span>Show -ACTUAL- Graph</span></div>
+                    <div class="ct-chart" id="planB_act" [hidden]="!planB_act_click"></div>
                   </td>
                 </tr>
               </tbody>
@@ -338,12 +376,18 @@
                     <span>At least active with <b>{{ inflation_planD_cal('time','exp',total_exp_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','exp',total_exp_expenditure) | currency }}</b></span>
                   </td>
                 </tr>
+
+                <td colspan="4" (click)="planD_exp_click = !planD_exp_click">
+                  <div [hidden]="planD_exp_click"><span>Show -EXPECT- Graph</span></div>
+                  <div class="ct-chart" id="planD_exp" [hidden]="!planD_exp_click"></div>
+                </td>
+
                 <!-- ACTUAL -->
                 <tr class="text-warning">
                   <td style="text-align: right;"><b>ACTUAL</b> Total Expenditure :</td>
                   <td>{{ total_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
-                  <td>{{ total_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
+                  <td>{{ total_expenditure*12 | currency }}<sup>1year</sup> - {{ get_year_exp(total_expenditure,40) | currency }}<sup>40year</sup></td>
                 </tr>
                 <tr class="text-warning">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
@@ -354,6 +398,10 @@
                     <span>Only active with <b>{{ inflation_planD_cal('time','act',total_expenditure) }} years</b> Remain <b>{{ inflation_planD_cal('remain','act',total_expenditure) | currency }}</b></span>
                   </td>
                 </tr>
+                <td colspan="4" (click)="planD_act_click = !planD_act_click">
+                  <div [hidden]="planD_act_click"><span>Show -ACTUAL- Graph</span></div>
+                  <div class="ct-chart" id="planD_act" [hidden]="!planD_act_click"></div>
+                </td>
               </tbody>
             </table>
           </div>

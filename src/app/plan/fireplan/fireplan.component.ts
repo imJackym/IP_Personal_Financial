@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { ApiService } from "app/services/api.service"
+import * as Chartist from "chartist"
 
 @Component({
   selector: "app-fireplan",
@@ -16,6 +17,13 @@ export class FireplanComponent implements OnInit {
     i_more: true,
     i_less: false,
   }
+  planA_thm_click = true
+  planA_exp_click = true
+  planA_act_click = true
+  planB_exp_click = true
+  planB_act_click = true
+  planD_exp_click = true
+  planD_act_click = true
 
   total_passive_income: number = 0
   total_expenditure: number = 0
@@ -42,6 +50,9 @@ export class FireplanComponent implements OnInit {
       this.planA_act = this.total_asset * 0.04 - this.total_expenditure * 12 > 0
       this.planA_exp = this.total_asset * 0.04 - this.total_exp_expenditure * 12 > 0
       this.planB_end_p = this.total_expenditure * 12 * Math.pow(1 + 0.034, 40)
+      setTimeout(() => {
+        this.plot_graph()
+      }, 1000)
     }, 1000)
   }
 
@@ -54,7 +65,7 @@ export class FireplanComponent implements OnInit {
     let expend = 0
     let t = 1
     for (t = 1; t < year; t++) {
-      expend = expend_set * 12 * Math.pow(1 + rate, year)
+      expend = expend_set * 12 * Math.pow(1 + rate, t - 1)
       toA = toA - expend
       if (toA < 0) {
         toA = toA + expend
@@ -72,7 +83,7 @@ export class FireplanComponent implements OnInit {
     let expend = 0
     let t = 1
     for (t = 1; t < year; t++) {
-      expend = expend_set * 12 * Math.pow(1 + rate, year)
+      expend = expend_set * 12 * Math.pow(1 + rate, t - 1)
       toA = toA - expend + this.total_passive_income * 12
       if (toA < 0) {
         toA = toA + expend
@@ -148,5 +159,129 @@ export class FireplanComponent implements OnInit {
         alert("Record err")
       },
     })
+  }
+
+  plot_graph() {
+    let year = new Date().getFullYear()
+    let year_x = []
+    for (let y = 1; y < 26; y++) {
+      year_x[y - 1] = y + "y"
+    }
+    let year_y_thm = []
+    let year_y_exp = []
+    let year_y_act = []
+    let year_y_b_exp = []
+    let year_y_b_exp_remain = this.total_asset
+    let year_y_b_act = []
+    let year_y_b_act_remain = this.total_asset
+
+    let year_y_d_exp = []
+    let year_y_d_exp_remain = this.total_asset
+    let year_y_d_act = []
+    let year_y_d_act_remain = this.total_asset
+
+    for (let y = 0; y < 25; y++) {
+      year_y_thm[y] = this.total_asset - this.total_asset * 0.04 * y
+      year_y_exp[y] = this.total_asset - this.total_exp_expenditure * 12 * y
+      year_y_act[y] = this.total_asset - this.total_expenditure * 12 * y
+
+      year_y_b_exp[y] = year_y_b_exp_remain - this.get_year_exp(this.total_exp_expenditure, y)
+      year_y_b_exp_remain = year_y_b_exp_remain - this.get_year_exp(this.total_exp_expenditure, y)
+
+      year_y_b_act[y] = year_y_b_act_remain - this.get_year_exp(this.total_expenditure, y)
+      year_y_b_act_remain = year_y_b_act_remain - this.get_year_exp(this.total_expenditure, y)
+
+      year_y_d_exp[y] = year_y_d_exp_remain - this.get_year_exp(this.total_exp_expenditure, y) + this.total_passive_income * 12
+      year_y_d_exp_remain = year_y_d_exp_remain - this.get_year_exp(this.total_exp_expenditure, y) + this.total_passive_income * 12
+
+      year_y_d_act[y] = year_y_d_act_remain - this.get_year_exp(this.total_expenditure, y) + this.total_passive_income * 12
+      year_y_d_act_remain = year_y_d_act_remain - this.get_year_exp(this.total_expenditure, y) + this.total_passive_income * 12
+    }
+
+    var planA_thm_data = {
+      labels: year_x,
+      series: [year_y_thm],
+    }
+    var planA_exp_data = {
+      labels: year_x,
+      series: [year_y_exp],
+    }
+    var planA_act_data = {
+      labels: year_x,
+      series: [year_y_act],
+    }
+
+    var planB_exp_data = {
+      labels: year_x,
+      series: [year_y_b_exp],
+    }
+    var planB_act_data = {
+      labels: year_x,
+      series: [year_y_b_act],
+    }
+
+    var planD_exp_data = {
+      labels: year_x,
+      series: [year_y_d_exp],
+    }
+    var planD_act_data = {
+      labels: year_x,
+      series: [year_y_d_act],
+    }
+
+    var optionsChart = {
+      axisX: {
+        showGrid: false,
+      },
+      low: 0,
+      high: this.total_asset + 500,
+      height: 250,
+      chartPadding: { top: 10, right: 20, bottom: 0, left: 20 },
+    }
+    var planA_thm = new Chartist.Bar("#planA_thm", planA_thm_data, optionsChart, [])
+    var planA_exp = new Chartist.Bar("#planA_exp", planA_exp_data, optionsChart, [])
+    var planA_act = new Chartist.Bar("#planA_act", planA_act_data, optionsChart, [])
+    var planB_exp = new Chartist.Bar("#planB_exp", planB_exp_data, optionsChart, [])
+    var planB_act = new Chartist.Bar("#planB_act", planB_act_data, optionsChart, [])
+    var planD_exp = new Chartist.Bar("#planD_exp", planD_exp_data, optionsChart, [])
+    var planD_act = new Chartist.Bar("#planD_act", planD_act_data, optionsChart, [])
+
+    // this.planA_thm_click = false
+    // this.planA_exp_click = false
+    // this.planA_act_click = false
+    // this.planB_epx_click = false
+    // this.planB_act_click = false
+    // this.planD_exp_click = false
+    // this.planD_act_click = false
+
+    this.startAnimationForBarChart(planA_thm)
+    this.startAnimationForBarChart(planA_exp)
+    this.startAnimationForBarChart(planA_act)
+    this.startAnimationForBarChart(planB_exp)
+    this.startAnimationForBarChart(planB_act)
+    this.startAnimationForBarChart(planD_exp)
+    this.startAnimationForBarChart(planD_act)
+  }
+
+  startAnimationForBarChart(chart) {
+    let seq2: any, delays2: any, durations2: any
+    seq2 = 0
+    delays2 = 80
+    durations2 = 500
+    chart.on("draw", function (data) {
+      if (data.type === "bar") {
+        seq2++
+        data.element.animate({
+          opacity: {
+            begin: seq2 * delays2,
+            dur: durations2,
+            from: 0,
+            to: 1,
+            easing: "ease",
+          },
+        })
+      }
+    })
+    seq2 = 0
   }
 }
