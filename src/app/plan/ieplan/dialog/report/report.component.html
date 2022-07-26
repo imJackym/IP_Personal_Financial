@@ -24,31 +24,16 @@
                     <h2 class="textFont">EXPENDITURE</h2>
                   </td>
                   <td>
-                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ eC_sum | currency }}</h2>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="2">
                     <table width="100%">
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
-                      </tr>
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
+                      <tr class="" *ngFor="let eCategory of eCategorys" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">{{ eCategory.category }}</td>
+                        <td width="12.5%" style="white-space: nowrap;">- {{ eCategory.sum | currency }}</td>
                       </tr>
                     </table>
                   </td>
@@ -56,7 +41,7 @@
               </table>
               <div class="table-responsive">
                 <table class="table tableBox" width="100%">
-                  <thead class=" text-primary">
+                  <thead class=" text-primary" style="text-align: center;">
                     <th>Category</th>
                     <th>Maximun</th>
                     <th>Minmun</th>
@@ -65,17 +50,19 @@
                     <th>Summary</th>
                     <th>Yield</th>
                     <th>Expected</th>
+                    <th>Remain</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Cate_test</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
+                    <tr *ngFor="let eCategory of eCategorys" style="text-align: center;">
+                      <td>{{ eCategory.category }}</td>
+                      <td>{{ eCategory.max | currency }}</td>
+                      <td>{{ eCategory.min | currency }}</td>
+                      <td>{{ (eCategory.sum == 0) ? 0 : (eCategory.sum/eCategory.freq) | currency }}</td>
+                      <td>{{ eCategory.freq }}</td>
+                      <td>{{ eCategory.sum | currency }}</td>
+                      <td>({{ eCategory.sum/eC_sum | percent }})</td>
+                      <td>{{ eCategory.expected_amount*12 | currency }}</td>
+                      <td>{{ eCategory.expected_amount*12-eCategory.sum | currency }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -90,32 +77,17 @@
                     <h2 class="textFont">INCOME</h2>
                   </td>
                   <td>
-                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ iC_sum | currency }}</h2>
                   </td>
                 </tr>
                 <!-- element -->
                 <tr>
                   <td colspan="2">
                     <table width="100%">
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
-                      </tr>
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
+                      <tr class="" *ngFor="let iCategory of iCategorys" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">{{ iCategory.category }}</td>
+                        <td width="12.5%" style="white-space: nowrap;">+ {{ iCategory.sum | currency }}</td>
                       </tr>
                     </table>
                   </td>
@@ -123,7 +95,7 @@
               </table>
               <div class="table-responsive">
                 <table class="table tableBox" width="100%">
-                  <thead class="text-primary">
+                  <thead class=" text-primary" style="text-align: center;">
                     <th>Category</th>
                     <th>Maximun</th>
                     <th>Minmun</th>
@@ -132,57 +104,54 @@
                     <th>Summary</th>
                     <th>Yield</th>
                     <th>Expected</th>
+                    <th>Diff</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Cate_test</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
-                      <td>{{ 123 | currency }}</td>
+                    <tr *ngFor="let iCategory of iCategorys" style="text-align: center;">
+                      <td>{{ iCategory.category }}</td>
+                      <td>{{ iCategory.max | currency }}</td>
+                      <td>{{ iCategory.min | currency }}</td>
+                      <td>{{ (iCategory.sum == 0) ? 0 : (iCategory.sum/iCategory.freq) | currency }}</td>
+                      <td>{{ iCategory.freq }}</td>
+                      <td>{{ iCategory.sum | currency }}</td>
+                      <td>({{ iCategory.sum/iC_sum | percent }})</td>
+                      <td>{{ iCategory.expected_amount*12 | currency }}</td>
+                      <td>{{ iCategory.sum-iCategory.expected_amount*12 | currency }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
+            <hr>
+            <hr>
             <!-- SUM -->
             <div>
               <table width="100%">
+                <tr>
+                  <h2 class="textFont">Actual</h2>
+                </tr>
                 <tr class="spaceB">
                   <td>
-                    <h2 class="textFont">SUM / DIFF</h2>
+                    <h2 class="textFont">&nbsp;-&nbsp;SUM / DIFF</h2>
                   </td>
                   <td>
-                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ iC_sum - eC_sum | currency }}</h2>
                   </td>
                 </tr>
                 <!-- element -->
                 <tr>
                   <td colspan="2">
                     <table width="100%">
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">EXPENDITURE</td>
+                        <td width="12.5%" style="white-space: nowrap;">- {{ eC_sum | currency }}</td>
                       </tr>
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>xxxx</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">INCOME</td>
+                        <td width="12.5%" style="white-space: nowrap;">+ {{ iC_sum | currency }}</td>
                       </tr>
                     </table>
                   </td>
@@ -192,37 +161,30 @@
             <hr>
             <div>
               <table width="100%">
+                <tr>
+                  <h2 class="textFont">Expected</h2>
+                </tr>
                 <tr class="spaceB">
                   <td>
-                    <h2 class="textFont">EXPECTED INPLAN DIFF</h2>
+                    <h2 class="textFont">&nbsp;-&nbsp;INPLAN DIFF</h2>
                   </td>
                   <td>
-                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ iC_expect_sum - eC_expect_sum | currency }}</h2>
                   </td>
                 </tr>
                 <!-- element -->
                 <tr>
                   <td colspan="2">
                     <table width="100%">
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>Expenditure</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">EXPECTED EXPENDITURE</td>
+                        <td width="12.5%" style="white-space: nowrap;">- {{ eC_expect_sum | currency }}</td>
                       </tr>
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>Income</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">EXPECTED INCOME</td>
+                        <td width="12.5%" style="white-space: nowrap;">+ {{ iC_expect_sum | currency }}</td>
                       </tr>
                     </table>
                   </td>
@@ -232,46 +194,36 @@
             <hr>
             <div>
               <table width="100%">
+                <tr>
+                  <h2 class="textFont">Result</h2>
+                </tr>
                 <tr class="spaceB">
                   <td>
-                    <h2 class="textFont">RESULT : DIFF</h2>
+                    <h2 class="textFont">&nbsp;-&nbsp;DIFF</h2>
                   </td>
                   <td>
-                    <h2 class="textFont">{{ 123 | currency }}</h2>
+                    <h2 class="textFont">{{ (iC_expect_sum - eC_expect_sum)-(iC_sum - eC_sum) | currency }}</h2>
                   </td>
                 </tr>
                 <!-- element -->
                 <tr>
                   <td colspan="2">
                     <table width="100%">
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>Expenditure</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">Expected</td>
+                        <td width="12.5%" style="white-space: nowrap;">- {{ (iC_expect_sum - eC_expect_sum) | currency }}</td>
                       </tr>
-                      <tr class="spaceB">
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>Income</td>
-                        <td>- $234</td>
+                      <tr class="" style="text-align: end;">
+                        <td width="75%">&nbsp;</td>
+                        <td width="12.5%" style="white-space: nowrap;">Actual</td>
+                        <td width="12.5%" style="white-space: nowrap;">+ {{ (iC_sum - eC_sum) | currency }}</td>
                       </tr>
                     </table>
                   </td>
                 </tr>
               </table>
             </div>
-
-            Remark
-
           </div>
         </div>
       </div>
