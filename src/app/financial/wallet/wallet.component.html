@@ -12,37 +12,29 @@
               <div class="table-responsive" style="width:50%">
                 <table class="table table-hover textFont">
                   <tr style="color:#d70206">
+                    <td>Cash</td>
                     <td>
-                      Cash
-                    </td>
-                    <td>
-                      $ 1234
+                      {{ (cash + cash_ga - cash_ra) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}
                     </td>
                   </tr>
                   <tr style="color:#f05b4f">
+                    <td>Bank</td>
                     <td>
-                      Bank
-                    </td>
-                    <td>
-                      $ 1234
+                      {{ (bank + bank_ga - bank_ra) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}
                     </td>
                   </tr>
                   <tr style="color:#f4c63d">
+                    <td>Investment</td>
                     <td>
-                      Investment
+                      {{ (investment) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}
                     </td>
+                  </tr>
+                  <!-- <tr style="color:#d17905">
+                    <td>Credit Card</td>
                     <td>
                       $ 1234
                     </td>
-                  </tr>
-                  <tr style="color:#d17905">
-                    <td>
-                      Credit Card
-                    </td>
-                    <td>
-                      $ 1234
-                    </td>
-                  </tr>
+                  </tr> -->
                 </table>
               </div>
             </div>
@@ -58,7 +50,7 @@
             <span class="card-title header-title-text_income">Income Record</span>
           </span>
         </button>
-        <button mat-raised-button  (click)="add_ic()">
+        <button mat-raised-button (click)="add_ic()">
           <span class="btn-inline">
             <i class="material-icons header-title-icon_income">add</i>
             <span class="card-title header-title-text_income">Income Category</span>
@@ -83,11 +75,11 @@
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
-              <i class="fa fa-money"></i>
+              <i class="material-symbols-outlined">payments</i>
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Cash</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ {{ cash_ga - cash_ra }}
+              {{ cash + cash_ga - cash_ra | currency }}
               <i class="material-icons" (click)="showDiv.income=!showDiv.income;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.income=!showDiv.income;showDiv.i_more=!showDiv.i_more;showDiv.i_less=!showDiv.i_less" *ngIf="showDiv.i_less">expand_less</i>
             </h3>
@@ -132,18 +124,17 @@
       </div>
       <!-- end of Cash card -->
 
-
       <!-- reply case -->
       <!-- Bank card -->
       <div class="col-md-6">
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
-              <i class="fa fa-university"></i>
+              <i class="material-symbols-outlined">account_balance</i>
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Bank</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ {{ bank_ga - bank_ra }}
+              {{ bank + bank_ga - bank_ra | currency }}
               <i class="material-icons" (click)="showDiv.bank=!showDiv.bank;showDiv.b_more=!showDiv.b_more;showDiv.b_less=!showDiv.b_less" *ngIf="showDiv.b_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.bank=!showDiv.bank;showDiv.b_more=!showDiv.b_more;showDiv.b_less=!showDiv.b_less" *ngIf="showDiv.b_less">expand_less</i>
             </h3>
@@ -188,16 +179,73 @@
       </div>
       <!-- end of Bank card -->
 
+      <!-- Investment -->
+      <div class="col-md-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <!-- <i class="material-icons">monitoring</i> -->
+              <i class="material-symbols-outlined">monitoring</i>
+            </div>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Investment</p>
+            <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
+              {{ investment | currency }}
+              <i class="material-icons" (click)="showDiv.inv=!showDiv.inv;showDiv.in_more=!showDiv.in_more;showDiv.in_less=!showDiv.in_less" *ngIf="showDiv.in_more">expand_more</i>
+              <i class="material-icons" (click)="showDiv.inv=!showDiv.inv;showDiv.in_more=!showDiv.in_more;showDiv.in_less=!showDiv.in_less" *ngIf="showDiv.in_less">expand_less</i>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="width:100%">
+              <table style="font-size:16px;width:100%">
+                <tbody *ngIf="showDiv.inv">
+                  <tr>
+                    <table style="width:100%">
+                      <tr style="vertical-align: top;">
+                        <td>
+                          <table>
+                            <!-- <tr *ngFor="let i of bank_g">
+                              ({{ i.date | date:'shortDate' }})
+                              <span class="text-success">
+                                + HKD $ {{ i.amount }}&nbsp;
+                              </span>
+                              income from {{ i.category }}.
+                            </tr> -->
+                            <tr></tr>
+                          </table>
+                        </td>
+                        <td>
+                          <table>
+                            <!-- <tr *ngFor="let e of bank_r">
+                              ({{ e.date | date:'shortDate' }})
+                              <span class="text-danger">
+                                - HKD $ {{ e.amount }}&nbsp;
+                              </span>
+                              expend from {{ e.category }}.
+                            </tr> -->
+                            <tr></tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of Investment -->
+
       <!-- Credit Card card -->
       <div class="col-md-6">
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
-              <i class="fa fa-credit-card"></i>
+              <i class="material-symbols-outlined">credit_card</i>
             </div>
             <p class="card-category" style="font-size: 1.2rem; text-align: left;">Credit Card</p>
             <h3 class="card-title" style="font-size: 2rem;display: flex;align-items: center;justify-content: flex-end;">
-              HKD$ {{ card_ga - card_ra }}
+              {{ card_ga - card_ra | currency}}
               <i class="material-icons" (click)="showDiv.card=!showDiv.card;showDiv.c_more=!showDiv.c_more;showDiv.c_less=!showDiv.c_less" *ngIf="showDiv.c_more">expand_more</i>
               <i class="material-icons" (click)="showDiv.card=!showDiv.card;showDiv.c_more=!showDiv.c_more;showDiv.c_less=!showDiv.c_less" *ngIf="showDiv.c_less">expand_less</i>
             </h3>

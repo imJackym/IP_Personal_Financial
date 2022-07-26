@@ -24,6 +24,10 @@ export class WalletComponent implements OnInit {
     b_more: true,
     b_less: false,
 
+    inv: false,
+    in_more: true,
+    in_less: false,
+
     card: false,
     c_more: true,
     c_less: false,
@@ -44,14 +48,40 @@ export class WalletComponent implements OnInit {
   cate_i = []
   cate_e = []
 
+  cash
+  bank
+  investment
+  card
+
   ngOnInit(): void {
-    this.plotGraph()
+    this.getWallet()
     this.getCategory()
     setTimeout(() => {
       this.getType("cash")
       this.getType("bank")
       this.getType("card")
+      setTimeout(() => {
+        this.plotGraph()
+      }, 1000)
     }, 1000)
+  }
+
+  getWallet() {
+    this.api.getWallet().subscribe({
+      next: res => {
+        if (res.length > 0) {
+          res.forEach(element => {
+            this.cash = element.cash == "" ? 0 : parseInt(element.cash)
+            this.bank = element.bank == "" ? 0 : parseInt(element.bank)
+            this.investment = element.investment == "" ? 0 : parseInt(element.investment)
+            this.card = element.card == "" ? 0 : parseInt(element.card)
+          })
+        }
+      },
+      error() {
+        alert("Record err")
+      },
+    })
   }
 
   getCategory() {
@@ -171,7 +201,7 @@ export class WalletComponent implements OnInit {
 
   plotGraph() {
     var data = {
-      series: [5, 3, 4, 1],
+      series: [this.cash + this.cash_ga - this.cash_ra, this.bank + this.bank_ga - this.bank_ra, this.investment],
     }
 
     var sum = function (a, b) {
