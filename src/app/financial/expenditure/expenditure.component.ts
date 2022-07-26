@@ -544,7 +544,7 @@ export class ExpenditureComponent implements OnInit {
       low: 0,
       height: this.maxAmount == 0 ? 0 : 300,
       high: this.maxAmount,
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
       classNames: {
         label: "ct-label-line",
         labelGroup: "ct-labels-line",
@@ -579,7 +579,7 @@ export class ExpenditureComponent implements OnInit {
       low: 0,
       height: max == 0 ? 0 : 300,
       high: max,
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
     }
     var responsiveOptions: any[] = [
       // [
