@@ -45,6 +45,10 @@ export class ApiService {
   getIncomeCategory() {
     return this.http.get<any>("http://localhost:3000/i_category")
   }
+  // IncomeCategory - pi = T
+  getIncomeCategory_pi() {
+    return this.http.get<any>("http://localhost:3000/i_category?pi=T")
+  }
   // IncomeCategory - post
   postIncomeCategory(data: any) {
     return this.http.post<any>("http://localhost:3000/i_category", data)
@@ -93,6 +97,10 @@ export class ApiService {
   getExpenditureCategory() {
     return this.http.get<any>("http://localhost:3000/e_category")
   }
+  // IncomeCategory - fe = T
+  getExpenditureCategory_fe() {
+    return this.http.get<any>("http://localhost:3000/e_category?fe=T")
+  }
   // ExpenditureCategory - post
   postExpenditureCategory(data: any) {
     return this.http.post<any>("http://localhost:3000/e_category", data)
@@ -100,5 +108,14 @@ export class ApiService {
   // ExpenditureCategory - put
   putExpenditureCategory(data: any, id: number) {
     return this.http.put<any>(`http://localhost:3000/e_category/${id}`, data)
+  }
+  // -------------------------------------------------------------------------------------------------------
+  // ExpenditureCategory - get
+  getWallet() {
+    return this.http.get<any>("http://localhost:3000/wallet")
+  }
+  // ExpenditureCategory - put
+  putWallet(data: any, id: number) {
+    return this.http.put<any>(`http://localhost:3000/wallet/1`, data)
   }
 }
