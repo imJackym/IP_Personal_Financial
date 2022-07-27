@@ -25,7 +25,7 @@ export class ReportComponent implements OnInit {
 
   getiCategory() {
     console.log(`--- getiCategory`)
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear()-1
     // let iCat_DailyAmount = []
     this.api.getIncomeCategory().subscribe({
       next: res => {
@@ -69,7 +69,7 @@ export class ReportComponent implements OnInit {
   }
   geteCategory() {
     console.log(`--- geteCategory`)
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear()-1
     this.api.getExpenditureCategory().subscribe({
       next: res => {
         res.forEach(element => {
