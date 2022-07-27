@@ -62,25 +62,34 @@ export class IeplanComponent implements OnInit {
     let empty = []
     let array_i = []
     let array_e = []
+
     if (v == "addexp_inc" || v == "addexp_all") {
       this.iCategorys.forEach(element => {
         in_exp += element.expected_amount == "" ? 0 : parseInt(element.expected_amount)
       })
+
       for (let t = 0; t < 12; t++) {
         array_i[t] = in_exp
       }
-      if (v == "addexp_inc") this.y_axis.push(empty)
+      if (v == "addexp_inc") {
+        this.y_axis.push(empty)
+      }
     }
+
     if (v == "addexp_exp" || v == "addexp_all") {
       this.eCategorys.forEach(element => {
         ex_exp += element.expected_amount == "" ? 0 : parseInt(element.expected_amount)
       })
-      for (let t = 0; t < 12; t++) array_e[t] = ex_exp
+
+      for (let t = 0; t < 12; t++) {
+        array_e[t] = ex_exp
+      }
 
       if (v == "addexp_exp") {
         this.y_axis.unshift(empty)
       }
     }
+
     this.y_axis.push(array_i)
     this.y_axis.push(array_e)
   }
@@ -422,7 +431,7 @@ export class IeplanComponent implements OnInit {
               })
               element.amount = table_amount
               if (Object.is(arr1.length - 1, key1)) {
-                this.graph("step")
+                // this.graph("step_i")
               }
             },
           })
@@ -456,7 +465,7 @@ export class IeplanComponent implements OnInit {
               })
               element.amount = table_amount
               if (Object.is(arr2.length - 1, key2)) {
-                this.graph("step")
+                this.graph("step_e")
               }
             },
           })
@@ -640,9 +649,9 @@ export class IeplanComponent implements OnInit {
   /* ----------==========     lineChartIncome initialization    ==========---------- */
   graph(v: any = null) {
     console.log(`--- graph ${v}`)
-    console.log(this.eCategorys)
-    console.log(this.iCategorys)
-    console.log(this.y_axis)
+    // console.log(this.eCategorys)
+    // console.log(this.iCategorys)
+    // console.log(this.y_axis)
 
     this.calculate_sum()
 
@@ -650,11 +659,23 @@ export class IeplanComponent implements OnInit {
       this.set_x_axis_FT()
     }
 
-    if (v != null && v != "step") {
+    if (v != null && v != "step_i" && v != "step_e") {
       this.set_Y_expected(v)
     }
 
-    if (v == "step") {
+    if (v == "step_i") {
+      // let new_y = this.y_axis[0]
+      // console.log(new_y)
+      // this.y_axis = []
+      // let old_v = 0
+      // new_y.forEach((e, i) => {
+      //   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      //   arr[i] = e + old_v
+      //   old_v += e
+      //   console.log(`arr[index] = ${arr[i]} || element = ${e} old_v = ${old_v}`)
+      //   this.y_axis.push(arr)
+      // })
+    } else if (v == "step_e") {
       let new_y = this.y_axis
       this.y_axis = []
       new_y.forEach((e, i) => {
@@ -663,6 +684,7 @@ export class IeplanComponent implements OnInit {
         e.forEach((element, index) => {
           arr[index] = element + old_v
           old_v += element
+          // console.log(`arr[index] = ${arr[index]} || element = ${element} old_v = ${old_v}`)
         })
         this.y_axis.push(arr)
       })
