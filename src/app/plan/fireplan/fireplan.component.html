@@ -68,7 +68,7 @@
             <div class="card-icon">
               <i class="fa fa-money"></i>
             </div>
-            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Total Expenditure (Monthly)</p>
+            <p class="card-category" style="font-size: 1.2rem; text-align: left;">Average Total Expenditure (Monthly)</p>
             <h3 class="card-title" style="font-size: 2rem;">{{ total_expenditure | currency }}</h3>
           </div>
           <div class="card-footer">
@@ -158,7 +158,7 @@
             <h3>Plan A ( 4% Rule - Wallet will be expended after 25 Years )</h3>
             <table class="table table-hover" style="margin-bottom:20px">
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td>Theory : </td>
                 </tr>
                 <tr>
@@ -166,7 +166,7 @@
                     <div [hidden]="planA_thm_click"><span>Show -THEORY- Graph</span></div>
                     <div class="ct-chart" id="planA_thm" [hidden]="!planA_thm_click"></div>
                   </td>
-                </tr>
+                </tr> -->
                 <tr class="">
                   <td style="text-align: right;">Total Asset :</td>
                   <td>{{ total_asset | currency }}</td>
@@ -263,7 +263,7 @@
                   <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
                   <td>{{ total_exp_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
-                  <td>{{ total_exp_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
+                  <td>{{ total_exp_expenditure*12 | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
                 </tr>
                 <tr class="text-primary">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
@@ -365,7 +365,7 @@
                   <td style="text-align: right;"><b>EXPECT</b> Total Expenditure :</td>
                   <td>{{ total_exp_expenditure | currency }}</td>
                   <td>X 12 X Inflation =</td>
-                  <td>{{ total_exp_expenditure | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
+                  <td>{{ total_exp_expenditure*12 | currency }}<sup>1year</sup> - {{ get_year_exp(total_exp_expenditure, 40) | currency }}<sup>40year</sup></td>
                 </tr>
                 <tr class="text-primary">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>

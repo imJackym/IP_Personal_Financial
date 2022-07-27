@@ -44,7 +44,7 @@ export class FireplanComponent implements OnInit {
     this.get_total_expenditure()
     this.get_total_exp_expenditure()
     this.get_asset()
-    this.year = new Date().getFullYear()
+    this.year = new Date().getFullYear()-1
 
     setTimeout(() => {
       this.planA_act = this.total_asset * 0.04 - this.total_expenditure * 12 > 0
@@ -112,12 +112,12 @@ export class FireplanComponent implements OnInit {
   }
 
   get_total_expenditure() {
-    this.api.getExpenditureRecord_ync1("year", 2022).subscribe({
+    this.api.getExpenditureRecord_ync1("year", 2021).subscribe({
       next: res => {
         console.log(res)
         if (res.length > 0) {
           res.forEach(element => {
-            this.total_expenditure += element.amount == "" ? 0 : parseInt(element.amount)
+            this.total_expenditure += element.amount == "" ? 0 : parseInt(element.amount)/12
           })
         }
       },
@@ -162,7 +162,8 @@ export class FireplanComponent implements OnInit {
   }
 
   plot_graph() {
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear()-1
+    let high:number = (this.total_asset+500)
     let year_x = []
     for (let y = 1; y < 26; y++) {
       year_x[y - 1] = y + "y"
@@ -234,7 +235,7 @@ export class FireplanComponent implements OnInit {
         showGrid: false,
       },
       low: 0,
-      high: this.total_asset + 500,
+      high: high,
       height: 250,
       chartPadding: { top: 10, right: 20, bottom: 0, left: 20 },
     }
