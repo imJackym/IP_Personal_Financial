@@ -1,0 +1,56 @@
+.paddingWindow {
+  padding: 0px 0px 0px 5px;
+}
+
+@media only screen and (max-width: 760px) {
+  .paddingWindow {
+    padding: unset;
+  }
+}
+
+.header-title-icon {
+  font-size: 18px !important;
+  color: #4caf50 !important;
+}
+
+.header-title-text {
+  margin-bottom: unset !important;
+  color: #4caf50 !important;
+}
+
+.btn-inline {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-title-center-space-between {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_table {
+  font-size: 16px !important;
+  color: #4caf50 !important;
+}
+
+.tim-note{
+  font-size: 16px;
+  line-height: unset
+}
+
+.card .card-title {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 0;
+}

@@ -50,6 +50,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'analytics',
     class: ''
   },
+  { 
+    path: '/info',
+    title: 'Information',
+    icon: 'info',
+    class: ''
+  },
   // {
   //   path: '/table-list',
   //   title: 'Table List',

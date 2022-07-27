@@ -24,6 +24,7 @@ import { EcategoryComponent } from "./financial/expenditure/dialog/ecategory/eca
 import { IecategoryComponent } from "./plan/ieplan/dialog/iecategory/iecategory.component"
 import { EiecategoryComponent } from "./plan/ieplan/dialog/eiecategory/eiecategory.component"
 import { ReportComponent } from './plan/ieplan/dialog/report/report.component'
+import { InfoComponent } from './financial/info/info.component'
 
 import { MatDialogModule } from "@angular/material/dialog"
 import { MatFormFieldModule } from "@angular/material/form-field"
@@ -33,7 +34,7 @@ import { MatNativeDateModule } from "@angular/material/core"
 import { MatSelectModule } from "@angular/material/select"
 import { MatRadioModule } from "@angular/material/radio"
 import { MatButtonModule } from "@angular/material/button"
-import { MatTableModule } from "@angular/material/table"
+import { MatTableModule } from "@angular/material/table";
 
 // import { MatPaginatorModule } from '@angular/material/paginator'
 // import { MatSortModule } from '@angular/material/sort'

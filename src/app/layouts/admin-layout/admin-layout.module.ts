@@ -24,6 +24,7 @@ import { ExpenditureComponent } from 'app/financial/expenditure/expenditure.comp
 import { IncomeComponent } from 'app/financial/income/income.component'
 import { IeplanComponent } from 'app/plan/ieplan/ieplan.component'
 import { FireplanComponent } from 'app/plan/fireplan/fireplan.component'
+import { InfoComponent } from 'app/financial/info/info.component'
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { FireplanComponent } from 'app/plan/fireplan/fireplan.component'
     IncomeComponent,
     IeplanComponent,
     FireplanComponent,
+    InfoComponent
   ],
 })
 export class AdminLayoutModule {}
