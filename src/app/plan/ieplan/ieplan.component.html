@@ -178,7 +178,7 @@
                     <div style="width: 90%">
                       <span>{{ (category_Income.amount ? category_Income.amount : 0) | number: "0.2" }}&nbsp;</span>
                       <span style="white-space: nowrap">
-                        (&nbsp;{{ (category_Income.expected_amount - category_Income.amount ? category_Income.expected_amount - category_Income.amount : 0) | currency }}&nbsp;)
+                        (&nbsp;{{ (category_Income.expected_amount - category_Income.amount ? - category_Income.expected_amount + category_Income.amount : 0) | currency }}&nbsp;)
                       </span>
                     </div>
                   </div>

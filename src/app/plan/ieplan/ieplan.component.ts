@@ -52,7 +52,6 @@ export class IeplanComponent implements OnInit {
     this.set_x_axis()
     this.getSelectOption()
     this.getiCategory()
-    // this.getSummaryAmount()
   }
 
   set_Y_expected(v: any) {
@@ -101,7 +100,7 @@ export class IeplanComponent implements OnInit {
     }
   }
   set_y_axis(res: any) {
-    console.log(`--- set_Yaxis`)
+    console.log(`--- set_y_axis`)
     let filterAmount = []
     for (let d = 1; d < 13; d++) {
       let filterSum = 0
@@ -115,6 +114,7 @@ export class IeplanComponent implements OnInit {
         filterAmount.push(filterSum)
       }
     }
+    console.log(filterAmount)
     this.y_axis.push(filterAmount)
     console.log(`--- set_Yaxis`)
   }
@@ -150,11 +150,12 @@ export class IeplanComponent implements OnInit {
   }
   getiCategory() {
     console.log(`--- getiCategory`)
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear() - 1
     this.api.getIncomeCategory().subscribe({
       next: res => {
         res.forEach(element => {
           let totalAmount = 0
+          element.expected_amount = element.expected_amount 
           element.amount = totalAmount
           this.api.getIncomeRecord_ync2("year", year, "category_id", element.id).subscribe({
             next: res => {
@@ -175,6 +176,7 @@ export class IeplanComponent implements OnInit {
           this.api.getIncomeRecord_ync1("year", year).subscribe({
             next: res => {
               this.set_y_axis(res)
+              console.log(res)
             },
             error() {
               alert("Record err")
@@ -190,11 +192,12 @@ export class IeplanComponent implements OnInit {
   }
   geteCategory() {
     console.log(`--- geteCategory`)
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear() - 1
     this.api.getExpenditureCategory().subscribe({
       next: res => {
         res.forEach(element => {
           let totalAmount = 0
+          element.expected_amount = element.expected_amount 
           element.amount = totalAmount
           this.api.getExpenditureRecord_ync2("year", year, "category_id", element.id).subscribe({
             next: res => {
@@ -599,7 +602,6 @@ export class IeplanComponent implements OnInit {
     console.log(v)
     console.log(y)
     console.log(m)
-    console.log(this.y_axis_backup)
     if (v == "") {
       this.port = "a"
     } else if (v == "i") {
@@ -649,9 +651,15 @@ export class IeplanComponent implements OnInit {
   /* ----------==========     lineChartIncome initialization    ==========---------- */
   graph(v: any = null) {
     console.log(`--- graph ${v}`)
-    // console.log(this.eCategorys)
-    // console.log(this.iCategorys)
-    // console.log(this.y_axis)
+    console.log(`this.eCategorys`)
+    console.log(this.eCategorys)
+    console.log(`---------------------------------------------`)
+    console.log(`this.iCategorys`)
+    console.log(this.iCategorys)
+    console.log(`---------------------------------------------`)
+    console.log(`this.y_axis`)
+    console.log(this.y_axis)
+    console.log(`---------------------------------------------`)
 
     this.calculate_sum()
 
@@ -716,7 +724,7 @@ export class IeplanComponent implements OnInit {
         position: "end",
         showLabel: true,
       },
-      low: 0,
+      // low: 0,
       height: 400,
       high: maxHigh,
       chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
