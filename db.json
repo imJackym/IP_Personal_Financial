@@ -1,130 +1,1054 @@
 {
   "i_record": [
     {
-      "date": "2022-07-17T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "18",
-      "category_id": "2",
-      "amount": "222",
+      "date": "2021-01-01T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
       "id": 2
     },
     {
-      "date": "2022-06-02T16:00:00.000Z",
+      "date": "2021-02-01T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-03-01T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-04-01T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-05-01T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-06-01T16:00:00.000Z",
       "month": "06",
-      "year": "2022",
-      "day": "03",
-      "category_id": "2",
-      "amount": "100",
-      "id": 4
-    },
-    {
-      "date": "2022-07-23T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "24",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
       "category_id": "1",
-      "amount": "200",
-      "id": 1
+      "amount": "30000",
+      "id": 2
     },
     {
-      "date": "2022-07-19T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "20",
-      "category_id": "1",
-      "amount": "900",
-      "id": 5
-    },
-    {
-      "date": "2022-07-19T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "20",
-      "category_id": "1",
-      "amount": "600",
-      "id": 6
-    },
-    {
-      "date": "2022-07-17T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "18",
-      "category_id": "1",
-      "amount": "222",
-      "id": 3
-    },
-    {
-      "date": "2021-07-17T16:00:00.000Z",
+      "date": "2021-07-01T16:00:00.000Z",
       "month": "07",
       "year": "2021",
-      "day": "18",
+      "day": "02",
+      "type": "bank",
       "category_id": "1",
-      "amount": "222",
-      "id": 3
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-08-01T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-09-01T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-10-01T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-11-01T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-12-01T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "02",
+      "type": "bank",
+      "category_id": "1",
+      "amount": "30000",
+      "id": 2
+    },
+    {
+      "date": "2021-01-15T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-02-15T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-03-15T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-04-15T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-05-15T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-06-15T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-07-15T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-08-15T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-09-15T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-10-15T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-11-15T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-12-15T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "16",
+      "type": "cash",
+      "category_id": "2",
+      "amount": "10000",
+      "id": 2
+    },
+    {
+      "date": "2021-01-23T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-02-23T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-03-23T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-04-23T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-05-23T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-06-23T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-07-23T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-08-23T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-09-23T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-10-23T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-11-23T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
+    },
+    {
+      "date": "2021-12-23T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "24",
+      "type": "cash",
+      "category_id": "3",
+      "amount": "1000",
+      "id": 2
     }
   ],
   "i_category": [
     {
-      "category": "test11",
-      "expected_amount": "0",
-      "pi": "T",
+      "category": "Salary",
+      "expected_amount": "30000",
+      "pi": "F",
       "id": 1
     },
     {
-      "category": "aaa",
-      "expected_amount": "2",
+      "category": "Part Time Salary",
+      "expected_amount": "10000",
       "pi": "F",
       "id": 2
+    },
+    {
+      "category": "Fund Interest",
+      "expected_amount": "1000",
+      "pi": "T",
+      "id": 3
     }
   ],
   "e_record": [
     {
-      "date": "2022-07-15T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "15",
-      "category_id": "3",
-      "amount": "1232",
+      "date": "2021-01-12T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "18",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
       "id": 1
     },
     {
-      "date": "2022-07-22T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "22",
-      "category_id": "2",
-      "amount": "1",
+      "date": "2021-02-13T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "13",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
       "id": 2
     },
     {
-      "date": "2022-07-19T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "20",
-      "category_id": "2",
-      "amount": "111",
+      "date": "2021-03-25T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "14",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
       "id": 3
+    },
+    {
+      "date": "2021-04-23T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "30",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
+      "id": 4
+    },
+    {
+      "date": "2021-05-19T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "03",
+      "type": "bank",
+      "category_id": "4",
+      "amount": "150",
+      "id": 5
+    },
+    {
+      "date": "2021-06-18T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "09",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
+      "id": 6
+    },
+    {
+      "date": "2021-07-29T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "11",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
+      "id": 7
+    },
+    {
+      "date": "2021-08-22T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "25",
+      "type": "bank",
+      "category_id": "4",
+      "amount": "150",
+      "id": 8
+    },
+    {
+      "date": "2021-09-15T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "25",
+      "type": "bank",
+      "category_id": "4",
+      "amount": "150",
+      "id": 9
+    },
+    {
+      "date": "2021-010-16T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "07",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
+      "id": 10
+    },
+    {
+      "date": "2021-011-11T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "4",
+      "amount": "150",
+      "id": 11
+    },
+    {
+      "date": "2021-012-22T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "27",
+      "type": "cash",
+      "category_id": "4",
+      "amount": "150",
+      "id": 12
+    },{
+      "date": "2021-01-12T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 1
+    },
+    {
+      "date": "2021-02-13T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 2
+    },
+    {
+      "date": "2021-03-25T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 3
+    },
+    {
+      "date": "2021-04-23T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 4
+    },
+    {
+      "date": "2021-05-19T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 5
+    },
+    {
+      "date": "2021-06-18T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 6
+    },
+    {
+      "date": "2021-07-29T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 7
+    },
+    {
+      "date": "2021-08-22T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 8
+    },
+    {
+      "date": "2021-09-15T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 9
+    },
+    {
+      "date": "2021-010-16T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 10
+    },
+    {
+      "date": "2021-011-11T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 11
+    },
+    {
+      "date": "2021-012-22T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "01",
+      "type": "bank",
+      "category_id": "5",
+      "amount": "50",
+      "id": 12
+    },{
+      "date": "2021-01-12T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 1
+    },
+    {
+      "date": "2021-02-13T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 2
+    },
+    {
+      "date": "2021-03-25T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 3
+    },
+    {
+      "date": "2021-04-23T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 4
+    },
+    {
+      "date": "2021-05-19T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 5
+    },
+    {
+      "date": "2021-06-18T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 6
+    },
+    {
+      "date": "2021-07-29T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 7
+    },
+    {
+      "date": "2021-08-22T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 8
+    },
+    {
+      "date": "2021-09-15T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 9
+    },
+    {
+      "date": "2021-010-16T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 10
+    },
+    {
+      "date": "2021-011-11T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 11
+    },
+    {
+      "date": "2021-012-22T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "07",
+      "type": "bank",
+      "category_id": "6",
+      "amount": "5000",
+      "id": 12
+    },
+    {
+      "date": "2021-01-12T16:00:00.000Z",
+      "month": "01",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 1
+    },
+    {
+      "date": "2021-02-13T16:00:00.000Z",
+      "month": "02",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 2
+    },
+    {
+      "date": "2021-03-25T16:00:00.000Z",
+      "month": "03",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 3
+    },
+    {
+      "date": "2021-04-23T16:00:00.000Z",
+      "month": "04",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 4
+    },
+    {
+      "date": "2021-05-19T16:00:00.000Z",
+      "month": "05",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 5
+    },
+    {
+      "date": "2021-06-18T16:00:00.000Z",
+      "month": "06",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 6
+    },
+    {
+      "date": "2021-07-29T16:00:00.000Z",
+      "month": "07",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 7
+    },
+    {
+      "date": "2021-08-22T16:00:00.000Z",
+      "month": "08",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 8
+    },
+    {
+      "date": "2021-09-15T16:00:00.000Z",
+      "month": "09",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 9
+    },
+    {
+      "date": "2021-010-16T16:00:00.000Z",
+      "month": "10",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 10
+    },
+    {
+      "date": "2021-011-11T16:00:00.000Z",
+      "month": "11",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 11
+    },
+    {
+      "date": "2021-012-22T16:00:00.000Z",
+      "month": "12",
+      "year": "2021",
+      "day": "10",
+      "type": "bank",
+      "category_id": "8",
+      "amount": "12000",
+      "id": 12
     }
+    
+    
+    
+
+    
+
+
+
   ],
   "e_category": [
     {
-      "category": "test11dd",
-      "expected_amount": "1",
+      "category": "Transport",
+      "expected_amount": "1000",
       "fe": "F",
       "id": 1
     },
     {
-      "category": "test22122",
-      "expected_amount": "999999999999999",
+      "category": "Lunch",
+      "expected_amount": "1500",
       "fe": "F",
       "id": 2
     },
     {
-      "category": "test12",
-      "expected_amount": "",
+      "category": "Dinner",
+      "expected_amount": "1800",
       "fe": "F",
       "id": 3
+    },
+    {
+      "category": "Mobile Fare",
+      "expected_amount": "150",
+      "fe": "T",
+      "id": 4
+    },
+    {
+      "category": "Apple Music",
+      "expected_amount": "50",
+      "fe": "T",
+      "id": 5
+    },
+    {
+      "category": "Debt A",
+      "expected_amount": "5000",
+      "fe": "T",
+      "id": 6
+    },
+    {
+      "category": "Additional Consumption",
+      "expected_amount": "5000",
+      "fe": "F",
+      "id": 7
+    },
+    {
+      "category": "Rent",
+      "expected_amount": "12000",
+      "fe": "T",
+      "id": 8
+    }
+  ],
+  "wallet": [
+    {
+      "cash": "50000",
+      "bank": "500000",
+      "card": "0",
+      "investment": "50000",
+      "id": 1
     }
   ]
+}
+
+
+
+{
+  "date": "2021-01-12T16:00:00.000Z",
+  "month": "01",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 1
+},
+{
+  "date": "2021-02-13T16:00:00.000Z",
+  "month": "02",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 2
+},
+{
+  "date": "2021-03-25T16:00:00.000Z",
+  "month": "03",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 3
+},
+{
+  "date": "2021-04-23T16:00:00.000Z",
+  "month": "04",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 4
+},
+{
+  "date": "2021-05-19T16:00:00.000Z",
+  "month": "05",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 5
+},
+{
+  "date": "2021-06-18T16:00:00.000Z",
+  "month": "06",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 6
+},
+{
+  "date": "2021-07-29T16:00:00.000Z",
+  "month": "07",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 7
+},
+{
+  "date": "2021-08-22T16:00:00.000Z",
+  "month": "08",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 8
+},
+{
+  "date": "2021-09-15T16:00:00.000Z",
+  "month": "09",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 9
+},
+{
+  "date": "2021-010-16T16:00:00.000Z",
+  "month": "10",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 10
+},
+{
+  "date": "2021-011-11T16:00:00.000Z",
+  "month": "11",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 11
+},
+{
+  "date": "2021-012-22T16:00:00.000Z",
+  "month": "12",
+  "year": "2021",
+  "day": "10",
+  "type": "bank",
+  "category_id": "8",
+  "amount": "12000",
+  "id": 12
 }
