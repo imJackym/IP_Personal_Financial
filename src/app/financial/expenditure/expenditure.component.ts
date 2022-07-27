@@ -55,9 +55,11 @@ export class ExpenditureComponent implements OnInit {
   yearV = null
   monthV = null
   categoryV = null
+  oninit
 
   ngOnInit(): void {
     this.onload()
+    this.oninit = "T"
   }
 
   // Record
@@ -525,6 +527,8 @@ export class ExpenditureComponent implements OnInit {
       element.amount = categorySum.toString()
       amount.push(amountPush)
     })
+
+    if(this.oninit == "T") day = []
 
     /* ----------==========     lineChartIncome initialization    ==========---------- */
     const data_lineChartIncome: any = {
