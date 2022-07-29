@@ -2,6 +2,25 @@
   <div class="container-fluid">
     <div class="row">
 
+      <!-- alert -->
+      <div class="alert alert-warning" style="width:100%;margin:0 15px 15px 15px;font-size:20px;" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span>
+            <b> INFO - </b> Income / Expenditure Status is an overview of different comparing state's current financial statements.
+          </span>
+          <div class="close">
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_more">expand_more</i>
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_less">expand_less</i>
+          </div>
+        </div>
+        <span *ngIf="showDiv.alert;" style="font-size:18px;">
+          <br>Income / Expenditure Status is a kind of budget plan. It focus on result.
+          <br>Income / Expenditure Status is main focus on expected plan result and actual result.
+          <br>In the graph, the trend would be found, there is hints of how to improve the plan in personal finance.
+        </span>
+      </div>
+      <!-- END alert -->
+
       <!-- status card -->
       <div class="col-md-12" style="padding:unset">
         <div class="card card-plain">

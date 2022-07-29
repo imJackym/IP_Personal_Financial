@@ -73,3 +73,16 @@ h6 {
   margin-bottom: unset;
   font-size: 14px;
 }
+
+.alert b {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: unset
+}
+.alert span {
+  max-width: 95%;
+}
+
+.alert.alert-info i {
+  color: white;
+}

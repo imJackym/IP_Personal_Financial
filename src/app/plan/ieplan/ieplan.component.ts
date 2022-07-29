@@ -15,6 +15,13 @@ import * as Chartist from "chartist"
 })
 export class IeplanComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
+
+  showDiv = {
+    alert: true,
+    a_more: true,
+    a_less: false,
+  }
+
   iCategorys = []
   eCategorys = []
   // SAmount = []
