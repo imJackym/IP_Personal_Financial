@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 padding_reset">
         <div class="card card-plain" style="margin-bottom: 25px;">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-info">
             <!-- <h4 class="card-title">Summary Result</h4> -->
             <h3 class="card-title">Summary Result</h3>
           </div>
@@ -11,7 +11,7 @@
       </div>
 
       <!-- alert -->
-      <div class="alert alert-info" style="width:100%;margin:0 15px 15px 15px;">
+      <div class="alert alert-info" style="width:100%;margin:0 15px 15px 15px;font-size:18px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span>
             <b> INFO - </b> There are severals ways to achieve FIRE.
@@ -22,11 +22,14 @@
           </div>
         </div>
         <span *ngIf="showDiv.info">
-          FIRE is "Financial Independence, Retire Early".
+          FIRE is "Financial Independence, Retire Early".<br>
           <br><b>1. </b>4% rule
           <br><b>2. </b>Whole life of total expenditure is equal or small than to current total asset.
           <br><b>3. </b>total passive income is equal to or greater than total expenditure
           <br><b>4. </b>when whole life of total passive income add up with current asset is equal to and greater than total expenditure.
+        </span>
+        <span>
+          <br>* Click the graph can be hidden.
         </span>
       </div>
       <!-- END alert -->
@@ -181,7 +184,7 @@
                   <td>X 12 =</td>
                   <td>{{ total_exp_expenditure*12 | currency }}</td>
                 </tr>
-                <tr class="text-primary">
+                <tr class="text-primary" matTooltip="4% of Total Asset - Year of Expenditure: ({{total_asset*0.04| currency}} - {{total_exp_expenditure*12| currency}})" [matTooltipPosition]="'above'">
                   <td colspan="2" style="text-align: right;">Difference :</td>
                   <td>=</td>
                   <td>{{ total_asset*0.04 - total_exp_expenditure*12 | currency }}</td>
@@ -189,13 +192,13 @@
                 <tr class="text-primary" *ngIf="planA_exp">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
                   <td colspan="2">
-                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
+                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> can live until to {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr class="text-danger" *ngIf="!planA_exp">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
                   <td colspan="2">
-                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
+                    {{ total_asset/(total_exp_expenditure*12) | number:'1.0-0' }} years -> can live until to {{ year + total_asset/(total_exp_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr>
@@ -212,7 +215,7 @@
                   <td>X 12 =</td>
                   <td>{{ total_expenditure*12 | currency }}</td>
                 </tr>
-                <tr class="text-warning">
+                <tr class="text-warning" matTooltip="4% of Total Asset - Year of Expenditure: ({{total_asset*0.04| currency}} - {{total_expenditure*12| currency}})" [matTooltipPosition]="'above'">
                   <td colspan="2" style="text-align: right;">Difference :</td>
                   <td>=</td>
                   <td>{{ total_asset*0.04 - total_expenditure*12 | currency }}</td>
@@ -220,13 +223,13 @@
                 <tr class="text-warning" *ngIf="planA_act">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
                   <td colspan="2">
-                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
+                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> can live until to {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr class="text-danger" *ngIf="!planA_act">
                   <td colspan="2" style="text-align: right;">Wallet Life-Long Period :</td>
                   <td colspan="2">
-                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
+                    {{ total_asset/(total_expenditure*12) | number:'1.0-0' }} years -> can live until to {{ year + total_asset/(total_expenditure*12) | number:'1.0-0' }}
                   </td>
                 </tr>
                 <tr>

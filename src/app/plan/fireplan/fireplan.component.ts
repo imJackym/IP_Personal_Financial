@@ -16,6 +16,10 @@ export class FireplanComponent implements OnInit {
     info: true,
     i_more: true,
     i_less: false,
+
+    alert: true,
+    a_more: true,
+    a_less: false,
   }
   planA_thm_click = true
   planA_exp_click = true
@@ -29,7 +33,7 @@ export class FireplanComponent implements OnInit {
   total_expenditure: number = 0
   total_exp_expenditure: number = 0
   total_asset: number = 0
-  year
+  year = new Date().getFullYear()-1
   planA_act: boolean = false
   planA_exp: boolean = false
   planB: boolean = false
@@ -182,9 +186,9 @@ export class FireplanComponent implements OnInit {
     let year_y_d_act_remain = this.total_asset
 
     for (let y = 0; y < 25; y++) {
-      year_y_thm[y] = this.total_asset - this.total_asset * 0.04 * y
-      year_y_exp[y] = this.total_asset - this.total_exp_expenditure * 12 * y
-      year_y_act[y] = this.total_asset - this.total_expenditure * 12 * y
+      year_y_thm[y] = this.total_asset - this.total_asset * 0.04 * (y + 1)
+      year_y_exp[y] = this.total_asset - this.total_exp_expenditure * 12 * (y + 1)
+      year_y_act[y] = this.total_asset - this.total_expenditure * 12 * (y + 1)
 
       year_y_b_exp[y] = year_y_b_exp_remain - this.get_year_exp(this.total_exp_expenditure, y)
       year_y_b_exp_remain = year_y_b_exp_remain - this.get_year_exp(this.total_exp_expenditure, y)
