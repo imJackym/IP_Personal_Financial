@@ -15,6 +15,12 @@ import * as Chartist from "chartist"
 export class ExpenditureComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
+  showDiv = {
+    alert: true,
+    a_more: true,
+    a_less: false,
+  }
+
   exHistorys = []
   view_exHistorys = []
   exCategorys = []
@@ -548,7 +554,7 @@ export class ExpenditureComponent implements OnInit {
       low: 0,
       height: this.maxAmount == 0 ? 0 : 300,
       high: this.maxAmount,
-      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 10 },
       classNames: {
         label: "ct-label-line",
         labelGroup: "ct-labels-line",
@@ -583,7 +589,7 @@ export class ExpenditureComponent implements OnInit {
       low: 0,
       height: max == 0 ? 0 : 300,
       high: max,
-      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 10 },
     }
     var responsiveOptions: any[] = [
       // [
