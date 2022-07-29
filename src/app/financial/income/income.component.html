@@ -2,6 +2,32 @@
   <div class="container-fluid">
     <div class="row">
 
+      <!-- alert -->
+      <div class="alert alert-success" style="width:100%;margin:0 15px 15px 15px;font-size:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span>
+            <b> INFO - </b> Income is an overview of the income state's current financial statements.
+          </span>
+          <div class="close">
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_more">expand_more</i>
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_less">expand_less</i>
+          </div>
+        </div>
+        <span *ngIf="showDiv.alert;" style="font-size:18px;">
+          <br>Income is categorized into 3 components.
+          <br>Select the target element and click the "Search & Calculate" button, the graph will be drawn as required.
+          <br>In the graph, the trend would be found, there is hints of how to improve the plan in personal finance.
+          <br><br>
+          <span style="padding-bottom:5px;"><b>1. Year</b></span>
+          <span style="padding-bottom:5px;"><b>2. Month</b></span>
+          <span style="padding-bottom:5px;"><b>3. Category</b></span>
+          <span>
+            <br>* ALL CURRENCY would be update by any record inserted into this system.
+          </span>
+        </span>
+      </div>
+      <!-- END alert -->
+
       <!-- History Table -->
       <div class="col-md-8" style="padding:unset">
         <div class="card card-plain">
@@ -56,11 +82,11 @@
                 <td>Sum of selected</td>
                 <td>{{ (selectedAmount == 0)? 'N/A' : selectedAmount | currency }}</td>
               </tr>
-              <tr>
+              <tr matTooltip="Select Category: {{(selectedAmount|currency)}} / Total Select Month: {{(selectedMonth|currency)}}" [matTooltipPosition]="'above'">
                 <td>Yield in month (%)</td>
-                <td>{{ (selectedMonth == 0)? 'N/A' : (selectedAmount/selectedMonth) | percent }}</td>
+                <td>{{ ((selectedAmount/selectedMonth) > 1 ) ? 'Please Select Month' : (selectedMonth == 0)? 'N/A' : (selectedAmount/selectedMonth) | percent }}</td>
               </tr>
-              <tr>
+              <tr matTooltip="Select Category: {{(selectedAmount|currency)}} / Total Select selectedYear: {{(selectedYear|currency)}}" [matTooltipPosition]="'above'">
                 <td>Yield in year (%)</td>
                 <td>{{ (selectedYear == 0)? 'N/A' : (selectedAmount/selectedYear) | percent }}</td>
               </tr>

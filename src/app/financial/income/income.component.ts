@@ -15,6 +15,12 @@ import * as Chartist from "chartist"
 export class IncomeComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
+  showDiv = {
+    alert: true,
+    a_more: true,
+    a_less: false,
+  }
+
   icHistorys = []
   view_icHistorys = []
   icCategorys = []
@@ -203,6 +209,7 @@ export class IncomeComponent implements OnInit {
   api_ymc1(attr1: any, v1: any) {
     console.log("--- api_ymc1")
     let new_icCategorys_id = null
+    if(attr1=='year') this.oninit = "T"
     let s = "showAll"
     if (v1 == s) {
       this.onload()
@@ -530,6 +537,7 @@ export class IncomeComponent implements OnInit {
     })
 
     if(this.oninit == "T") day = []
+    this.oninit = "N"
 
     /* ----------==========     lineChartIncome initialization    ==========---------- */
     const data_lineChartIncome: any = {
@@ -549,7 +557,7 @@ export class IncomeComponent implements OnInit {
       low: 0,
       height: this.maxAmount == 0 ? 0 : 300,
       high: this.maxAmount,
-      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 10 },
       classNames: {
         label: "ct-label-line",
         labelGroup: "ct-labels-line",
@@ -584,7 +592,7 @@ export class IncomeComponent implements OnInit {
       low: 0,
       height: max == 0 ? 0 : 300,
       high: max,
-      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 10 },
     }
     var responsiveOptions: any[] = [
       // [
