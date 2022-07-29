@@ -2,6 +2,34 @@
   <div class="container-fluid">
     <div class="row">
 
+      <!-- alert -->
+      <div class="alert alert-primary" style="width:100%;margin:0 15px 15px 15px;font-size:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span>
+            <b> INFO - </b> Wallet is an overview of the state's current financial statements.
+          </span>
+          <div class="close">
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_more">expand_more</i>
+            <i class="material-icons" (click)="showDiv.alert=!showDiv.alert;showDiv.a_more=!showDiv.a_more;showDiv.a_less=!showDiv.a_less" *ngIf="showDiv.a_less">expand_less</i>
+          </div>
+        </div>
+        <span *ngIf="showDiv.alert" style="font-size:18px;">
+          <br>Wallet is categorized into 3 groups/components of different assets.<br>
+          <br><span style="padding-bottom:5px;"><b>1. Cash</b> - consider as money in liquidity which is not in stable for payment.</span>
+          <span style="padding-left:30px;font-size:16px;">- It is not recommended to keep too many percentages in the wallet as cash used for payment as a dead pool that does not grow and save and can easily be spent more.</span>
+
+          <br><span style="padding-bottom:5px;"><b>2. Bank</b> - consider as money in save for saving.</span>
+          <span style="padding-left:30px;font-size:16px;">- Bank is only one role that is KEEPING. Avoiding financial shortfalls in any emergency or attend any target wanted</span>
+
+          <br><span style="padding-bottom:5px;"><b>3. Investment</b> - consider as money in growing for future.</span>
+          <span style="padding-left:30px;font-size:16px;">- Investing in goals is about getting there faster. But it is not recommended to invest too much, it should be balanced with saving to provide for daily use and any emergency cases</span><br>
+          <span>
+            * ALL CURRENCY would be update by any record inserted into this system.
+          </span>
+        </span>
+      </div>
+      <!-- END alert -->
+
       <!-- pie card -->
       <div class="col-md-12">
         <div class="card card-chart">
@@ -11,19 +39,19 @@
               <div class="ct-chart" id="walletChart" style="text-align:center"></div>
               <div class="table-responsive" style="width:50%">
                 <table class="table table-hover textFont">
-                  <tr style="color:#d70206">
+                  <tr style="color:#d70206" matTooltip="Cash: {{(cash + cash_ga - cash_ra|currency)}} / Total Asset: {{(cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment|currency)}}" [matTooltipPosition]="'above'">
                     <td>Cash</td>
                     <td>
                       {{ (cash + cash_ga - cash_ra) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}
                     </td>
                   </tr>
-                  <tr style="color:#f05b4f">
+                  <tr style="color:#f05b4f" matTooltip="Bank: {{((bank + bank_ga - bank_ra)|currency)}} / Total Asset: {{(cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment|currency)}}" [matTooltipPosition]="'above'">
                     <td>Bank</td>
                     <td>
                       {{ (bank + bank_ga - bank_ra) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}
                     </td>
                   </tr>
-                  <tr style="color:#f4c63d">
+                  <tr style="color:#f4c63d" matTooltip="Investment: {{(investment|currency)}} / Total Asset: {{(cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment|currency)}}" [matTooltipPosition]="'above'">
                     <td>Investment</td>
                     <td>
                       {{ (investment) / (cash + cash_ga - cash_ra + bank + bank_ga - bank_ra + investment) | percent }}

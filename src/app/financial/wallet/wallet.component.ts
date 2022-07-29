@@ -16,6 +16,10 @@ export class WalletComponent implements OnInit {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
   showDiv = {
+    alert: true,
+    a_more: true,
+    a_less: false,
+
     income: false,
     i_more: true,
     i_less: false,
