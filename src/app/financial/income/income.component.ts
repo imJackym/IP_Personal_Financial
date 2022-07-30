@@ -209,7 +209,7 @@ export class IncomeComponent implements OnInit {
   api_ymc1(attr1: any, v1: any) {
     console.log("--- api_ymc1")
     let new_icCategorys_id = null
-    if(attr1=='year') this.oninit = "T"
+    if(attr1=='year') this.oninit = "N"
     let s = "showAll"
     if (v1 == s) {
       this.onload()
@@ -241,6 +241,7 @@ export class IncomeComponent implements OnInit {
   }
   api_ymc2(attr1: any, v1: any, attr2: any, v2: any) {
     console.log("--- api_ymc2")
+    if(attr1=='year') this.oninit = "N"
     let new_icCategorys_id = null
     let s = "showAll"
     if (v1 == s && v2 == s) {
@@ -277,6 +278,7 @@ export class IncomeComponent implements OnInit {
   }
   api_ymc3(attr1: any, v1: any, attr2: any, v2: any, attr3: any, v3: any) {
     console.log("--- api_ymc3")
+    if(attr1=='year') this.oninit = "N"
     let new_icCategorys_id = null
     let s = "showAll"
     if (v1 == s && v2 == s && v3 == s) {
@@ -501,6 +503,11 @@ export class IncomeComponent implements OnInit {
     // set label day
     console.log(`--- setLabelDay`)
     this.icHistorys.forEach(element => {
+      // let year
+      // if(element.year == '2021')
+      //   year = '21'
+      // if(element.year == '2021')
+      //   year = '22'
       let printDate = `${element.year}/${element.month}/${element.day}`
       day.push(printDate)
     })
@@ -520,6 +527,11 @@ export class IncomeComponent implements OnInit {
       let categorySum = 0
       let id = "" + element.id
       day.forEach(dayElement => {
+        // let year
+        // if(element.year == '2021')
+        //   year = '21'
+        // if(element.year == '2021')
+        //   year = '22'
         let filterResult = this.icHistorys.filter(element => `${element.year}/${element.month}/${element.day}` == dayElement && element.category_id == id)
         let sum: number = 0
         filterResult.forEach(fR => {
@@ -535,6 +547,11 @@ export class IncomeComponent implements OnInit {
       element.amount = categorySum.toString()
       amount.push(amountPush)
     })
+
+    // let new_day = []
+    // day.forEach(element=>{
+    //   new_day.push(element.slice(-8))
+    // })
 
     if(this.oninit == "T") day = []
     this.oninit = "N"

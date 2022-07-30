@@ -101,7 +101,7 @@ export class IeplanComponent implements OnInit {
   }
 
   set_x_axis() {
-    let year = new Date().getFullYear()
+    let year = new Date().getFullYear()-1
     for (let m = 1; m < 13; m++) {
       this.x_axis.push(`${year}/${m}`)
     }
@@ -734,7 +734,7 @@ export class IeplanComponent implements OnInit {
       // low: 0,
       height: 400,
       high: maxHigh,
-      chartPadding: { top: 10, right: 0, bottom: 0, left: 0 },
+      chartPadding: { top: 10, right: 0, bottom: 0, left: 10 },
       classNames: {
         label: "ct-label-line",
         labelGroup: "ct-labels-line",

@@ -207,6 +207,7 @@ export class ExpenditureComponent implements OnInit {
   // extend
   api_ymc1(attr1: any, v1: any) {
     console.log("--- api_ymc1")
+    if(attr1=='year') this.oninit = "N"
     let new_exCategorys_id = null
     let s = "showAll"
     if (v1 == s) {
@@ -239,6 +240,7 @@ export class ExpenditureComponent implements OnInit {
   }
   api_ymc2(attr1: any, v1: any, attr2: any, v2: any) {
     console.log("--- api_ymc2")
+    if(attr1=='year') this.oninit = "N"
     let new_exCategorys_id = null
     let s = "showAll"
     if (v1 == s && v2 == s) {
@@ -275,6 +277,7 @@ export class ExpenditureComponent implements OnInit {
   }
   api_ymc3(attr1: any, v1: any, attr2: any, v2: any, attr3: any, v3: any) {
     console.log("--- api_ymc3")
+    if(attr1=='year') this.oninit = "N"
     let new_exCategorys_id = null
     let s = "showAll"
     if (v1 == s && v2 == s && v3 == s) {
@@ -535,6 +538,11 @@ export class ExpenditureComponent implements OnInit {
     })
 
     if(this.oninit == "T") day = []
+
+    let new_day = []
+    day.forEach(element=>{
+      new_day.push(element.slice(-8))
+    })
 
     /* ----------==========     lineChartIncome initialization    ==========---------- */
     const data_lineChartIncome: any = {
