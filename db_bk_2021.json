@@ -71,26 +71,6 @@
       "id": 2
     },
     {
-      "date": "2022-07-01T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "02",
-      "type": "bank",
-      "category_id": "1",
-      "amount": "24000",
-      "id": 2
-    },    
-    {
-      "date": "2023-07-01T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "02",
-      "type": "bank",
-      "category_id": "1",
-      "amount": "25000",
-      "id": 2
-    },
-    {
       "date": "2021-08-01T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -201,27 +181,7 @@
       "amount": "0",
       "id": 2
     },
-    {
-      "date": "2022-07-15T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "16",
-      "type": "cash",
-      "category_id": "2",
-      "amount": "200",
-      "id": 2
-    },
-    {
-      "date": "2023-07-15T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "16",
-      "type": "cash",
-      "category_id": "2",
-      "amount": "0",
-      "id": 2
-    },
-
+   
     {
       "date": "2021-09-15T16:00:00.000Z",
       "month": "09",
@@ -252,7 +212,7 @@
       "amount": "12368",
       "id": 2
     },
-
+   
     {
       "date": "2021-01-23T16:00:00.000Z",
       "month": "01",
@@ -321,26 +281,6 @@
       "type": "cash",
       "category_id": "3",
       "amount": "1000",
-      "id": 2
-    },
-    {
-      "date": "2022-07-23T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "24",
-      "type": "cash",
-      "category_id": "3",
-      "amount": "500",
-      "id": 2
-    },
-    {
-      "date": "2023-07-23T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "24",
-      "type": "cash",
-      "category_id": "3",
-      "amount": "0",
       "id": 2
     },
     {
@@ -486,26 +426,6 @@
       "id": 7
     },
     {
-      "date": "2022-07-10T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "11",
-      "type": "cash",
-      "category_id": "4",
-      "amount": "200",
-      "id": 7
-    },
-    {
-      "date": "2023-07-10T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "11",
-      "type": "cash",
-      "category_id": "4",
-      "amount": "0",
-      "id": 7
-    },
-    {
       "date": "2021-08-24T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -623,26 +543,6 @@
       "type": "bank",
       "category_id": "5",
       "amount": "50",
-      "id": 7
-    },
-    {
-      "date": "2022-07-01T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "02",
-      "type": "bank",
-      "category_id": "5",
-      "amount": "50",
-      "id": 7
-    },
-    {
-      "date": "2023-07-01T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "02",
-      "type": "bank",
-      "category_id": "5",
-      "amount": "100",
       "id": 7
     },
     {
@@ -766,26 +666,6 @@
       "id": 7
     },
     {
-      "date": "2022-07-06T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "07",
-      "type": "bank",
-      "category_id": "6",
-      "amount": "9000",
-      "id": 7
-    },
-    {
-      "date": "2023-07-06T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "07",
-      "type": "bank",
-      "category_id": "6",
-      "amount": "10000",
-      "id": 7
-    },
-    {
       "date": "2021-08-06T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -903,26 +783,6 @@
       "type": "bank",
       "category_id": "8",
       "amount": "12000",
-      "id": 7
-    },
-    {
-      "date": "2022-07-09T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "10",
-      "type": "bank",
-      "category_id": "8",
-      "amount": "15000",
-      "id": 7
-    },
-    {
-      "date": "2023-07-09T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "10",
-      "type": "bank",
-      "category_id": "8",
-      "amount": "20000",
       "id": 7
     },
     {
@@ -1256,66 +1116,6 @@
       "id": 4
     },
     {
-      "date": "2022-07-12T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "13",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "200",
-      "id": 2
-    },
-    {
-      "date": "2022-07-13T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "14",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "200",
-      "id": 3
-    },
-    {
-      "date": "2022-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "30",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "200",
-      "id": 4
-    },
-        {
-      "date": "2023-07-12T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "13",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "424",
-      "id": 2
-    },
-    {
-      "date": "2023-07-13T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "14",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "424",
-      "id": 3
-    },
-    {
-      "date": "2023-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "30",
-      "type": "cash",
-      "category_id": "1",
-      "amount": "424",
-      "id": 4
-    },
-    {
       "date": "2021-08-17T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -1586,26 +1386,6 @@
       "id": 7
     },
     {
-      "date": "2022-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "30",
-      "type": "cash",
-      "category_id": "2",
-      "amount": "3541",
-      "id": 7
-    },
-    {
-      "date": "2023-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "30",
-      "type": "cash",
-      "category_id": "2",
-      "amount": "5000",
-      "id": 7
-    },
-    {
       "date": "2021-08-22T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -1726,26 +1506,6 @@
       "id": 7
     },
     {
-      "date": "2022-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "30",
-      "type": "cash",
-      "category_id": "3",
-      "amount": "6541",
-      "id": 7
-    },
-    {
-      "date": "2023-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "30",
-      "type": "cash",
-      "category_id": "3",
-      "amount": "9000",
-      "id": 7
-    },
-    {
       "date": "2021-08-22T16:00:00.000Z",
       "month": "08",
       "year": "2021",
@@ -1863,26 +1623,6 @@
       "type": "cash",
       "category_id": "7",
       "amount": "4073",
-      "id": 7
-    },
-    {
-      "date": "2022-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2022",
-      "day": "30",
-      "type": "cash",
-      "category_id": "7",
-      "amount": "16843",
-      "id": 7
-    },
-    {
-      "date": "2023-07-29T16:00:00.000Z",
-      "month": "07",
-      "year": "2023",
-      "day": "30",
-      "type": "cash",
-      "category_id": "7",
-      "amount": "20000",
       "id": 7
     },
     {
